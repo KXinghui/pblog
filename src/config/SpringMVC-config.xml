@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+
+	<!-- 启动注解识别 -->
+	<context:annotation-config />
+
+	<!-- 上下文组件扫描 -->
+	<context:component-scan
+		base-package="controller">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- 开启注解驱动 -->
+	<mvc:annotation-driven
+		conversion-service="conversionService" validator="validator" />
+
+	<!-- conversion-service="conversionService" -->
+	<!-- validator="validator" -->
+
+	<!-- 转换服务 -->
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<bean class="converter.String2EnumConverterFactory">
+				</bean>
+			</set>
+		</property>
+	</bean>
+
+	<!-- 校验器 -->
+	<!-- hibernate校验器 -->
+	<!-- 指定存放校验信息的文件 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass"
+			value="org.hibernate.validator.HibernateValidator"></property>
+		<property name="validationMessageSource" ref="messageSource"></property>
+	</bean>
+
+	<!-- 校验信息文件 -->
+	<!-- 文件路径 -->
+	<!-- 资源文件编码格式 -->
+	<!-- 资源文件内容缓存时间 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:validator/validationMessages</value>
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="useCodeAsDefaultMessage" value="false" />
+		<property name="cacheSeconds" value="120" />
+	</bean>
+
+
+	<!-- 开通静态资源访问： 对静态资源的请求转发到Servlet容器中默认的Servlet上， 不是使用DispatcherServlet本身来处理此类请求 -->
+
+
+	<mvc:default-servlet-handler />
+
+	<!-- 配置jsp视图解析器解析成jstl视图 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+	</bean>
+
+	<!-- 配置 Multipart解析器解析 Multipart请求 -->
+	<bean id="standardServletMultipartResolver"
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+	<!-- <bean id="commonsMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" 
+		/> -->
+
+	<!-- 拦截器[前台(登陆)、后台(权限)] -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/fore*" />
+			<mvc:mapping path="/fore/**" />
+			<bean class="interceptor.ForeInteceptor"></bean>
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/admin*" />
+			<bean class="interceptor.AuthorizeInteceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+
+</beans>

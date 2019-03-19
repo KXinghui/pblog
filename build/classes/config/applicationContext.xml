@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+    http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<!-- 启动注解识别 -->
+	<context:annotation-config />
+	<!-- 上下文组件扫描 -->
+	<context:component-scan base-package="service" />
+	<context:property-placeholder
+		location="classpath:config/db.properties" />
+
+
+	<!-- 配置MyBatis DataSource、SqlSessionFactoryBean、Mapper -->
+
+
+	<bean id="druid" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<property name="filters" value="stat" />
+
+		<property name="maxActive" value="20" />
+		<property name="initialSize" value="1" />
+		<property name="maxWait" value="60000" />
+		<property name="minIdle" value="1" />
+
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="20" />
+	</bean>
+
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="typeAliasesPackage" value="pojo" />
+		<property name="dataSource" ref="druid" />
+		<!-- Mapper映射文件与Mapper接口不在同一路径下，使用配置文件配置的两种方式： 1、在 MyBatis的配置文件使用<mappers>指定 
+			2、在 Spring的配置文件使用SqlSessionFactoryBean的mapperLocations属性 -->
+		<property name="mapperLocations"
+			value="classpath:config/mapper/*.xml" />
+		<!-- <property name="configLocation" value="classpath:config/mybatis-config.xml" 
+			/> -->
+
+		<!-- 容器管理事务 CMT -->
+		<!-- <property name="transactionFactory"> <bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" 
+			/> </property> -->
+
+		<!-- 在 Spring 配置文件中配置拦截器插件 pagehelper -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<!-- 使用下面的方式配置参数，一行配置一个 -->
+						<!-- 用户输入的页数不在合法范围 reasonable -->
+						<value>
+							helperDialect=mysql
+							reasonable=true
+							pageSizeZero=true
+						</value>
+
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+
+
+	<!-- 1、MyBatis-Spring -->
+	<!-- <mybatis-spring:scan base-package="mapper" /> -->
+	<!-- 2、Spring -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="mapper" />
+	</bean>
+
+	<!-- 事务 -->
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+	<!-- 标准开启 Spring 的事务处理 DataSourceTransactionManager -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="druid" />
+	</bean>
+
+
+</beans>

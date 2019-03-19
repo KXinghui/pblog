@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- 属性 properties -->
+	<properties resource="config/db.properties"></properties>
+
+	<!-- 类型别名 typeAliases -->
+	<typeAliases>
+		<package name="pojo" />
+	</typeAliases>
+
+	<!-- 插件 plugins -->
+	<!-- <plugins> 在 MyBatis 配置 xml 中配置拦截器插件 com.github.pagehelper为PageHelper类所在包名 
+		<plugin interceptor="com.github.pagehelper.PageInterceptor"> 使用下面的方式配置参数，后面会有所有的参数介绍 
+		<property name="param1" value="value1" /> </plugin> </plugins> -->
+
+	<!-- 环境 environments -->
+	<environments default="devPOOLED">
+		<environment id="devPOOLED">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+
+		<!-- C3P0 -->
+		<environment id="devC3P0">
+			<transactionManager type="JDBC" />
+			<dataSource type="util.C3P0DataSourceFactory">
+				<property name="driverClass" value="${jdbc.driver}" />
+				<property name="jdbcUrl" value="${jdbc.url}" />
+				<property name="user" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+
+				<!-- Basic Pool Configuration 基本池配置 -->
+				<property name="acquireIncrement" value="40" />
+				<property name="initialPoolSize" value="10" />
+				<property name="maxIdleTime" value="30" />
+				<property name="maxPoolSize" value="80" />
+				<property name="minPoolSize" value="10" />
+
+				<!-- Configuring Statement Pooling 配置语句池 -->
+				<property name="maxStatements" value="100" />
+				<property name="maxStatementsPerConnection" value="5" />
+
+				<!-- Other DataSource Configuration 其他数据源配置 -->
+				<property name="checkoutTimeout" value="30000" />
+			</dataSource>
+		</environment>
+
+		<!-- Druid -->
+		<environment id="devDruid">
+			<transactionManager type="JDBC" />
+			<dataSource type="util.DruidDataSourceFactory">
+				<property name="driverClassName" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+
+				<property name="filters" value="stat" />
+
+				<property name="maxActive" value="20" />
+				<property name="initialSize" value="1" />
+				<property name="maxWait" value="60000" />
+				<property name="minIdle" value="1" />
+
+				<property name="timeBetweenEvictionRunsMillis"
+					value="60000" />
+				<property name="minEvictableIdleTimeMillis" value="300000" />
+
+				<property name="testWhileIdle" value="true" />
+				<property name="testOnBorrow" value="false" />
+				<property name="testOnReturn" value="false" />
+
+				<property name="poolPreparedStatements" value="true" />
+				<property name="maxOpenPreparedStatements" value="20" />
+			</dataSource>
+		</environment>
+	</environments>
+
+
+	<!-- 使用类路径的资源引用 使用完全限定资源定位符（URL） 使用映射器接口实现类的完全限定类名 将包内的映射器接口实现全部注册为映射器 -->
+	<mappers>
+		<package name="mapper" />
+	</mappers>
+
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

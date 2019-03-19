@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.ArticleContentMapper">
+	<resultMap type="articleContent" id="articleContentMap">
+		<id column="id" property="id" />
+		<!-- private String mdContent; private String htmlContent; private Integer 
+			aid; -->
+		<result column="mdContent" property="mdContent" />
+		<result column="htmlContent" property="htmlContent" />
+		<result column="aid" property="aid" />
+	</resultMap>
+	<!-- mdContent,htmlContent,aid,viewNum,articleStatu,createDate,uid,cid -->
+	<!-- #{mdContent}#{htmlContent}#{aid}#{viewNum}#{articleStatu}#{createDate}#{uid}#{cid} -->
+	<!-- 添加 -->
+	<insert id="insert" keyColumn="id" keyProperty="id"
+		useGeneratedKeys="true" parameterType="articleContent">
+		INSERT INTO articlecontent
+		(mdContent,htmlContent,aid)
+		VALUES
+		(#{mdContent},#{htmlContent},#{aid})
+	</insert>
+
+	<!-- 更新 -->
+	<update id="update" parameterType="articleContent">
+		UPDATE articlecontent
+		SET
+		mdContent = #{mdContent},htmlContent = #{htmlContent},aid = #{aid}
+		WHERE
+		id = #{id}
+	</update>
+
+	<!-- 更新 -->
+	<update id="updateByArticle" parameterType="articleContent">
+		UPDATE articlecontent
+		SET
+		mdContent = #{mdContent},htmlContent = #{htmlContent} WHERE aid =
+		#{aid}
+	</update>
+
+	<!-- 删除 -->
+	<delete id="delete" parameterType="integer">
+		DELETE FROM articlecontent
+		WHERE
+		id
+		=
+		#{id}
+	</delete>
+
+	<!-- 删除 -->
+	<delete id="deleteByArticle" parameterType="integer">
+		DELETE FROM articlecontent
+		WHERE
+		aid
+		=
+		#{aid}
+	</delete>
+
+	<delete id="delete2" parameterType="articleContent">
+		DELETE FROM articlecontent
+		WHERE id
+		=
+		#{id}
+	</delete>
+
+	<!-- 获取 -->
+	<select id="get" resultMap="articleContentMap">
+		SELECT * FROM articlecontent WHERE id
+		=
+		#{id}
+	</select>
+
+	<select id="list" resultMap="articleContentMap">
+		SELECT * FROM articlecontent
+	</select>
+
+	<select id="count" resultType="integer">
+		SELECT COUNT(*) FROM
+		articlecontent
+	</select>
+
+
+	<!-- 动态操作 -->
+	<!-- 动态添加 -->
+	<insert id="dynamicInsert" keyColumn="id" keyProperty="id"
+		useGeneratedKeys="true" parameterType="articleContent">
+		INSERT INTO articleContent
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mdContent != null">
+				mdContent,
+			</if>
+			<if test="htmlContent != null">
+				htmlContent,
+			</if>
+			<if test="aid != null">
+				aid,
+			</if>
+		</trim>
+		<trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+			<if test="mdContent != null">
+				#{mdContent},
+			</if>
+			<if test="htmlContent != null">
+				#{htmlContent},
+			</if>
+			<if test="aid != null">
+				#{aid},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" parameterType="articleContent">
+		UPDATE articleContent
+		<set>
+			<if test="mdContent != null">
+				mdContent = #{mdContent},
+			</if>
+			<if test="htmlContent != null">
+				htmlContent = #{htmlContent},
+			</if>
+			<if test="aid != null">
+				aid = #{aid},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<!-- 动态更新 -->
+	<update id="dynamicUpdateByArticle"
+		parameterType="articleContent">
+		UPDATE articleContent
+		<set>
+			<if test="mdContent != null">
+				mdContent = #{mdContent},
+			</if>
+			<if test="htmlContent != null">
+				htmlContent = #{htmlContent},
+			</if>
+		</set>
+		WHERE aid=#{aid}
+	</update>
+
+
+
+	<!-- 批量操作 -->
+	<!-- 批量添加 -->
+	<insert id="batchInsert" keyColumn="id" keyProperty="id"
+		useGeneratedKeys="true" parameterType="list">
+		INSERT INTO articlecontent(name,password) VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.mdContent},#{item.htmlContent},#{item.aid})
+		</foreach>
+	</insert>
+
+	<!-- 批量删除 -->
+	<delete id="batchDelete" parameterType="list">
+		DELETE FROM articlecontent WHERE id IN
+		<foreach collection="list" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<!-- 批量删除 -->
+  <delete id="batchDeleteByArtice" parameterType="list">
+    DELETE FROM articlecontent WHERE aid IN
+    <foreach collection="list" item="item" open="(" close=")"
+      separator=",">
+      #{item}
+    </foreach>
+  </delete>
+
+
+
+	<!-- 批量更新 -->
+	<!-- <update id="batchUpdate"> </update> -->
+	<!-- 动态批量操作 -->
+	<!-- 动态批量添加 -->
+	<!-- <insert id="dynamicBatchInsert" keyColumn="id" keyProperty="id" useGeneratedKeys="true" 
+		parameterType="list"> INSERT INTO articlecontent<trim prefix="(" suffix=")" 
+		suffixOverrides=","> <if test="name != null"> name, </if> <if test="password 
+		!= null"> password, </if> </trim> VALUES <foreach collection="list" item="item" 
+		separator=","> <trim prefix="(" suffix=")" suffixOverrides=","> <if test="name 
+		!= null"> #{name}, </if> <if test="password != null"> #{password}, </if> 
+		</trim> </foreach> </insert> -->
+	<!-- 动态批量更新 -->
+	<!-- <update id="dynamicBatchUpdate" parameterType="list"> </update> -->
+
+
+
+
+
+	<!-- 业务逻辑 -->
+
+	<!-- 获取 -->
+	<!-- 获取 -->
+	<select id="getByArticle" parameterType="integer"
+		resultMap="articleContentMap">
+		SELECT * FROM articlecontent WHERE aid = #{aid}
+	</select>
+
+	<select id="listByArticles" parameterType="list"
+		resultMap="articleContentMap">
+		SELECT * FROM articlecontent WHERE aid IN
+		<foreach collection="list" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</select>
+
+	<!-- 获取 多条件查询 -->
+	<select id="listMulCondition" parameterType="hashmap"
+		resultMap="articleContentMap">
+		SELECT * FROM articlecontent
+		<where>
+			<if test="mdContent != null">
+				mdContent LIKE CONCAT('%',#{mdContent},'%')
+			</if>
+			<if test="htmlContent != null">
+				AND htmlContent LIKE CONCAT('%',#{htmlContent},'%')
+			</if>
+			<if test="aid != null">
+				AND aid = #{aid}
+			</if>
+		</where>
+	</select>
+</mapper>
+
+
+
+
+
+
+

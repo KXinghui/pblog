@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.CategoryMapper">
+	<resultMap type="category" id="categoryMap">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+	</resultMap>
+	<!-- 添加 -->
+	<insert id="insert" keyColumn="id" keyProperty="id"
+		useGeneratedKeys="true" parameterType="category">
+		INSERT INTO category
+		(name)
+		VALUES
+		(#{name})
+	</insert>
+	<!-- 更新 -->
+	<update id="update" parameterType="category">
+		UPDATE category
+		SET name =
+		#{name,jdbcType=VARCHAR}
+		WHERE
+		id = #{id}
+	</update>
+	<!-- 删除 -->
+	<delete id="delete" parameterType="integer">
+		DELETE FROM category WHERE id
+		=
+		#{id}
+	</delete>
+	<!-- 获取 -->
+	<select id="get" resultMap="categoryMap">
+		SELECT * FROM category WHERE id
+		=
+		#{id}
+	</select>
+
+	<select id="list" resultMap="categoryMap">
+		SELECT * FROM category
+	</select>
+
+	<select id="count" resultType="integer">
+		SELECT COUNT(*) FROM category
+	</select>
+
+
+
+	<!-- 动态操作 -->
+	<!-- 动态添加 -->
+	<insert id="dynamicInsert" keyColumn="id" keyProperty="id"
+		useGeneratedKeys="true" parameterType="category">
+		INSERT INTO category
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				name,
+			</if>
+		</trim>
+		<trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				#{name},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" parameterType="category">
+		UPDATE category
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+
+
+	<!-- 批量操作 -->
+	<!-- 批量添加 -->
+	<insert id="batchInsert" keyColumn="id" keyProperty="id"
+		useGeneratedKeys="true" parameterType="list">
+		INSERT INTO category (name) VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.name})
+		</foreach>
+	</insert>
+
+	<!-- 批量删除 -->
+	<delete id="batchDelete" parameterType="list">
+		DELETE FROM category WHERE id IN
+		<foreach collection="list" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 获取 -->
+	<select id="getByName" resultMap="categoryMap">
+		SELECT * FROM category WHERE
+		name
+		=
+		#{name}
+	</select>
+
+	<!-- 获取 模糊查询【CONCAT('%',#{xxx},'%')】 -->
+	<select id="listFuzzyByName" parameterType="string"
+		resultMap="categoryMap">
+		SELECT * FROM category
+		WHERE
+		name LIKE
+		CONCAT('%',#{name},'%')
+	</select>
+
+</mapper>
+
+
+
+
+
+
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>pblog</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- Spring-Listener-Filter-Servlet -->
+
+	<!-- Spring -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:config/applicationContext.xml</param-value>
+	</context-param>
+	<!-- 注册ContextLoaderListener -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 字符编码过滤器 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- SpringMVC-DispatcherServlet -->
+	<servlet>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/SpringMVC-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+		<!-- 使用<servlet>中的<multipart-config>元素配置MultipartConfigElement -->
+		<multipart-config>
+			<location>/tempFolder</location>
+			<max-file-size>2097152</max-file-size>
+			<max-request-size>4194304</max-request-size>
+			<file-size-threshold>1</file-size-threshold>
+		</multipart-config>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- 全局错误处理页面配置 -->
+	<error-page>
+		<!--服务器发生错误时 -->
+		<error-code>500</error-code>
+		<location>/WEB-INF/jsp/fore/err.jsp</location>
+	</error-page>
+	<error-page>
+		<!--资源找不到时 -->
+		<error-code>404</error-code>
+		<location>/WEB-INF/jsp/fore/err.jsp</location>
+	</error-page>
+
+</web-app>
