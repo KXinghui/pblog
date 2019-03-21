@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>top</title>
+  <link rel="stylesheet" href="../styles/normalize/normalize.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bootstrapvalidator/dist/css/bootstrapValidator.css">
+  <link rel="stylesheet" href="../styles/forecss.css">
+</head>
+
+<body>
+<div class="container">
+  <div class="row">
+  <div class="test" onlyread=true></div>
+  
+  <form id="add-category-form" action="" method="POST" class="form-horizontal col-md-6 col-md-offset-3" role="form">
+    <div class="form-group">
+      <legend>增加分类</legend>
+    </div>
+    <div class="form-group">
+      <label for="name">分类名</label>
+      <input type="name" class="form-control" id="name" name="name" placeholder="请输入分类名">
+    </div>
+
+    <div class="form-group">
+      <label for="type">分类类型</label>
+      <select name="type" id="input" class="form-control">
+        <option value="">请输入分类类型</option>
+        <option value="0">用户关注</option>
+        <option value="1">文章收藏</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-10 col-sm-offset-2">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+
+
+  <form id="edit-category-form" action="" method="POST" class="form-horizontal col-md-6 col-md-offset-3" role="form">
+    <div class="form-group">
+      <legend>编辑分类</legend>
+    </div>
+    <div class="form-group">
+      <label for="id">分类ID</label>
+      <input type="id" class="form-control" id="id" name="id" placeholder="请输入分类名">
+    </div>
+    <div class="form-group">
+      <label for="name2">分类名</label>
+      <input type="name" class="form-control" id="name2" name="name" placeholder="请输入分类名">
+    </div>
+
+    <div class="form-group">
+      <label for="type2">分类类型</label>
+      <select name="type2" id="input" class="form-control">
+        <option value="">请输入分类类型</option>
+        <option value="0">用户关注</option>
+        <option value="1">文章收藏</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-10 col-sm-offset-2">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+
+
+
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+  <script src="../bootstrapvalidator/dist/js/language/zh_CN.js"></script>
+  <script>
+    jQuery(validForm($));
+
+    function validForm() {
+      $('#add-category-form').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+          valid: 'glyphicon glyphicon-ok',
+          invalid: 'glyphicon glyphicon-remove',
+          validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+          name: {
+            message: 'The username is not valid',
+            validators: {
+              notEmpty: {
+                message: '用户名不能为空'
+              },
+              stringLength: {
+                min: 2,
+                max: 30,
+                message: '用户名长度必须在 2 - 30 之间'
+              }
+            }
+          },
+          type: {
+            validators: {
+              notEmpty: {
+                message: '分类类型不能为空'
+              }
+            }
+          }
+        }
+      }).on('success.form.bv', function (e) {
+        // Prevent form submission
+        e.preventDefault();
+
+        // Get the form instance
+        var $form = $(e.target);
+
+        // Get the BootstrapValidator instance
+        var bv = $form.data('bootstrapValidator');
+
+        // Use Ajax to submit form data
+        $.post($form.attr('action'), $form.serialize(), function (result) {
+          console.log(result);
+        }, 'json');
+      }).on('error.field.bv', function(e, data) {
+            if (data.field == 'name') {
+                // The postal code is not valid
+                // $('input[name=name]').next().next(".help-block").text("验证用户名").css("display","block");
+            }
+        })
+        .on('success.field.bv', function(e, data) {
+          if (data.field == 'name') {
+                // The postal code is not valid
+                $('input[name=name]').next().next(".help-block").text("用户名正确");
+            }
+        });
+
+    }
+  </script>
+
+</body>
+
+</html>

@@ -22,3 +22,4 @@
 
 <%@include file="../../include/forePage/footer.jsp"%>
 </body>
+</html>

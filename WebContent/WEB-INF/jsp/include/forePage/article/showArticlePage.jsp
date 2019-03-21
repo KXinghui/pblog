@@ -166,7 +166,7 @@
 							</div>
 							<!-- 尾部信息-容器 -->
 							<div class="footer-container btn-group-sm">
-								<button
+								<button data-id="${otherUser.id}"
 									class="btn btn-default list-group-btn <c:if test="${!empty isFollow && isFollow==true}">btn-success</c:if>"
 									grouptype="userfollow">关注</button>
 							</div>

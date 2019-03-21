@@ -1,11 +1,7 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import pojo.User;
 
 public class PageResult<T> {
 	public static final int DEFAULT_PAGESIZE = 10, DEFAULT_PAGERECORD = 10;
@@ -19,7 +15,9 @@ public class PageResult<T> {
 	public PageResult(int total, List<T> list, Page page) {
 		super();
 		this.page = new Page(total, page.getPageSize(), page.getCurrent(), page.getPageRecord());
-		this.page.setParamMap(page.getParamMap());
+		if (null != page.getParamMap()) {
+			this.page.setParamMap(page.getParamMap());
+		}
 		this.page.setUrl(page.getUrl());
 		this.list = list;
 	}
@@ -27,7 +25,9 @@ public class PageResult<T> {
 	public PageResult(int total, Map<Integer, T> map, Page page) {
 		super();
 		this.page = new Page(total, page.getPageSize(), page.getCurrent(), page.getPageRecord());
-		this.page.setParamMap(page.getParamMap());
+		if (null != page.getParamMap()) {
+			this.page.setParamMap(page.getParamMap());
+		}
 		this.page.setUrl(page.getUrl());
 		this.map = map;
 	}

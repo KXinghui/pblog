@@ -57,7 +57,7 @@
 
 <!-- 底部导航 -->
 <nav id="bottom-nav"
-	class="navbar navbar-default navbar-fixed-bottom alert alert-info alert-dismissable"
+	class="navbar navbar-default navbar-fixed-bottom alert alert-info alert-dismissable container-fluid"
 	role="navigation">
 	<div class="bottom-nav-info hidden-xs">我是谁？你是谁？他是谁？</div>
 	<img src="<s:url value="/images/2.jpg" />"

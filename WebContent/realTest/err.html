@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ERR</title>
+  <link rel="stylesheet" href="../styles/forecss.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="jumbotron clearfix">
+    <div class="err container-fluid">
+      <h2>错误</h3>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+            <table class="table table-hover table-responsive">
+              <tr>
+                <th>用户ip</th>
+                <td>192.168.12.000ffffffffffffffffffffffffffffffffff</td>
+              </tr>
+              <tr>
+                <th>err</th>
+                <td>上传文件错误ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</td>
+              </tr>
+              <tr>
+                <th>请求地址</th>
+                <td>http://localhost:8080/pblog/upLoadImg fffffffffffffffffffffffffffffffffffffffffffffffff</td>
+              </tr>
+            </table>
+
+            <h2>不知道啥原因 大概是服务器发生错误或资源找不到</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-7 col-xs-offset-3 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9">
+            <button class="back-to-next-page btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> 回退</button>
+            <button class="btn btn-primary"><span class="glyphicon glyphicon-home"></span> 主页</button>
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../scripts/js.js"></script>
+  <script>
+    jQuery(backToNextPage($));
+
+    function backToNextPage() {
+      var backNextPage = $(".back-to-next-page");
+      backNextPage.click(function (e) {
+        window.history.back();
+      });
+    }
+  </script>
+</body>
+
+</html>

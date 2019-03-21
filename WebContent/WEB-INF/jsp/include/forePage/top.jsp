@@ -84,7 +84,7 @@
 											<td>${ui.address}</td>
 										</tr>
 										<tr>
-											<th><span class="glyphicon glyphicon-calendar"></span>生日</th>
+											<th><span class="iconfont icon-shengri"></span>生日</th>
 											<td>${ui.birthday}</td>
 										</tr>
 									</tbody>
@@ -93,9 +93,9 @@
 						</c:if>
 
 						<c:if test="${empty ui}">
-							<div class="user-info jumbotron hidden">
+							<div class="user-info jumbotron">
 								<h5>目前还未填写用户信息</h5>
-								<a href="<s:url value="/editUserinfoPage" />"
+								<a href="<s:url value="/editUserInfoPage" />"
 									class="btn btn-primary">去填写</a>
 							</div>
 						</c:if>
@@ -115,16 +115,20 @@
 									class="badge">${un.viewNum}</span>
 							</div>
 						</div>
+
 						<div class="user-op-list">
-							<span><a
+							<span><a href="<s:url value="/fore/user/${user.id}" />"><span
+									class="glyphicon glyphicon-home"></span> 个人博客</a></span> <span><a
 								href="<s:url value="/fore/user/${user.id}/articles" />"><span
-									class="glyphicon glyphicon-list-alt"></span> 文章箱</a></span> <span><a
-								href="<s:url value="/fore/user/${user.id}/articles/drafts" />"><span
-									class="glyphicon glyphicon-inbox"></span> 草稿箱</a></span> <span><a
-								href="<s:url value="/fore/user/${user.id}/articles/dustbin" />"><span
-									class="glyphicon glyphicon-trash"></span> 垃圾箱</a></span> <span><a
+									class="iconfont icon-svgwrite"></span> 文章</a></span> <span><a
+								href="<s:url value="/fore/user/${user.id}/articleFavorities" />"><span
+									class="iconfont icon-shoucangjia1"></span> 文章收藏</a></span> <span><a
+								href="<s:url value="/fore/user/${user.id}/articleHistories" />"><span
+									class="glyphicon glyphicon-time"></span> 文章历史</a></span> <span><a
+								href="<s:url value="/fore/user/${user.id}/userSettings" />"><span
+									class="glyphicon glyphicon-cog"></span> 设置</a></span> <span><a
 								href="<s:url value="/foreuserInfo" />"><span
-									class="glyphicon glyphicon-user"></span> 用户信息</a></span>
+									class="iconfont icon-geren12"></span> 用户信息</a></span>
 						</div>
 						<div class="oppanel-footer">
 							<a href="<s:url value="/forelogout" />"
@@ -155,19 +159,22 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">操作 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
+						<li><a href="<s:url value="/fore/user/${user.id}" />"><span
+								class="glyphicon glyphicon-home"></span> 个人博客</a></li>
 						<li><a
 							href="<s:url value="/fore/user/${user.id}/articles" />"><span
-								class="glyphicon glyphicon-list-alt"></span> 文章箱</a></li>
+								class="iconfont icon-svgwrite"></span> 文章</a></li>
 						<li><a
-							href="<s:url value="/fore/user/${user.id}/articles/drafts" />"><span
-								class="glyphicon glyphicon-inbox"></span> 草稿箱</a></li>
+							href="<s:url value="/fore/user/${user.id}/articleFavorities" />"><span
+								class="iconfont icon-shoucangjia1"></span> 文章收藏</a></li>
 						<li><a
-							href="<s:url value="/fore/user/${user.id}/articles/dustbin" />"><span
-								class="glyphicon glyphicon-trash"></span> 垃圾箱</a></li>
+							href="<s:url value="/fore/user/${user.id}/articleHistories" />"><span
+								class="glyphicon glyphicon-time"></span> 文章历史</a></li>
+						<li><a
+							href="<s:url value="/fore/user/${user.id}/userSettings" />"><span
+								class="glyphicon glyphicon-cog"></span> 设置</a></li>
 						<li><a href="<s:url value="/foreuserInfo" />"><span
-								class="glyphicon glyphicon-user"></span> 用户信息</a></li>
-						<li><a href="<s:url value="/forelogout" />"><span
-								class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+								class="iconfont icon-geren12"></span> 用户信息</a></li>
 					</ul></li>
 			</c:if>
 		</ul>

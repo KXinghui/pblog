@@ -8,3 +8,9 @@
 * 其他相关：Editormd PageHelper
 * 网址链接：[http://xinghui.site:8080/pblog](http://xinghui.site:8080/pblog)
 
+----------
+
+
+#### 测试账号 ####
+* 测试账号名：ceshi
+* 测试账号密码：ceshi123

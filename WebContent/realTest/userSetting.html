@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>用户设置</title>
+  <link rel="stylesheet" href="../styles/normalize/normalize.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../styles/iconfont.css">
+  <link rel="stylesheet" href="../styles/forecss.css">
+</head>
+
+
+<body>
+
+
+
+
+
+
+  <div class="user-setting user-panel container-fluid">
+    <div class="row">
+      <div class="clo-xs-11 col-sm-4 col-md-3 col-sm-offset-1">
+        <div class="user-setting-panel panel panel-default panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">是否记录登陆成功历史</h3>
+          </div>
+          <div class="panel-body">
+            <span class="hidden" field="isRecordLoginSuccessHistory">1</span>
+            <label class="show-hide-checked show-hide-checked-row">
+              <div class="checked-btn"><input class="cust-input-checkbox" type="checkbox" name="isRecordLoginSuccessHistory" checked
+                  id=""></div>
+              <div class="unchecked-area" style="display: none;"><span class="text-danger"><span class="glyphicon glyphicon-exclamation-sign"></span>
+                  不记录登陆成功历史</span></div>
+              <div class="checked-area" style="display: block;">记录登陆成功历史</div>
+            </label>
+          </div>
+          <div class="panel-footer clearfix">
+            <button type="submit" class="btn btn-default btn-primary pull-right save-part-usersetting-btn">保存</button>
+          </div>
+        </div>
+
+        <div class="user-setting-panel panel panel-default panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">是否记录登陆错误历史</h3>
+          </div>
+          <div class="panel-body">
+            <span class="hidden" field="isRecordLoginFailHistory">1</span>
+            <label class="show-hide-checked show-hide-checked-row">
+              <div class="checked-btn"><input class="cust-input-checkbox" type="checkbox" id="" name="isRecordLoginFailHistory"></div>
+              <div class="unchecked-area"><span class="text-danger"><span class="glyphicon glyphicon-exclamation-sign"></span>
+                  不记录登陆错误历史</span></div>
+              <div class="checked-area">记录登陆错误历史</div>
+            </label>
+          </div>
+          <div class="panel-footer clearfix">
+            <button type="submit" class="btn btn-default btn-primary pull-right save-part-usersetting-btn">保存</button>
+          </div>
+        </div>
+
+        <div class="user-setting-panel panel panel-default panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">是否记录展示文章历史</h3>
+          </div>
+          <div class="panel-body">
+            <span class="hidden" field="isRecordShowArticleHistory">1</span>
+            <label class="show-hide-checked show-hide-checked-row">
+              <div class="checked-btn"><input class="cust-input-checkbox" type="checkbox" name="isRecordShowArticleHistory"
+                  id=""></div>
+              <div class="unchecked-area"><span class="text-danger"><span class="glyphicon glyphicon-exclamation-sign"></span>
+                  不记录展示文章历史</span></div>
+              <div class="checked-area">记录展示文章历史</div>
+            </label>
+          </div>
+          <div class="panel-footer clearfix">
+            <button type="submit" class="btn btn-default btn-primary pull-right save-part-usersetting-btn">保存</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- 提示-对话框 -->
+  <div class="tip-dialog col-xs-12 col-sm-3 col-md-2">
+    <!-- 提示- -->
+
+  </div>
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+  <script src="../scripts/jquery-ui-drag.js"></script>
+  <script src="../scripts/js.js"></script>
+  <script>
+    $(function () {
+      $("[data-toggle='popover']").popover();
+    });
+    $(function () {
+      $("[data-toggle='tooltip']").tooltip();
+    });
+  </script>
+</body>
+
+</html>

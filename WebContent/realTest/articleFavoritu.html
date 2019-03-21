@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文章-收藏</title>
+  <link rel="stylesheet" href="../styles/normalize/normalize.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../styles/iconfont.css">
+  <link rel="stylesheet" href="../styles/forecss.css">
+</head>
+
+<body>
+ 
+<!-- 顶部导航 -->
+<nav id="top-nav" class="navbar navbar-default navbar-fixed-top container-fluid" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-topnav-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
+  </div>
+
+
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-topnav-collapse">
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="搜索文章">
+      </div>
+      <button type="submit" class="btn btn-default">搜索</button>
+    </form>
+
+    <ul class="nav navbar-nav row">
+      <!-- 用户-头像-操作 -->
+      <li class="user-headimg-op dropdown hidden-xs">
+        <a href="#" class="dropdown-toggle head-img-wrapper" data-toggle="dropdown"><img id="user-headimg" src="images/1.4.1.jpg"
+            class="img-responsive img-circle" alt="头像"></a>
+        <!-- 用户-操作面板 -->
+        <div class="user-oppanel">
+          <div class="user-info">
+            <span>星辉kxh</span>
+            <table class="table table-condensed table-hover">
+              <tbody>
+                <tr>
+                  <th>uid</th>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th><span class="glyphicon glyphicon-user"></span>真实姓名</th>
+                  <td>邝星辉</td>
+                </tr>
+                <tr>
+                  <th><span class="iconfont icon-xingbienan"></span>性别</th>
+                  <td>男</td>
+                </tr>
+                <tr>
+                  <th><span class="glyphicon glyphicon-phone"></span>手机</th>
+                  <td>13416668123</td>
+                </tr>
+                <tr>
+                  <th><span class="iconfont icon-youxiang"></span>邮箱</th>
+                  <td>949869433@qq.com</td>
+                </tr>
+                <tr>
+                  <th><span class="glyphicon glyphicon-map-marker"></span>地址</th>
+                  <td>广东东莞</td>
+                </tr>
+                <tr>
+                  <th><span class="glyphicon glyphicon-calendar"></span>生日</th>
+                  <td>1996/11/19</td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+          <div class="user-info jumbotron hidden">
+            <h5>目前还未填写用户信息</h5>
+            <a href="editUserinfo.html" class="btn btn-primary">去填写</a>
+          </div>
+
+          <div class="article-info">
+            <!-- 总文章数、总点击数、总浏览数 -->
+            <div data-toggle="tooltip" title="总文章数">
+              <span class="glyphicon glyphicon-list-alt"></span> <span class="badge">50</span>
+            </div>
+            <div data-toggle="tooltip" title="总点击数">
+              <span class="iconfont icon-dianji"></span> <span class="badge">50</span>
+            </div>
+            <div data-toggle="tooltip" title="总浏览数">
+              <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+            </div>
+          </div>
+          <div class="user-op-list">
+            <span><a href=""><span class="glyphicon glyphicon-list-alt"></span> 文章箱</a></span>
+            <span><a href=""><span class="glyphicon glyphicon-inbox"></span> 草稿箱</a></span>
+            <span><a href=""><span class="glyphicon glyphicon-trash"></span> 垃圾箱</a></span>
+            <span><a href=""><span class="glyphicon glyphicon-user"></span> 用户信息</a></span>
+          </div>
+          <div class="oppanel-footer">
+            <a href="#loginModal" class="col-sm-4 col-sm-offset-8"><span class="glyphicon glyphicon-log-out"></span>
+              退出</a>
+          </div>
+        </div>
+
+        <div class="user-oppanel hidden">
+          <div class="panel panel-default">
+            <div class="jumbotron">
+              <span class="text-info text" style="font-size:23px;">
+                欢迎登陆！！！
+              </span>
+            </div>
+            <a href="login.html" target="_blank">
+              <button class="btn btn-info btn-block">登陆</button>
+            </a>
+          </div>
+
+        </div>
+      </li>
+      <li><a data-toggle="modal" href="#about-author">关于作者</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">操作 <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#loginModal"><span class="glyphicon glyphicon-list-alt"></span> 文章箱</a></li>
+          <li><a href="#loginModal"><span class="glyphicon glyphicon-inbox"></span> 草稿箱</a></li>
+          <li><a href="#loginModal"><span class="glyphicon glyphicon-trash"></span> 垃圾箱</a></li>
+          <li><a href="#loginModal"><span class="glyphicon glyphicon-user"></span> 用户信息</a></li>
+          <li><a href="#loginModal"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+ 
+ 
+  <!-- 文章-收藏 -->
+  <div class="user-follow container-fluid center-block">
+    <!-- 悬浮菜单图标 拖拽部件 -->
+    <span class="open-suspend-menu suspend-menu-icon drag-part visible-xs">用户关注分组</span>
+    <div class="row">
+      <div class="col-xs-9 col-sm-4 col-md-3">
+        <!-- 悬浮-菜单 -->
+        <div class="suspend-menu">
+          <!-- 悬浮-菜单-按钮组 -->
+          <div class="suspend-menu-btn-group clearfix">
+            <span class="close-suspend-menu glyphicon glyphicon-remove pull-right visible-xs"></span>
+          </div>
+          <!-- 悬浮菜单导航 -->
+          <div class="suspend-menu-nav">
+
+            <!-- 悬浮菜单导航标题 -->
+            <div class="suspend-menu-nav-title">
+              <span>用户关注分组</span>
+              <button class="btn btn-sm btn-default add-group-btn" grouptype="articlefavority"><span class="glyphicon glyphicon-plus"></span>新建</button>
+            </div>
+            <!-- 悬浮-菜单-导航-列表 -->
+            <div class="suspend-menu-nav-list">
+              <!-- 菜单导航 -->
+              <div class="menu-nav">
+                <!-- 菜单列表 -->
+                <div class="menu-list">
+                  <!-- 菜单列表标题 -->
+                  <div class="menu-title">关注</div>
+                  <!-- 菜单项 -->
+                  <div class="menu-item">
+                    <a href="fore/user/{$uid}/userfollow/all" class=""><span class="">全部的关注用户</span></a>
+                  </div>
+                  <div class="menu-item group-title">
+                    <div class="group-name">
+                      <a href="" class="text-info" field="name">学习</a>·<span class="glyphicon glyphicon-eye-open"></span><span
+                        field="visibility">显示</span>
+                      <span class="hidden" field="id">1</span> <span class="hidden" field="groupType">文章收藏</span>
+                    </div>
+                    <div class="btn-group btn-group-sm">
+                      <!-- edit-group-btn -->
+                      <button class="btn btn-default edit-group-btn" grouptype="articlefavority">编辑</button>
+                      <button class="btn btn-danger delete-group-btn" grouptype="articlefavority">删除</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-xs-12 col-sm-8 col-md-9">
+        <!-- 内容-主体 -->
+        <div class="content-body">
+          <!-- 容器-组 -->
+          <div class="container-group">
+            <div class="group-title">
+              <div class="group-name">
+                <a href="" class="text-info" field="name">学习</a>·<span class="glyphicon glyphicon-eye-open"></span><span
+                  field="visibility">显示</span>
+                <span class="hidden" field="id">1</span> <span class="hidden" field="groupType">文章收藏</span>
+              </div>
+              <div class="btn-group btn-group-sm">
+                <!-- edit-group-btn -->
+                <button class="btn btn-danger edit-group-btn" grouptype="articlefavority">编辑</button>
+                <button class="btn btn-default clear-invalid-btn">清除失效</button>
+              </div>
+            </div>
+            <div class="group-content">
+              <div class="group-body">
+                <ul class="group-ul">
+                  <div class="jumbotron" style="margin-left: -4rem;">
+                    <img src="../images/1.2.jpg" style="width:100%;">
+                    <h3>这个用户啥都没有关注!不如。。。</h3>
+                  </div>
+                  <li class="group-item">
+                    <span class="hidden" field="id" onlyread="true">2</span>
+                    <div class="group-item-header">
+                      <span class="cid" field="cid">服务端</span>
+                      <span class="createDate hidden-xs">2018/1/12 08:45:20</span>
+                      <span class="updateDate">${article.updateDate}</span>
+                    </div>
+                    <div class="group-item-body">
+                      <a href="foreArticle?aid=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">Java反射的发的发发的发的发博客</span>
+                    </div>
+                    <div class="group-item-footer">
+                      <div class="group-item-op">
+                        <a href="foreeditArticle?aid=${article.id}" class="edit-article-link">编辑</a>
+                        <button class="btn btn-default btn-sm list-group-btn" grouptype="user'follow">关注</button>
+                        <div class="dropdown">
+                          <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="change-${article.id}-statu"
+                            data-toggle="dropdown">转到
+                            <span class="caret"></span></button>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="change-${article.id}-statu">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToArticle?aid=${article.id}"
+                                class="change-articlestatu-link">转到文章箱</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToDrafts?aid=${article.id}"
+                                class="change-articlestatu-link">转到草稿箱</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToDustbin?aid=${article.id}"
+                                class="change-articlestatu-link">转到垃圾箱</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="group-item-info" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                          <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                    </div>
+                  </li>
+                 
+                </ul>
+              </div>
+              <div class="group-footer"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="paging center-block">
+          <div class="row">
+            <div class="col-xs-12 col-sm-9 col-md-8">
+              <!-- 分页信息 -->
+              <div class="page-info">
+                <span class="text-info text-muted">共有<span class="total text-danger lead"> 80 </span>条记录，<span class="total-page text-danger lead">
+                    10 </span>页，每页显示<span class="page-record text-danger lead"> 8 </span> 条记录，当前为<span class="current text-danger lead">
+                    10 </span>页
+                </span>
+              </div>
+              <ul class="pagination">
+                <li class="disabled"><a href="#">&laquo;</a></li>
+                <li class="disabled"><a href="#">上一页</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">7</a></li>
+                <li><a href="#">8</a></li>
+                <li><a href="#">9</a></li>
+                <li><a href="#">10</a></li>
+                <li><a href="#">下一页</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-2 col-md-offset-1">
+              <!-- 改变分页 -->
+              <div class="change-page">
+                <div class="input-group">
+                  <input type="number" name="pageRecord" class="form-control" data-toggle="tooltip" title="输入后点击按钮可更改每页显示记录数(不能超过总记录数)">
+                  <span class="input-group-btn">
+                    <button id="change-pagerecord-btn" class="btn btn-default" type="button" title="点击按钮可更改每页显示记录数">
+                      <span class="glyphicon glyphicon-list-alt"></span>
+                    </button>
+                  </span>
+                </div>
+                <div class="input-group">
+                  <input type="number" name="current" class="form-control" data-toggle="tooltip" title="输入后点击按钮可跳转到指定页">
+                  <span class="input-group-btn"><button id="change-current-btn" class="btn btn-default" type="button"
+                      title="点击按钮可跳转到指定页">
+                      <span class="glyphicon glyphicon-arrow-right"></span>
+                    </button> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="mask close-suspend-menu">
+
+  </div>
+
+
+
+  <a class="btn btn-primary" data-toggle="modal" href='#add-group-modal'>增加分组模态窗口</a>
+  <!-- 增加分组 -->
+  <div class="modal fade" id="add-group-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">增加组</h4>
+        </div>
+        <div class="modal-body">
+
+          <form id="add-group-modal-form" action="foreaddGroup" method="POST" role="add-group-form-modal" class="clearfix">
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span>
+              <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="add-group-name">组名</label>
+              <input type="text" class="form-control" id="add-group-name" name="name" placeholder="请输入组名">
+            </div>
+            <div class="form-group">
+              <label for="add-group-visibility">可见</label>
+              <div class="input-raido">
+                <label for="add-group-visible">&nbsp;&nbsp;<input type="radio" id="add-group-visible" class="cust-input-radio"
+                    name="visibility" value="1">&nbsp;&nbsp;<span>显示</span>&nbsp;<span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;</label>
+                <label for="add-group-hidden">&nbsp;&nbsp;<input type="radio" id="add-group-hidden" class="cust-input-radio"
+                    name="visibility" value="0">&nbsp;&nbsp;<span>隐藏</span>&nbsp;<span class="glyphicon glyphicon-eye-close"></span>&nbsp;</label>
+              </div>
+            </div>
+            <div class="form-group hidden">
+              <label for="add-group-groupType">组类</label>
+              <select id="add-group-groupType" name="groupType" class="form-control">
+                <option value="">请选择组类</option>
+                <option value="0">用户关注</option>
+                <option value="1">文章收藏</option>
+              </select>
+            </div>
+            <div style="text-align:right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">提交</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#edit-group-modal'>编辑组模态窗口</a>
+  <!-- 编辑组模态窗口 -->
+  <div class="modal fade" id="edit-group-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">编辑组</h4>
+        </div>
+        <div class="modal-body">
+
+          <form id="edit-group-form-modal" action="foreeditGroupAjax" method="POST" role="edit-group-form-modal" class="clearfix">
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span>
+              <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="id">组ID</label>
+              <input type="text" class="form-control" id="id" name="id" placeholder="请输入组ID">
+            </div>
+            <div class="form-group">
+              <label for="edit-group-name">组名</label>
+              <input type="text" class="form-control" id="edit-group-name" name="name" placeholder="请输入组名">
+            </div>
+            <div class="form-group">
+              <label for="visibility">可见</label>
+              <div class="input-raido">
+                <label for="edit-group-visible">&nbsp;&nbsp;<input type="radio" id="edit-group-visible" class="cust-input-radio"
+                    name="visibility" value="1">&nbsp;&nbsp;<span>显示</span>&nbsp;<span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;</label>
+                <label for="edit-group-hidden">&nbsp;&nbsp;<input type="radio" id="edit-group-hidden" class="cust-input-radio"
+                    name="visibility" value="0">&nbsp;&nbsp;<span>隐藏</span>&nbsp;<span class="glyphicon glyphicon-eye-close"></span>&nbsp;</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="edit-group-groupType">组类</label>
+              <select id="edit-group-groupType" name="groupType" class="form-control">
+                <option value="">请选择组类</option>
+                <option value="0">用户关注</option>
+                <option value="1">文章收藏</option>
+              </select>
+            </div>
+            <div style="text-align:right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="fill-btn btn btn-primary">填充原有信息</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">提交</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <a class="btn btn-primary" data-toggle="modal" href='#delete-group-modal'>删除组模态窗口</a>
+  <!-- 删除组模态窗口 -->
+  <div class="modal fade" id="delete-group-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">删除组</h4>
+        </div>
+        <div class="modal-body">
+          确认删除该组吗？
+        </div>
+        <div class="modal-footer">
+          <input type="checkbox" name="isDelete">
+          <span class="text-danger"><span class="glyphicon glyphicon-warning-sign"></span> 分组下的关注与收藏将自动删除，谨慎选择</span>
+          <button type="button" class="btn btn-default" data-dismiss="modal">还是算了</button>
+          <button type="button" class="btn btn-danger">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="edit-article-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">编辑文章</h4>
+        </div>
+        <div class="modal-body">
+          <div class="well" style="text-align:center;">
+            <button id="edit-article-btn" class="btn btn-primary" data-toggle="collapse" data-target="#edit-article-form-modal">编辑文章</button>
+            <a id="edit-articlecontent-btn" href="foreeditArticle?aid=${article.id}" class="btn btn-primary">直接编辑文章内容</a>
+          </div>
+          <!-- 编辑-文章-表单-模态窗口 -->
+          <form id="edit-article-form-modal" action="" method="POST" role="form" class="collapse">
+            <div class="form-group">
+              <label for="edit-article-id">文章ID</label>
+              <input type="text" class="form-control" id="edit-article-id" name="id" placeholder="请输入文章标题">
+            </div>
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span>
+              <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="title">文章标题</label>
+              <input type="text" class="form-control" id="title" name="title" placeholder="请输入文章标题">
+            </div>
+            <div class="form-group">
+              <label for="subTitle">文章副标题</label>
+              <input type="text" class="form-control" id="subTitle" name="subTitle" placeholder="请输入文章副标题">
+            </div>
+            <div class="form-group">
+              <label for="cid">文章分类</label>
+              <select name="cid" id="cid" class="form-control">
+                <option value="">-- Select One --</option>
+                <option value="1">HTML/CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">服务端</option>
+                <option value="4">数据库</option>
+                <option value="5">移动端</option>
+                <option value="6">XML教程</option>
+              </select>
+            </div>
+            <div style="text-align:right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="fill-btn btn btn-primary">填充原有信息</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">提交</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+  <script src="../scripts/jquery-ui-drag.js"></script>
+  <script src="../scripts/js.js"></script>
+  <script>
+    $(function () {
+      $("[data-toggle='popover']").popover();
+    });
+    $(function () {
+      $("[data-toggle='tooltip']").tooltip();
+    });
+  </script>
+</body>
+
+</html>

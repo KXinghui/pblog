@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>top</title>
+  <link rel="stylesheet" href="../styles/normalize/normalize.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../styles/iconfont.css">
+  <link rel="stylesheet" href="../styles/forecss.css">
+</head>
+
+
+<body>
+  <!-- 顶部导航 -->
+  <nav id="top-nav" class="navbar navbar-default navbar-fixed-top container-fluid" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-topnav-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
+    </div>
+
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-topnav-collapse">
+      <form class="navbar-form navbar-left hidden" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="搜索文章">
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+      </form>
+
+      <ul class="nav navbar-nav row">
+        <!-- 用户-头像-操作 -->
+        <li class="user-headimg-op dropdown hidden-xs">
+          <a href="#" class="dropdown-toggle head-img-wrapper" data-toggle="dropdown"><img id="user-headimg"
+              src="images/1.4.1.jpg" class="img-responsive img-circle" alt="头像"></a>
+          <!-- 用户-操作面板 -->
+          <div class="user-oppanel">
+            <div class="user-info">
+              <span>星辉kxh</span>
+              <table class="table table-condensed table-hover">
+                <tbody>
+                  <tr>
+                    <th>uid</th>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-user"></span>真实姓名</th>
+                    <td>邝星辉</td>
+                  </tr>
+                  <tr>
+                    <th><span class="iconfont icon-xingbienan"></span>性别</th>
+                    <td>男</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-phone"></span>手机</th>
+                    <td>13416668123</td>
+                  </tr>
+                  <tr>
+                    <th><span class="iconfont icon-youxiang"></span>邮箱</th>
+                    <td>949869433@qq.com</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-map-marker"></span>地址</th>
+                    <td>广东东莞</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-calendar"></span>生日</th>
+                    <td>1996/11/19</td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+            <div class="user-info jumbotron hidden">
+              <h5>目前还未填写用户信息</h5>
+              <a href="editUserinfo.html" class="btn btn-primary">去填写</a>
+            </div>
+
+            <div class="article-info">
+              <!-- 总文章数、总点击数、总浏览数 -->
+              <div data-toggle="tooltip" title="总文章数">
+                <span class="glyphicon glyphicon-list-alt"></span> <span class="badge">50</span>
+              </div>
+              <div data-toggle="tooltip" title="总点击数">
+                <span class="iconfont icon-dianji"></span> <span class="badge">50</span>
+              </div>
+              <div data-toggle="tooltip" title="总浏览数">
+                <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+              </div>
+            </div>
+            <div class="user-op-list">
+              <span><a href=""><span class="glyphicon glyphicon-user"></span> 个人博客</a></span>
+              <span><a href=""><span class="glyphicon glyphicon-list-alt"></span> 文章</a></span>
+              <span><a href=""><span class="iconfont icon-shoucangjia1"></span> 文章收藏</a></span>
+              <span><a href=""><span class="glyphicon glyphicon-time"></span> 文章历史</a></span>
+              <span><a href=""><span class="glyphicon glyphicon-cog"></span> 设置</a></span>
+              <span><a href=""><span class="glyphicon glyphicon-user"></span> 用户信息</a></span>
+            </div>
+            <div class="oppanel-footer">
+              <a href="#loginModal" class="col-sm-4 col-sm-offset-8"><span class="glyphicon glyphicon-log-out"></span>
+                退出</a>
+            </div>
+          </div>
+
+          <div class="user-oppanel hidden">
+            <div class="panel panel-default">
+              <div class="jumbotron">
+                <span class="text-info text" style="font-size:23px;">
+                  欢迎登陆！！！
+                </span>
+              </div>
+              <a href="login.html" target="_blank">
+                <button class="btn btn-info btn-block">登陆</button>
+              </a>
+            </div>
+
+          </div>
+        </li>
+        <li><a data-toggle="modal" href="#about-author">关于作者</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">操作 <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-home"></span> 个人博客</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-list-alt"></span> 文章</a></li>
+            <li><a href="#loginModal"><span class="iconfont icon-shoucangjia1"></span> 文章收藏</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-time"></span> 文章历史</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-cog"></span> 设置</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-user"></span> 用户信息</a></li>
+
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div id=""></div>
+  <!-- 背景 -->
+  <div id="background">
+    <!-- 背景-图片 -->
+    <div id="background-img">
+      <img src="images/2.jpg" class="img-responsive img-rounded">
+    </div>
+    <!-- 背景-容器 -->
+    <div id="background-container">
+      <button class="btn btn-success">星辉kxh博客</button>
+      <div class="dictum">有志者，事竟成</div>
+    </div>
+  </div>
+
+  <!-- 用户导航 -->
+  <nav id="user-nav" class="navbar navbar-default container-fluid center-block" role="user-nav">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-usernav-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand nav-slider" href="#"><span class="glyphicon glyphicon-home"></span></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-usernav-collapse">
+      <ul class="nav navbar-nav">
+        <li class="nav-slider"><a href="#"><span class="iconfont icon-svgwrite"></span>文章</a></li>
+        <li class="nav-slider"><a href="#"><span class="iconfont icon-shoucangjia1"></span>文章收藏</a></li>
+        <form id="search-other-article-form" class="navbar-form navbar-left" role="search-other-article">
+          <div class="form-group">
+            <input type="text" name="keyword" class="form-control" placeholder="搜索文章">
+          </div>
+          <button type="submit" class="btn btn-default">搜索</button>
+        </form>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-slider"><a href="#"><span class="iconfont icon-yonghuzu"></span>关注<span
+              class="badge">50</span></a></li>
+        <li class="nav-slider"><a href="#"><span class="iconfont icon-fensishu"></span>粉丝<span
+              class="badge">50</span></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle nav-slider" data-toggle="dropdown">相关 <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a class="btn"><span class="iconfont icon-dianji"></span>总点击<span class="badge">50</span></a></li>
+            <li><a class="btn"><span class="glyphicon glyphicon-eye-open"></span>总浏览<span class="badge">50</span></a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 用户面板 -->
+  <div class="user-panel container-fluid center-block">
+    <div class="row">
+      <div class="col-xs-12 col-sm-5 col-md-3 col-md-offset-1">
+        <!-- 用户面板-容器 -->
+        <div class="container-panel">
+          <div class="container-title lead">用户信息</div>
+          <div class="user-panel-container">
+            <!-- 用户-头像 -->
+            <img id="user-panel-headimg" src="images/1.4.1.jpg" class="img-responsive img-circle" alt="头像">
+            <!-- 用户-操作-面板 自身用户-面板 -->
+            <div class="user-op-panel">
+              <div class="user-title">
+                <span>星辉kxh</span>
+              </div>
+              <!-- 用户文章信息-容器 -->
+              <div class="userarticle-container">
+              </div>
+              <!-- 用户操作列表-容器 -->
+              <div class="userop-list-container">
+                <!-- 文章状态 -->
+                <div class="article-status">
+                  <a href="foredrafts">草稿箱<span class="badge">50</span></a>
+                  <a href="forearticle/${user.id}">文章<span class="badge">50</span></a>
+                  <a href="foredustbin">垃圾箱<span class="badge">50</span></a>
+                </div>
+              </div>
+              <!-- 尾部信息-容器 -->
+              <div class="footer-container btn-group-sm">
+                <button class="btn btn-default list-group-btn" grouptype="userfollow">关注</button>
+              </div>
+            </div>
+            <!-- 用户-面板 展开 -->
+            <span class="op-user-panel open glyphicon glyphicon-eject" title="点击展开"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-7 col-md-7 ">
+        <!-- 文章 -->
+        <div class="container-panel">
+          <div class="container-title  lead">文章</div>
+          <ul id="article-status-tab" class="bottom-slider">
+            <li>
+              <a href="#article-list" data-toggle="tab">
+                <span class="glyphicon glyphicon-list-alt"></span>&nbsp;文章箱
+              </a>
+            </li>
+            <li>
+              <a href="#draft-list" data-toggle="tab">
+                <span class="glyphicon glyphicon-inbox"></span>&nbsp;草稿箱
+              </a>
+            </li>
+            <li class="active">
+              <a href="#trash-list" data-toggle="tab">
+                <span class="glyphicon glyphicon-trash"></span>&nbsp;垃圾箱
+              </a>
+            </li>
+            <!-- 内容底部 -->
+            <div class="content-bottom">
+              <!-- 内容底部的滑块 -->
+              <span class="content-bottom-slider"></span>
+            </div>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade in well" id="article-list">
+              <div class="article-list-container">
+                <div class="article-op">
+                  <a href="#" class="btn text-muted"><button class="btn btn-sm btn-default">更多<span
+                        class="glyphicon glyphicon-chevron-right"></span></button></a>
+                </div>
+                <ul class="article-ul">
+                  <li class="article-item">
+                    <span class="hidden" field="id">2</span>
+                    <div class="article-item-header">
+                      <span class="cid" field="cid">服务端</span>
+                      <span class="createDate">2018/1/12 08:45:20</span>
+                      <span class="updateDate">${article.updateDate}</span>
+                    </div>
+                    <div class="article-item-body">
+                      <a href="foreArticle?aid=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">Java反射反反复复烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦的博客</span>
+                    </div>
+                    <div class="article-item-footer">
+                      <div class="click-view-num" data-toggle="tooltip" title="总点击、浏览数">
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                      <span class="article-item-op">
+                        <a href="foreeditArticle?aid=${article.id}" class="edit-article-link">编辑</a>
+                        <a href="forechangeToDrafts?aid=${article.id}" class="change-articlestatu-link">转到草稿箱</a>
+                        <a href="forechangeToDustbin?aid=${article.id}" class="change-articlestatu-link">转到垃圾箱</a>
+                      </span>
+                    </div>
+                  </li>
+
+
+                  <div class="jumbotron" style="margin-left: -4rem;">
+                    <img src="../images/1.2.jpg" style="width:100%;">
+                    <h2>啥都没有!这个用户太懒了，不如。。。</h2>
+                    <button class="btn btn-primary write-article-btn center-block" articlestatu="article">编写文章</button>
+                  </div>
+
+                </ul>
+              </div>
+            </div>
+            <div class="tab-pane fade in well" id="draft-list">
+              <div class="draft-list-container">
+                <div class="change-pagerecord">每次加载<input class="page-record" type="number">条记录</div>
+                <ul class="article-ul">
+
+                  <div class="jumbotron" style="margin-left: -4rem;">
+                    <img src="../images/1.2.jpg" style="width:100%;">
+                    <h3>啥都没有!这个用户太懒了，不如。。。</h3>
+                    <button class="btn btn-primary write-article-btn" articlestatu="draft">编写草稿</button>
+                  </div>
+                  <li class="article-item">
+                    <span class="hidden" field="id" onlyread="true">2</span>
+                    <div class="article-item-header">
+                      <span class="cid" field="cid">服务端</span>
+                      <span class="createDate">2018/1/12 08:45:20</span>
+                      <span class="updateDate">${article.updateDate}</span>
+                    </div>
+                    <div class="article-item-body">
+                      <a href="foreArticle?aid=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">Java反射的博客</span>
+                    </div>
+                    <div class="article-item-footer">
+                      <div class="group-item-op btn-group-sm">
+                        <button data-href="foreeditArticle?aid=${article.id}"
+                          class="btn btn-default edit-article-link">编辑</button>
+                        <div class="dropdown">
+                          <button class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            id="change-${article.id}-statu" data-toggle="dropdown">转到
+                            <span class="caret"></span></button>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="change-${article.id}-statu">
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToArticle?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="article">转到文章箱</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToDrafts?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="draft">转到草稿箱</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToDustbin?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="trash">转到垃圾箱</a></li>
+
+                            <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToArticle?aid=${article.id}"
+                                    class="change-articlestatu-link" articlestatu="article">转到文章箱</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToDrafts?aid=${article.id}"
+                                    class="change-articlestatu-link" articlestatu="article">转到草稿箱</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToDustbin?aid=${article.id}"
+                                    class="change-articlestatu-link" articlestatu="article">转到垃圾箱</a></li> -->
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="group-item-info" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                        <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="article-item">
+                    <span class="hidden" field="id" onlyread="true">102</span>
+                    <div class="article-item-header">
+                      <span class="cid" field="cid">服务端</span>
+                      <span class="createDate">2018/1/12 08:45:20</span>
+                      <span class="updateDate">${article.updateDate}</span>
+                    </div>
+                    <div class="article-item-body">
+                      <a href="foreArticle?aid=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">Java反射的博客</span>
+                    </div>
+                    <div class="article-item-footer">
+                      <div class="article-item-op btn-group-sm">
+                        <button data-href="foreeditArticle?aid=${article.id}"
+                          class="btn btn-default edit-article-link">编辑</button>
+                        <div class="dropdown">
+                          <button class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            id="change-${article.id}-statu" data-toggle="dropdown">转到
+                            <span class="caret"></span></button>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="change-${article.id}-statu">
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToArticles?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="article">转到文章箱</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToDrafts?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="draft">转到草稿箱</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToDustbin?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="trash">转到垃圾箱</a></li>
+
+                            <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToArticle?aid=${article.id}"
+                                        class="change-articlestatu-link" articlestatu="article">转到文章箱</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToDrafts?aid=${article.id}"
+                                        class="change-articlestatu-link" articlestatu="article">转到草稿箱</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToDustbin?aid=${article.id}"
+                                        class="change-articlestatu-link" articlestatu="article">转到垃圾箱</a></li> -->
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="group-item-info" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                        <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+            <div class="tab-pane fade in well active" id="trash-list">
+              <div class="trash-list-container">
+                <div class="change-pagerecord">每次加载<input class="page-record" type="number">条记录</div>
+                <ul class="article-ul">
+                  <li class="article-item">
+                    <span class="hidden" field="id" onlyread="true">8</span>
+                    <div class="article-item-header">
+                      <span class="cid" field="cid">服务端</span>
+                      <span class="createDate">2018/1/12 08:45:20</span>
+                      <span class="updateDate">${article.updateDate}</span>
+                    </div>
+                    <div class="article-item-body">
+                      <a href="foreArticle?aid=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">Java反射的博客</span>
+                    </div>
+                    <div class="article-item-footer">
+                      <div class="click-view-num" data-toggle="tooltip" title="总点击、浏览数">
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                      <span class="article-item-op">
+                        <a href="foreeditArticle?aid=${article.id}" class="edit-article-link">编辑</a>
+                        <a href="forechangeToArticle?aid=${article.id}" class="change-articlestatu-link">转到文章箱</a>
+                        <a href="forechangeToDrafts?aid=${article.id}" class="change-articlestatu-link">转到草稿箱</a>
+                        <a href="forechangeToDustbin?aid=${article.id}" class="change-articlestatu-link">转到垃圾箱</a>
+                      </span>
+                    </div>
+                  </li>
+                  <li class="article-item">
+                    <span class="hidden" field="id" onlyread="true">3</span>
+                    <div class="article-item-header">
+                      <span class="cid" field="cid">服务端</span>
+                      <span class="createDate">2018/1/12 08:45:20</span>
+                    </div>
+                    <div class="article-item-body">
+                      <a href="foreArticle?aid=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">Java反射的博客</span>
+                    </div>
+                    <div class="article-item-footer">
+                      <div class="click-view-num" data-toggle="tooltip" title="总点击、浏览数">
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                      <span class="article-item-op">
+                        <a href="foreeditArticle?aid=${article.id}" class="edit-article-link">编辑</a>
+                        <a href="forechangeToArticle?aid=${article.id}" class="change-articlestatu-link">转到文章箱</a>
+                        <a href="forechangeToDrafts?aid=${article.id}" class="change-articlestatu-link">转到草稿箱</a>
+                        <a href="forechangeToDustbin?aid=${article.id}" class="change-articlestatu-link">转到垃圾箱</a>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 文章收藏 -->
+        <div class="container-panel">
+          <div class="container-title"><span class="lead">文章收藏</span>&nbsp;<button
+              class="btn btn-sm btn-default add-group-btn" grouptype="articlefavority"><span
+                class="glyphicon glyphicon-plus"></span>新建</button><button
+              class="btn btn-sm btn-default add-group-btn">清除全部失效</button></div>
+          <!-- 容器-组 -->
+          <div class="container-group">
+            <div class="group-title">
+              <div class="group-name">
+                <a href="" class="text-info" field="name">学习</a>·<span class="glyphicon glyphicon-eye-open"></span><span
+                  field="visibility">显示</span>
+                <span class="hidden" field="id">1</span> <span class="hidden" field="groupType">文章收藏</span>
+              </div>
+              <div class="group-title-op">
+                <!-- edit-group-btn -->
+                <button class="btn btn-danger btn-sm edit-group-btn" grouptype="articlefavority">编辑</button>
+                <a class="text-muted"><button class="btn btn-default btn-sm">更多<span
+                      class="glyphicon glyphicon-chevron-right"></span></button></a>
+              </div>
+            </div>
+            <div class="group-content">
+              <div class="group-body">
+                <ul class="article-ul">
+                  <div class="jumbotron" style="margin-left: -4rem;">
+                    <img src="../images/1.2.jpg" style="width:100%;">
+                    <h3>这个用户啥都没有收藏!不如。。。</h3>
+                  </div>
+                  <li class="article-item">
+                    <span class="hidden" field="id" onlyread="true">2</span>
+                    <div class="article-item-header">
+                      <span class="cid" field="cid">服务端</span>
+                      <span class="createDate">2018/1/12 08:45:20</span>
+                      <span class="updateDate">${article.updateDate}</span>
+                    </div>
+                    <div class="article-item-body">
+                      <a href="foreArticle?aid=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">Java反射的博客</span>
+                    </div>
+                    <div class="article-item-footer">
+                      <div class="article-item-op btn-group-sm">
+                        <button data-href="foreeditArticle?aid=${article.id}"
+                          class="btn btn-default edit-article-link">编辑</button>
+                        <div class="dropdown">
+                          <button class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            id="change-${article.id}-statu" data-toggle="dropdown">转到
+                            <span class="caret"></span></button>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="change-${article.id}-statu">
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToArticle?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="article">转到文章箱</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToDrafts?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="draft">转到草稿箱</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToDustbin?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="trash">转到垃圾箱</a></li>
+
+                            <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToArticle?aid=${article.id}"
+                                            class="change-articlestatu-link" articlestatu="article">转到文章箱</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToDrafts?aid=${article.id}"
+                                            class="change-articlestatu-link" articlestatu="article">转到草稿箱</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToDustbin?aid=${article.id}"
+                                            class="change-articlestatu-link" articlestatu="article">转到垃圾箱</a></li> -->
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="group-item-info" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                        <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                  </li>
+                  <li class="article-item">
+                    <span class="hidden" field="id" onlyread="true">102</span>
+                    <div class="article-item-header">
+                      <span class="cid" field="cid">服务端</span>
+                      <span class="createDate">2018/1/12 08:45:20</span>
+                      <span class="updateDate">${article.updateDate}</span>
+                    </div>
+                    <div class="article-item-body">
+                      <a href="foreArticle?aid=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">Java反射的博客</span>
+                    </div>
+                    <div class="article-item-footer">
+                      <div class="article-item-op btn-group-sm">
+                        <button data-href="foreeditArticle?aid=${article.id}"
+                          class="btn btn-default edit-article-link">编辑</button>
+                        <button class="btn btn-default list-group-btn" data-id="1"
+                          grouptype="articlefavority">收藏</button>
+                        <div class="dropdown">
+                          <button class="btn btn-default btn-warning btn-sm dropdown-toggle" type="button"
+                            id="change-${article.id}-statu" data-toggle="dropdown">转到
+                            <span class="caret"></span></button>
+                          <ul class="dropdown-menu" role="menu" aria-labelledby="change-${article.id}-statu">
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToArticle?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="article">转到文章箱</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToDrafts?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="draft">转到草稿箱</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                href="forechangeToDustbin?aid=${article.id}" class="change-articlestatu-link"
+                                articlestatu="trash">转到垃圾箱</a></li>
+
+                            <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToArticle?aid=${article.id}"
+                                        class="change-articlestatu-link" articlestatu="article">转到文章箱</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToDrafts?aid=${article.id}"
+                                        class="change-articlestatu-link" articlestatu="article">转到草稿箱</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="forechangeToDustbin?aid=${article.id}"
+                                        class="change-articlestatu-link" articlestatu="article">转到垃圾箱</a></li> -->
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="group-item-info" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                        <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="group-footer"></div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <!-- 文章收藏 -->
+        <div class="container-panel">
+          <div class="container-title  lead">文章收藏</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <!-- 搜索面板 -->
+  <div class="search-panel">
+    <div class="search-title">
+      <div class="search-info">共找到xx文章</div>
+      <div class="search-title-op">
+        <div class="order"></div>
+      </div>
+    </div>
+    <div class=""></div>
+  </div>
+
+
+
+
+
+  <a class="btn btn-primary" data-toggle="modal" href='#login-modal'>登陆</a>
+  <!-- 登陆模态窗口 -->
+  <div class="modal fade" id="login-modal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">登陆</h4>
+        </div>
+        <div class="modal-body">
+          <!-- 表单-操作-错误信息 -->
+          <div class="form-op-errmsg">
+            <span class="errmsg">fdfdfdfdfdf</span>
+            <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+          </div>
+          <!-- 登陆表单模态窗口 -->
+          <form id="login-form-modal" class="form-group" role="login-form-modal">
+            <div class="form-group">
+              <label for="login-async-name">用户名</label>
+              <input type="text" class="form-control" id="login-async-name" name="name" placeholder="请输入用户名">
+            </div>
+            <!-- 表单验证错误信息 -->
+            <div class="form-valid-errmsg hidden">
+              <span class="errmsg">密码不为空u7.</span>
+              <span class="close-msg-btn close-validmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="login-async-password">密码</label>
+              <input type="text" class="form-control" id="login-async-password" name="password" placeholder="请输入密码">
+            </div>
+            <!-- 表单验证错误信息 -->
+            <div class="form-valid-errmsg hidden">
+              <span class="errmsg">密码不为空u7.</span>
+              <span class="close-msg-btn close-validmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="login-async-repassword">密码</label>
+              <input type="text" class="form-control" id="login-async-repassword" name="repassword" placeholder="请输入密码">
+            </div>
+            <button type="submit" class="btn btn-block btn-danger">登陆</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#edit-article-modal'>编辑文章</a>
+  <!-- 编辑文章模态窗口 -->
+  <div class="modal fade" id="edit-article-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">编辑文章</h4>
+        </div>
+        <div class="modal-body">
+          <div class="well" style="text-align:center;">
+            <button id="edit-article-btn" class="btn btn-primary" data-toggle="collapse"
+              data-target="#edit-article-form-modal">编辑文章</button>
+            <a id="edit-articlecontent-btn" href="foreeditArticle?aid=${article.id}"
+              class="btn btn-primary">直接编辑文章内容</a>
+          </div>
+          <!-- 编辑-文章-表单-模态窗口 -->
+          <form id="edit-article-form-modal" action="" method="POST" role="form" class="collapse">
+            <div class="form-group">
+              <label for="edit-article-id">文章ID</label>
+              <input type="text" class="form-control" id="edit-article-id" name="id" placeholder="请输入文章标题">
+            </div>
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span>
+              <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="title">文章标题</label>
+              <input type="text" class="form-control" id="title" name="title" placeholder="请输入文章标题">
+            </div>
+            <div class="form-group">
+              <label for="subTitle">文章副标题</label>
+              <input type="text" class="form-control" id="subTitle" name="subTitle" placeholder="请输入文章副标题">
+            </div>
+            <div class="form-group">
+              <label for="cid">文章分类</label>
+              <select name="cid" id="cid" class="form-control">
+                <option value="">-- Select One --</option>
+                <option value="1">HTML/CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">服务端</option>
+                <option value="4">数据库</option>
+                <option value="5">移动端</option>
+                <option value="6">XML教程</option>
+              </select>
+            </div>
+            <div style="text-align:right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="fill-btn btn btn-primary">填充原有信息</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">提交</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#add-article-modal'>增加文章</a>
+  <!-- 增加文章 -->
+  <div class="modal fade" id="add-article-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <!-- 增加-文章-表单-模态窗口 -->
+          <form id="add-article-form-modal" action="foreaddArticle" method="POST" role="form">
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span>
+              <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="add-title">文章标题</label>
+              <input type="text" class="form-control" id="add-title" name="title" placeholder="请输入文章标题">
+            </div>
+            <div class="form-group">
+              <label for="add-subTitle">文章副标题</label>
+              <input type="text" class="form-control" id="add-subTitle" name="subTitle" placeholder="请输入文章副标题">
+            </div>
+            <div class="form-group">
+              <label for="articleStatu">文章状态</label>
+              <select name="articleStatu" id="articleStatu" class="form-control">
+                <option value="">请输入文章状态</option>
+                <option value="0">草稿</option>
+                <option value="1">文章</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cid">文章分类</label>
+              <select name="cid" id="cid" class="form-control">
+                <option value="">-- Select One --</option>
+                <option value="1">HTML/CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">服务端</option>
+                <option value="4">数据库</option>
+                <option value="5">移动端</option>
+                <option value="6">XML教程</option>
+              </select>
+            </div>
+
+
+
+            <div style="text-align:right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">保存</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#change-articles'>转到文章箱</a>
+  <!-- 转到文章箱 -->
+  <div class="modal fade" id="change-articles">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">温馨提示：转到文章箱</h4>
+        </div>
+        <div class="modal-body">
+          确认转到文章箱？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">还是算了</button>
+          <button type="submit" class="confirm-btn btn btn-danger">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#change-drafts'>转到草稿箱</a>
+  <!-- 转到草稿箱 -->
+  <div class="modal fade" id="change-drafts">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">温馨提示：转到草稿箱</h4>
+        </div>
+        <div class="modal-body">
+          确认转到草稿箱？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">还是算了</button>
+          <button type="submit" class="confirm-btn btn btn-danger">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#change-dustbin'>转到垃圾箱</a>
+  <!-- 转到垃圾箱 -->
+  <div class="modal fade" id="change-dustbin">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">温馨提示：转到垃圾箱</h4>
+        </div>
+        <div class="modal-body">
+          确认转到垃圾箱？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">还是算了</button>
+          <button type="submit" class="confirm-btn btn btn-danger">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#thorough-delete-article'>彻底删除</a>
+  <!-- 彻底删除 -->
+  <div class="modal fade" id="thorough-delete-article">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">温馨提示：彻底删除</h4>
+        </div>
+        <div class="modal-body">
+          确认彻底删除？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">我再想想</button>
+          <button type="submit" class="confirm-btn btn btn-danger">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#tip-modal'>提示模态窗口</a>
+  <!-- 提示模态窗口 -->
+  <div class="modal fade" id="tip-modal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title"><span class="text-danger">上传文件错误</span></h4>
+        </div>
+        <div class="modal-body">
+          <span class="text-danger">文件类型不符合</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- 关于作者模态窗口 -->
+  <div class="modal fade" id="about-author">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">关于作者</h4>
+        </div>
+        <div class="modal-body">
+          <div class="user-info">
+            <span>星辉kxh</span>
+            <table class="table table-condensed table-hover">
+              <tbody>
+                <tr>
+                  <th><span class="glyphicon glyphicon-user"></span>真实姓名</th>
+                  <td>邝星辉</td>
+                </tr>
+                <tr>
+                  <th><span class="iconfont icon-xingbienan"></span>性别</th>
+                  <td>男</td>
+                </tr>
+                <tr>
+                  <th><span class="glyphicon glyphicon-phone"></span>手机</th>
+                  <td>13416668123</td>
+                </tr>
+                <tr>
+                  <th><span class="iconfont icon-youxiang"></span>邮箱</th>
+                  <td>949869433@qq.com</td>
+                </tr>
+                <tr>
+                  <th><span class="glyphicon glyphicon-map-marker"></span>地址</th>
+                  <td>广东东莞</td>
+                </tr>
+                <tr>
+                  <th><span class="glyphicon glyphicon-calendar"></span>生日</th>
+                  <td>1996/11/19</td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+
+          <div class="reference"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <a class="btn btn-primary" data-toggle="modal" href='#add-group-modal'>增加分组模态窗口</a>
+  <!-- 增加分组 -->
+  <div class="modal fade" id="add-group-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">增加组</h4>
+        </div>
+        <div class="modal-body">
+
+          <form id="add-group-modal-form" action="foreaddGroup" method="POST" role="add-group-form-modal"
+            class="clearfix">
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span>
+              <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="add-group-name">组名</label>
+              <input type="text" class="form-control" id="add-group-name" name="name" placeholder="请输入组名">
+            </div>
+            <div class="form-group">
+              <label for="add-group-visibility">可见</label>
+              <div class="input-raido">
+                <label for="add-group-visible">&nbsp;&nbsp;<input type="radio" id="add-group-visible"
+                    class="cust-input-radio" name="visibility" value="1">&nbsp;&nbsp;<span>显示</span>&nbsp;<span
+                    class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;</label>
+                <label for="add-group-hidden">&nbsp;&nbsp;<input type="radio" id="add-group-hidden"
+                    class="cust-input-radio" name="visibility" value="0">&nbsp;&nbsp;<span>隐藏</span>&nbsp;<span
+                    class="glyphicon glyphicon-eye-close"></span>&nbsp;</label>
+              </div>
+            </div>
+            <div class="form-group hidden">
+              <label for="add-group-groupType">组类</label>
+              <select id="add-group-groupType" name="groupType" class="form-control">
+                <option value="">请选择组类</option>
+                <option value="0">用户关注</option>
+                <option value="1">文章收藏</option>
+              </select>
+            </div>
+            <div style="text-align:right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">提交</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#edit-group-modal'>编辑组模态窗口</a>
+  <!-- 编辑分组 -->
+  <div class="modal fade" id="edit-group-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">编辑组</h4>
+        </div>
+        <div class="modal-body">
+
+          <form id="edit-group-form-modal" action="foreeditGroupAjax" method="POST" role="edit-group-form-modal"
+            class="clearfix">
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span>
+              <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="id">组ID</label>
+              <input type="text" class="form-control" id="id" name="id" placeholder="请输入组ID">
+            </div>
+            <div class="form-group">
+              <label for="edit-group-name">组名</label>
+              <input type="text" class="form-control" id="edit-group-name" name="name" placeholder="请输入组名">
+            </div>
+            <div class="form-group">
+              <label for="visibility">可见</label>
+              <div class="input-raido">
+                <label for="edit-group-visible">&nbsp;&nbsp;<input type="radio" id="edit-group-visible"
+                    class="cust-input-radio" name="visibility" value="1">&nbsp;&nbsp;<span>显示</span>&nbsp;<span
+                    class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;</label>
+                <label for="edit-group-hidden">&nbsp;&nbsp;<input type="radio" id="edit-group-hidden"
+                    class="cust-input-radio" name="visibility" value="0">&nbsp;&nbsp;<span>隐藏</span>&nbsp;<span
+                    class="glyphicon glyphicon-eye-close"></span>&nbsp;</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="edit-group-groupType">组类</label>
+              <select id="edit-group-groupType" name="groupType" class="form-control">
+                <option value="">请选择组类</option>
+                <option value="0">用户关注</option>
+                <option value="1">文章收藏</option>
+              </select>
+            </div>
+            <div style="text-align:right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="fill-btn btn btn-primary">填充原有信息</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">提交</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- data-toggle="modal" href='#list-group-modal' -->
+  <a class="btn btn-primary list-group-btn" data-id="1" grouptype="userfollow">根据分组类型和组对应要操作的id</a>
+  <!-- 收藏文章、关注用户 -->
+  <div class="modal fade" id="list-group-modal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">收藏文章/关注用户</h4>
+        </div>
+        <div class="modal-body">
+          <!-- 列出分组-操作 -->
+          <div class="group-tab-content tab-content">
+            <div class="list-group-op cust-tab-op btn-sm pull-right">
+              <button class="btn one-tab-btn new-group-btn" href="#add-group-tab" data-toggle="tab">新建分组</button>
+              <button class="btn other-tab-btn" href="#exist-group-tab" data-toggle="tab">取消新建分组</button>
+            </div>
+            <!-- 现有分组 -->
+            <div class="tab-pane fade in active" id="exist-group-tab">
+              <form id="list-group-form-tab" action="" method="POST" role="list-group-form-modal">
+                <span class="pull-right">已选择<span class="selected-num text-info"></span>组</span>
+                <!-- 表单-操作-成功信息 -->
+                <div class="form-op-successmsg bg-success">
+                  <span class="errmsg text-success">注册成功，请登录</span>
+                  <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+                </div>
+                <!-- 表单-操作-错误信息 -->
+                <div class="form-op-errmsg">
+                  <span class="errmsg">fdfdfdfdfdf</span>
+                  <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+                </div>
+                <div class="cust-checkbox cust-checkbox-column">
+                  <label class="cust-checkbox-label">
+                    <input type="checkbox" value="1" name="gid">
+                    <span class="text-muted">学习</span>
+                  </label>
+                  <label class="cust-checkbox-label">
+                    <input type="checkbox" value="2" name="gid">
+                    <span class="text-muted">默认</span>
+                  </label>
+                  <label class="cust-checkbox-label">
+                    <input type="checkbox" value="3" name="gid">
+                    <span class="text-muted">音乐</span>
+                  </label>
+                </div>
+
+                <button type="submit" class="confirm-btn btn btn-primary center-block">确定</button>
+              </form>
+            </div>
+            <!-- 新建分组 -->
+            <div class="tab-pane fade in" id="add-group-tab">
+              <form id="add-group-form-tab" action="foreaddGroup" method="POST" role="add-group-form-tab"
+                class="clearfix">
+                <!-- 表单-操作-错误信息 -->
+                <div class="form-op-errmsg">
+                  <span class="errmsg">fdfdfdfdfdf</span>
+                  <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+                </div>
+                <div class="form-group">
+                  <label for="name">组名</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="请输入组名">
+                </div>
+                <div class="form-group">
+                  <label for="visibility">可见</label>
+                  <div class="input-raido">
+                    <label for="visible">&nbsp;&nbsp;<input type="radio" id="visible" class="cust-input-radio"
+                        name="visibility" value="1">&nbsp;&nbsp;<span>显示</span>&nbsp;<span
+                        class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;</label>
+                    <label for="hidden">&nbsp;&nbsp;<input type="radio" id="hidden" class="cust-input-radio"
+                        name="visibility" value="0">&nbsp;&nbsp;<span>隐藏</span>&nbsp;<span
+                        class="glyphicon glyphicon-eye-close"></span>&nbsp;</label>
+                  </div>
+                </div>
+                <div class="form-group hidden">
+                  <label for="groupType">组类</label>
+                  <select id="groupType" name="groupType" class="form-control">
+                    <option value="">请选择组类</option>
+                    <option value="0">用户关注</option>
+                    <option value="1">文章收藏</option>
+                  </select>
+                </div>
+                <div style="text-align:right;">
+                  <button type="reset" class="reset-btn btn btn-warning">重置</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                  <button type="submit" class="submit-btn btn btn-primary">提交</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- 底部导航 -->
+  <nav id="bottom-nav" class="navbar navbar-default navbar-fixed-bottom alert alert-info alert-dismissable hidden"
+    role="navigation">
+    <div class="bottom-nav-info hidden-xs">
+      我是谁？你是谁？他是谁？
+    </div>
+    <img src="images/2.jpg" class="img-responsive hidden-xs">
+
+    <div class="bottom-nav-op">
+      <a href="foreUserInfo" class="alert-link"><button class="btn btn-info">自定义图片</button></a>
+      <a href="foreUserInfo" class="alert-link"><button class="btn btn-info">填写用户信息</button></a>
+      <!-- <a href="wallPaper.html" class="alert-link"><button class="btn btn-info">登陆</button></a>
+            <a href="foreregisterPage" class="alert-link"><button class="btn btn-info">注册</button></a> -->
+      <button type="button" style="font-size:40px;" class="close" data-dismiss="alert" aria-hidden="true">
+        &times;</button>
+    </div>
+  </nav>
+  <!-- 边栏 -->
+  <aside class="aside">
+    <a class="aaside write-article-btn" articlestatu="article" title="写文章">
+      <span class="iconfont icon-tianchongxing-"></span>
+    </a>
+    <a class="aaside article-nav-btn" title="文章导航">
+      <span class="glyphicon glyphicon-list-alt"></span>
+      <div id="article-nav" class="">fddddddddddddfdfdfdfdfadadfadfadfa
+        adfadffadfafa
+        adfadffadfafaadfa
+        adfadffadfafaadfaaddfadffadf
+        fddddddddddddfdfdfdfdfadadfaf
+        fdfdddddddddddddddddddddddddd
+        ddddddddddddd
+        adfadffadfafa
+        adfadffadfafaadfa
+        adfadffadfafaadfaaddfadffadf
+        fddddddddddddfdfdfdfdfadadfadfadfafdfd
+        fdfdddddddddddddddddddddddddd
+        ddddddddddddd
+        afaf
+      </div>
+    </a>
+    <a class="aaside qrcode" title="二维码图片">
+      <span class="glyphicon glyphicon-qrcode"></span>
+      <img class="codeImg" src="images/1.1.jpg">
+    </a>
+    <a id="hand-up" class="aaside hand-up" title="返回顶部">
+      <span class="glyphicon glyphicon-hand-up"></span>
+    </a>
+  </aside>
+
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+  <script src="../scripts/js.js"></script>
+  <script>
+    $(function () {
+      $("[data-toggle='popover']").popover();
+    });
+    $(function () {
+      $("[data-toggle='tooltip']").tooltip();
+    });
+  </script>
+</body>
+
+</html>

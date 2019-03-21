@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文章-历史</title>
+  <link rel="stylesheet" href="../styles/normalize/normalize.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../styles/iconfont.css">
+  <link rel="stylesheet" href="../styles/forecss.css">
+</head>
+
+<body>
+
+  <div class="article-history user-panel container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1">
+        <div class="article-history-header clearfix">
+          <span class="lead pull-left"><span class="glyphicon glyphicon-time"></span> 文章历史</span>
+          <span class="pull-right btn-group-sm">
+            <a href="#" class="btn btn-default">设置是否记录文章历史</a>
+            <button class="btn btn-default btn-danger clear-ah-btn">清空文章历史</button>
+          </span>
+        </div>
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+          <div class="article-history-body">
+             <div class="jumbotron">
+              <h2>目前还未有 <span class="glyphicon glyphicon-time"></span>文章历史，请去<a href="/forehome">首页</a></h2>
+            </div>
+
+
+            <!-- 文章历史 -->
+            <div class="article-history-item">
+              <div class="article-history-date">2018 年 11 月</div>
+
+              <div class="article-history-item-body hidden">
+                <span class="hidden" field="id" onlyread="true">2</span>
+                <div class="article-history-item-header">
+                  <span class="cid" field="cid">服务端</span>
+                  <span class="createDate hidden-xs">2018/1/12 08:45:20</span>
+                  <span class="updateDate">${article.updateDate}</span>
+                </div>
+                <div class="article-history-item-body">
+                  <a href="foreArticle?aid=${article.id}"><span class="title" field="title">Java反射</span></a>
+                  <span class="subTitle" field="subTitle">Java反射的发的发发的发的发博客</span>
+                  <a href="fore/user/${author.id}"><span class="glyphicon glyphicon-user"></span>${author.name}</a>
+                </div>
+                <div class="article-history-item-footer btn-sm">
+                  <div class="article-history-item-info" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                    <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                    <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                    <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                  </div>
+                </div>
+
+
+
+              </div>
+              <div class="article-history-item-body">
+                <h3>失效文章(不存在或不是发布文章)</h3>
+              </div>
+
+              <div class="article-history-item-op btn-group-sm">
+                <button data-href="foreeditArticle?aid=${article.id}" data-id="11"
+                  class="btn btn-default delete-ah-btn"><span class="glyphicon glyphicon-trash"></span></button>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="paging center-block">
+            <div class="row">
+              <div class="col-xs-12 col-sm-9 col-md-8">
+                <!-- 分页信息 -->
+                <div class="page-info">
+                  <span class="text-info text-muted">共有<span class="total text-danger lead"> 80 </span>条记录，<span
+                      class="total-page text-danger lead">
+                      10 </span>页，每页显示<span class="page-record text-danger lead"> 8 </span> 条记录，当前为<span
+                      class="current text-danger lead">
+                      10 </span>页
+                  </span>
+                </div>
+                <ul class="pagination">
+                  <li class="disabled"><a href="#">&laquo;</a></li>
+                  <li class="disabled"><a href="#">上一页</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">7</a></li>
+                  <li><a href="#">8</a></li>
+                  <li><a href="#">9</a></li>
+                  <li><a href="#">10</a></li>
+                  <li><a href="#">下一页</a></li>
+                  <li><a href="#">&raquo;</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-12 col-sm-3 col-md-2 col-md-offset-1">
+                <!-- 改变分页 -->
+                <div class="change-page">
+                  <div class="input-group">
+                    <input type="number" name="pageRecord" class="form-control" data-toggle="tooltip"
+                      title="输入后点击按钮可更改每页显示记录数(不能超过总记录数)">
+                    <span class="input-group-btn">
+                      <button id="change-pagerecord-btn" class="btn btn-default" type="button" title="点击按钮可更改每页显示记录数">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                      </button>
+                    </span>
+                  </div>
+                  <div class="input-group">
+                    <input type="number" name="current" class="form-control" data-toggle="tooltip"
+                      title="输入后点击按钮可跳转到指定页">
+                    <span class="input-group-btn"><button id="change-current-btn" class="btn btn-default" type="button"
+                        title="点击按钮可跳转到指定页">
+                        <span class="glyphicon glyphicon-arrow-right"></span>
+                      </button> </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="article-history-footer">
+
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+  <script src="../scripts/jquery-ui-drag.js"></script>
+  <script src="../scripts/js.js"></script>
+  <script>
+    $(function () {
+      $("[data-toggle='popover']").popover();
+    });
+    $(function () {
+      $("[data-toggle='tooltip']").tooltip();
+    });
+  </script>
+</body>
+
+</html>

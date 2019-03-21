@@ -12,6 +12,7 @@ import com.github.pagehelper.PageHelper;
 import pojo.User;
 import service.UserService;
 import util.Page;
+import util.PageResult;
 
 @Controller
 public class UserController {
@@ -21,9 +22,14 @@ public class UserController {
 
 	@RequestMapping("admin/user")
 	public String list(Model model, Page page) {
-		
+		Integer total = userService.count();
 		PageHelper.startPage(page.getPageFirst(), page.getPageRecord());
 		List<User> us = userService.list();
+		for (User u : us) {
+			u.setPassword(null);
+		}
+		PageResult<User> pr = new PageResult<>(total, us, page);
+		model.addAttribute("pr", pr);
 		return "admin/list/listUser";
 	}
 

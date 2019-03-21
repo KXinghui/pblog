@@ -117,7 +117,6 @@
 				<div class="container-group">
 					<!-- 文章收藏面板 -->
 
-
 					<c:if test="${!empty group}">
 						<!-- 指定组的文章收藏 -->
 						<div class="group-title">
@@ -141,7 +140,6 @@
 								</c:if>
 							</div>
 						</div>
-
 						<div class="group-content">
 							<div class="group-body">
 								<ul class="group-ul">
@@ -215,7 +213,6 @@
 										</c:if>
 										<!-- 其他用户 -->
 										<c:if test="${!empty otherUser}">
-
 											<c:forEach items="${groupPr.list}" var="gaf">
 												<c:set value="${gaf.author}" var="author"></c:set>
 												<c:set value="${gaf.article}" var="article"></c:set>
@@ -228,7 +225,6 @@
 															<div class="group-item-op btn-group-sm"></div>
 														</div></li>
 												</c:if>
-
 												<!-- 生效文章【收藏】 -->
 												<c:if test="${!empty article}">
 													<li class="group-item"><span class="hidden" field="id"
@@ -264,9 +260,7 @@
 														</div></li>
 												</c:if>
 											</c:forEach>
-
 										</c:if>
-
 									</c:if>
 								</ul>
 							</div>

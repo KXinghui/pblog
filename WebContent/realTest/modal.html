@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>top</title>
+  <link rel="stylesheet" href="../styles/normalize/normalize.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../styles/forecss.css">
+</head>
+
+<body>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#edit-article-modal'>编辑文章</a>
+  <!-- 编辑文章 -->
+  <div class="modal fade" id="edit-article-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">编辑文章</h4>
+        </div>
+        <div class="modal-body">
+          <div class="well" style="text-align:center;">
+            <button id="edit-article-btn" class="btn btn-primary">编辑文章</button>
+            <a id="edit-articlecontent-btn" href="foreeditArticle?article=${article.id}" class="btn btn-primary">直接编辑文章内容</a>
+          </div>
+          <!-- 编辑-文章-表单-模态窗口 -->
+          <form id="edit-article-form-modal" action="" method="POST" role="form">
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span>
+              <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="title">文章标题</label>
+              <input type="text" class="form-control" id="title" name="title" placeholder="请输入文章标题">
+            </div>
+            <div class="form-group">
+              <label for="subTitle">文章副标题</label>
+              <input type="text" class="form-control" id="subTitle" name="subTitle" placeholder="请输入文章副标题">
+            </div>
+            <div class="form-group">
+              <label for="cid">文章分类</label>
+              <select name="cid" id="cid" class="form-control">
+                <option value="">-- Select One --</option>
+                <option value="1">HTML/CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">服务端</option>
+                <option value="4">数据库</option>
+                <option value="5">移动端</option>
+                <option value="6">XML教程</option>
+              </select>
+            </div>
+            <div style="text-align:right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="fill-btn btn btn-primary">填充原有信息</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">提交</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <a class="btn btn-primary" data-toggle="modal" href='#goto-article'>转到文章箱</a>
+  <!-- 转到文章箱 -->
+  <div class="modal fade" id="goto-article">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">温馨提示：转到文章箱</h4>
+        </div>
+        <div class="modal-body">
+          确认转到文章箱？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">还是算了</button>
+          <button type="submit" class="submit-btn btn btn-danger">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#goto-drafts'>转到草稿箱</a>
+  <!-- 转到草稿箱 -->
+  <div class="modal fade" id="goto-drafts">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">温馨提示：转到草稿箱</h4>
+        </div>
+        <div class="modal-body">
+          确认转到草稿箱？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">还是算了</button>
+          <button type="submit" class="submit-btn btn btn-danger">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" data-toggle="modal" href='#goto-dustbin'>转到垃圾箱</a>
+  <!-- 转到垃圾箱 -->
+  <div class="modal fade" id="goto-dustbin">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">温馨提示：转到垃圾箱</h4>
+        </div>
+        <div class="modal-body">
+          确认转到垃圾箱？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">还是算了</button>
+          <button type="submit" class="submit-btn btn btn-danger">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <a class="btn btn-primary" data-toggle="modal" href='#thorough-delete'>彻底删除</a>
+  <!-- 彻底删除 -->
+  <div class="modal fade" id="thorough-delete">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">温馨提示：彻底删除</h4>
+        </div>
+        <div class="modal-body">
+          确认彻底删除？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">我再想想</button>
+          <button type="submit" class="submit-btn btn btn-danger">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <a class="btn btn-primary" data-toggle="modal" href='#add-group-modal'>增加分组模态窗口</a>
+  <div class="modal fade" id="add-group-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">增加组</h4>
+        </div>
+        <div class="modal-body">
+
+          <form id="add-group-form-modal" action="foreaddGroup" method="POST" role="add-group-form-modal" class="clearfix">
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span>
+              <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="name">组名</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="请输入组名">
+            </div>
+            <div class="form-group">
+              <label for="visibility">可见</label>
+              <div class="input-raido">
+                <label for="visible">&nbsp;&nbsp;<input type="radio" id="visible" name="visibility" value="1">&nbsp;&nbsp;<span>显示</span>&nbsp;<span
+                    class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;</label>
+                <label for="hidden">&nbsp;&nbsp;<input type="radio" id="hidden" name="visibility" value="0">&nbsp;&nbsp;<span>隐藏</span>&nbsp;<span
+                    class="glyphicon glyphicon-eye-close"></span>&nbsp;</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="groupType">组类</label>
+              <select id="groupType" name="groupType" class="form-control">
+                <option value="">请选择组类</option>
+                <option value="0">用户关注</option>
+                <option value="1">文章收藏</option>
+              </select>
+            </div>
+            <div style="text-align:right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">提交</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 编辑组 若组里有关注、收藏，删除或改组类型后 弹出是否将关注、收藏 -->
+  <a class="btn btn-primary" data-toggle="modal" href='#edit-group-modal'>编辑组模态窗口</a>
+  <div class="modal fade" id="edit-group-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">编辑组</h4>
+        </div>
+        <div class="modal-body">
+
+          <form id="edit-group-form-modal" action="foreeditGroupAjax" method="POST" role="edit-group-form-modal" class="clearfix">
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span>
+              <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="id">组ID</label>
+              <input type="text" class="form-control" id="id" name="id" placeholder="请输入组ID">
+            </div>
+            <div class="form-group">
+              <label for="name">组名</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="请输入组名">
+            </div>
+            <div class="form-group">
+              <label for="visibility">可见</label>
+              <div class="input-raido">
+                <label for="visible2">&nbsp;&nbsp;<input type="radio" id="visible2" name="visibility" value="1">&nbsp;&nbsp;<span>显示</span>&nbsp;<span
+                    class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;</label>
+                <label for="hidden2">&nbsp;&nbsp;<input type="radio" id="hidden2" name="visibility" value="0">&nbsp;&nbsp;<span>隐藏</span>&nbsp;<span
+                    class="glyphicon glyphicon-eye-close"></span>&nbsp;</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="groupType">组类</label>
+              <select id="groupType" name="groupType" class="form-control">
+                <option value="">请选择组类</option>
+                <option value="0">用户关注</option>
+                <option value="1">文章收藏</option>
+              </select>
+            </div>
+            <div style="text-align:right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="fill-btn btn btn-primary">填充原有信息</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">提交</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <a class="btn btn-primary" data-toggle="modal" href='#tip-modal'>提示模态窗口</a>
+  <!-- 提示模态窗口 -->
+  <div class="modal fade" id="tip-modal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title"><span class="text-danger">上传文件错误</span></h4>
+        </div>
+        <div class="modal-body">
+          <span class="text-danger">文件类型不符合</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+  <script src="../scripts/js.js"></script>
+  <script>
+    $(function () {
+      $("[data-toggle='popover']").popover();
+    });
+    $(function () {
+      $("[data-toggle='tooltip']").tooltip();
+    });
+  </script>
+</body>
+
+</html>

@@ -7,7 +7,7 @@
 		<!-- private Integer id; private Integer aid; private Integer uid; -->
 		<result column="uid" property="uid" />
 		<result column="aid" property="aid" />
-		<result column="createTime" property="createTime" />
+		<result column="createDate" property="createDate" />
 	</resultMap>
 	<!-- aid,uid -->
 	<!-- #{aid},#{uid} -->
@@ -40,7 +40,8 @@
 	</delete>
 
 	<delete id="delete2" parameterType="articleHistory">
-		DELETE FROM articlehistory
+		DELETE FROM
+		articlehistory
 		WHERE id
 		=
 		#{id}
@@ -48,7 +49,8 @@
 
 	<!-- 获取 -->
 	<select id="get" resultMap="articleHistoryMap">
-		SELECT * FROM articlehistory WHERE
+		SELECT * FROM articlehistory
+		WHERE
 		id
 		=
 		#{id}
@@ -151,11 +153,31 @@
 		SELECT * FROM articlehistory WHERE uid = #{uid}
 	</select>
 
+	<select id="listIdByUser" parameterType="integer"
+		resultType="integer">
+		SELECT id FROM articlehistory WHERE uid = #{uid}
+	</select>
+
 	<select id="countByUser" parameterType="integer"
-		resultMap="articleHistoryMap">
+		resultType="integer">
 		SELECT COUNT(*) FROM articlehistory WHERE uid = #{uid}
 	</select>
 
+	<select id="getByArticleHistory" parameterType="articleHistory"
+		resultMap="articleHistoryMap">
+		SELECT * FROM articlehistory
+		<where>
+			<if test="aid != null">
+				aid = #{aid}
+			</if>
+			<if test="uid != null">
+				AND uid = #{uid}
+			</if>
+			<if test="createDate != null">
+				AND DATE(createDate) = DATE(#{createDate})
+			</if>
+		</where>
+	</select>
 
 </mapper>
 

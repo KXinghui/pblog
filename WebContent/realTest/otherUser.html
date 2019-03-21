@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>OwnUser</title>
+  <link rel="stylesheet" href="../styles/normalize/normalize.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../styles/forecss.css">
+</head>
+
+<body>
+  <!-- 用户面板 -->
+  <div class="user-panel container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-5 col-md-4 col-md-offset-1">
+        <div class="container-panel">
+          <div class="container-title lead">用户信息</div>
+          <!-- 用户面板-容器 -->
+          <div class="user-panel-container">
+            <!-- 用户-头像 -->
+            <img id="user-panel-headimg" src="images/1.4.1.jpg" class="img-responsive img-circle" alt="头像">
+            <!-- 用户-操作-面板 自身用户-面板 -->
+            <div class="user-op-panel otheruser-panel">
+              <div class="user-title">
+                <span>万利wl</span>
+              </div>
+              <!-- 用户信息-容器 -->
+              <div class="userinfo-container">
+                <table class="table table-condensed table-hover">
+                  <tbody>
+                    <tr>
+                      <th>uid</th>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-user"></span>真实姓名</th>
+                      <td>万利</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-"></span>性别</th>
+                      <td>男</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-phone"></span>手机</th>
+                      <td>13416661234</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-send"></span>邮箱</th>
+                      <td>949869433@qq.com</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-map-marker"></span>地址</th>
+                      <td>广东东莞</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-calendar"></span>生日</th>
+                      <td>1996/11/19</td>
+                    </tr>
+                  </tbody>
+
+                </table>
+              </div>
+              <!-- 用户文章信息-容器 -->
+              <!-- <div class="userarticle-container"> -->
+              <div class="userarticle-container">
+                <!-- 总文章数、总点击数、总浏览数 -->
+                <div data-toggle="tooltip" title="总文章数">
+                  <span class="glyphicon glyphicon-list-alt"></span> <span class="badge">50</span>
+                </div>
+                <div data-toggle="tooltip" title="总点击数">
+                  <span class="iconfont icon-dianji"></span> <span class="badge">50</span>
+                </div>
+                <div data-toggle="tooltip" title="总浏览数">
+                  <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                </div>
+              </div>
+              <!-- </div> -->
+              <!-- 用户操作列表-容器 -->
+              <div class="userop-list-container">
+                <!-- 文章状态 -->
+                <div class="article-status">
+                  <a href="forearticle/${user.id}">文章<span class="badge">50</span></a>
+                </div>
+              </div>
+              <!-- 尾部信息-容器 -->
+              <div class="footer-container">
+                待定（关注、聊天）
+              </div>
+            </div>
+            <!-- 用户-面板 展开 -->
+            <span class="op-user-panel open glyphicon glyphicon-eject" title="点击展开"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-7 col-md-5 col-md-offset-1">
+        <div class="container-panel">
+          <div class="lead">文章</div>
+          <ul id="article-status-tab" class="bottom-slider">
+            <li class="active">
+              <a href="#article-list" data-toggle="tab">
+                <span class="glyphicon glyphicon-list-alt"></span>&nbsp;文章箱
+              </a>
+            </li>
+            <!-- 内容底部 -->
+            <div class="content-bottom">
+              <!-- 内容底部的滑块 -->
+              <span class="content-bottom-slider"></span>
+            </div>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade in active" id="article-list">
+              <div class="article-list-container">
+                <div class="change-pagerecord">每次加载<input class="page-record" type="number">条记录</div>
+                <ul class="article-ul">
+                  <li class="article-item">
+                    <span class="hidden" field="id">2</span>
+                    <div class="article-item-header">
+                      <span class="cid" field="cid">数据库</span>
+                      <span class="createDate">2018/1/12 08:45:20</span>
+                    </div>
+                    <div class="article-item-body">
+                      <a href="foreArticle?article=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">Java反射的博客</span>
+                    </div>
+                    <div class="article-item-footer">
+                      <div class="click-view-num" data-toggle="tooltip" title="总点击、浏览数">
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                      <span class="article-item-op">
+                        <a href="foreeditArticle?article=${article.id}" class="edit-article-link">编辑</a>
+                      </span>
+                    </div>
+                  </li>
+                  <li class="article-item">
+                    <span class="hidden" field="id">2</span>
+                    <div class="article-item-header">
+                      <span class="cid" field="cid">HTML/CSS</span>
+                      <span class="createDate">2018/1/12 08:45:20</span>
+                    </div>
+                    <div class="article-item-body">
+                      <a href="foreArticle?article=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">结构、样式、行为</span>
+                    </div>
+                    <div class="article-item-footer">
+                      <div class="click-view-num" data-toggle="tooltip" title="总点击、浏览数">
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                      <span class="article-item-op">
+                        <a href="foreeditArticle?article=${article.id}" class="edit-article-link">编辑</a>
+                      </span>
+                    </div>
+                  </li>
+                  <li class="article-item">
+                    <span class="hidden" field="id">2</span>
+                    <div class="article-item-header">
+                      <span class="cid" field="cid">服务端</span>
+                      <span class="createDate">2018/1/12 08:45:20</span>
+                    </div>
+                    <div class="article-item-body">
+                      <a href="foreArticle?article=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">结构、样式、行为</span>
+                    </div>
+                    <div class="article-item-footer">
+                      <div class="click-view-num" data-toggle="tooltip" title="总点击、浏览数">
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                      <span class="article-item-op">
+                        <a href="foreeditArticle?article=${article.id}" class="edit-article-link">编辑</a>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="modal fade" id="edit-article-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">编辑文章</h4>
+        </div>
+        <div class="modal-body">
+          <div class="well" style="text-align:center;">
+            <button id="edit-article-btn" class="btn btn-primary">编辑文章</button>
+            <a id="edit-articlecontent-btn" href="foreeditArticle?article=${article.id}" class="btn btn-primary">直接编辑文章内容</a>
+          </div>
+          <!-- 编辑-文章-表单-模态窗口 -->
+          <form id="edit-article-form-modal" action="" method="POST" role="form">
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span>
+              <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="title">文章标题</label>
+              <input type="text" class="form-control" id="title" name="title" placeholder="请输入文章标题">
+            </div>
+            <div class="form-group">
+              <label for="subTitle">文章副标题</label>
+              <input type="text" class="form-control" id="subTitle" name="subTitle" placeholder="请输入文章副标题">
+            </div>
+            <div class="form-group">
+              <label for="cid">文章分类</label>
+              <select name="cid" id="cid" class="form-control">
+                <option value="">-- Select One --</option>
+                <option value="1">HTML/CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">服务端</option>
+                <option value="4">数据库</option>
+                <option value="5">移动端</option>
+                <option value="6">XML教程</option>
+              </select>
+            </div>
+            <div style="text-align:right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="fill-btn btn btn-primary">填充原有信息</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">提交</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../scripts/js.js"></script>
+</body>
+
+</html>

@@ -1,12 +1,15 @@
 package service.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import enums.ArticleStatu;
 import mapper.ArticleHistoryMapper;
 import pojo.Article;
 import pojo.ArticleHistory;
@@ -95,8 +98,18 @@ public class ArticleHistoryServiceImpl implements ArticleHistoryService {
 	}
 
 	@Override
+	public List<Integer> listIdByUser(Integer uid) {
+		return articleHistoryMapper.listIdByUser(uid);
+	}
+
+	@Override
 	public Integer countByUser(Integer uid) {
 		return articleHistoryMapper.countByUser(uid);
+	}
+
+	@Override
+	public ArticleHistory getByArticleHistory(ArticleHistory articleHistory) {
+		return articleHistoryMapper.getByArticleHistory(articleHistory);
 	}
 
 	public void setArticleHistorys(List<ArticleHistory> articleHistorys) {
@@ -107,10 +120,21 @@ public class ArticleHistoryServiceImpl implements ArticleHistoryService {
 
 	public void setArticleHistory(ArticleHistory articleHistory) {
 		Article article = articleService.get(articleHistory.getAid());
-		articleHistory.setArticle(article);
-		User author = userService.get(article.getUid());
-		author.setPassword(null);
-		articleHistory.setAuthor(author);
+		if (null != article && article.getArticleStatu().equals(ArticleStatu.PUBLISH)) {
+			User author = userService.get(article.getUid());
+			author.setPassword(null);
+			article.setUser(author);
+			articleHistory.setArticle(article);
+		}
+	}
+
+	public static void main(String[] args) {
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+				"classpath:config/applicationContext.xml");
+		ArticleHistoryService service = context.getBean(ArticleHistoryService.class);
+		ArticleHistory articleHistory = new ArticleHistory(1, 1, LocalDateTime.now());
+		System.out.println(service.listByUser(1));
+		System.out.println(service.countByUser(1));
 	}
 
 }

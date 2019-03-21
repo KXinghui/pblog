@@ -6,10 +6,10 @@ public class ArticleHistory {
 	private Integer id;
 	private Integer uid;
 	private Integer aid;
-	private LocalDateTime createTime;
+	private LocalDateTime createDate;
 
 	/* 非数据库字段 */
-	private User author;
+	private User user;
 	private Article article;
 
 	public ArticleHistory() {
@@ -19,6 +19,13 @@ public class ArticleHistory {
 		this.id = id;
 		this.uid = uid;
 		this.aid = aid;
+	}
+
+	public ArticleHistory(Integer uid, Integer aid, LocalDateTime createDate) {
+		super();
+		this.uid = uid;
+		this.aid = aid;
+		this.createDate = createDate;
 	}
 
 	public Integer getId() {
@@ -45,20 +52,20 @@ public class ArticleHistory {
 		this.aid = aid;
 	}
 
-	public LocalDateTime getCreateTime() {
-		return createTime;
+	public LocalDateTime getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreateTime(LocalDateTime createTime) {
-		this.createTime = createTime;
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
 	}
 
-	public User getAuthor() {
-		return author;
+	public User getUser() {
+		return user;
 	}
 
-	public void setAuthor(User author) {
-		this.author = author;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Article getArticle() {
@@ -71,8 +78,8 @@ public class ArticleHistory {
 
 	@Override
 	public String toString() {
-		return "ArticleHistory [id=" + id + ", uid=" + uid + ", aid=" + aid + ", createTime=" + createTime + ", author="
-				+ author + ", article=" + article + "]";
+		return "ArticleHistory [id=" + id + ", uid=" + uid + ", aid=" + aid + ", createDate=" + createDate + ", user="
+				+ user + ", article=" + article + "]";
 	}
 
 }

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>首页</title>
+  <link rel="stylesheet" href="../styles/normalize/normalize.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../styles/iconfont.css">
+  <link rel="stylesheet" href="../editormd/css/editormd.css">
+  <link rel="stylesheet" href="../styles/forecss.css">
+</head>
+
+<body data-spy="scroll" data-target="#category-crollspy" data-offset="10">
+  <!-- 顶部导航-背景 -->
+  <div id="topnav-background">
+    <!-- 顶部导航 -->
+    <nav id="top-nav" class="navbar navbar-default navbar-fixed-top container-fluid" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-topnav-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
+      </div>
+
+
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-topnav-collapse">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="搜索文章">
+          </div>
+          <button type="submit" class="btn btn-default">搜索</button>
+        </form>
+
+        <ul class="nav navbar-nav row">
+          <!-- 用户-头像-操作 -->
+          <li class="user-headimg-op dropdown hidden-xs">
+            <a href="#" class="dropdown-toggle head-img-wrapper" data-toggle="dropdown"><img id="user-headimg" src="images/1.4.1.jpg"
+                class="img-responsive img-circle" alt="头像"></a>
+            <!-- 用户-操作面板 -->
+            <div class="user-oppanel">
+              <div class="user-info">
+                <span>星辉kxh</span>
+                <table class="table table-condensed table-hover">
+                  <tbody>
+                    <tr>
+                      <th>uid</th>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-user"></span>真实姓名</th>
+                      <td>邝星辉</td>
+                    </tr>
+                    <tr>
+                      <th><span class="iconfont icon-xingbienan"></span>性别</th>
+                      <td>男</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-phone"></span>手机</th>
+                      <td>13416668123</td>
+                    </tr>
+                    <tr>
+                      <th><span class="iconfont icon-youxiang"></span>邮箱</th>
+                      <td>949869433@qq.com</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-map-marker"></span>地址</th>
+                      <td>广东东莞</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-calendar"></span>生日</th>
+                      <td>1996/11/19</td>
+                    </tr>
+                  </tbody>
+
+                </table>
+              </div>
+              <div class="user-info jumbotron hidden">
+                <h5>目前还未填写用户信息</h5>
+                <a href="editUserinfo.html" class="btn btn-primary">去填写</a>
+              </div>
+
+              <div class="article-info">
+                <!-- 总文章数、总点击数、总浏览数 -->
+                <div data-toggle="tooltip" title="总文章数">
+                  <span class="glyphicon glyphicon-list-alt"></span> <span class="badge">50</span>
+                </div>
+                <div data-toggle="tooltip" title="总点击数">
+                  <span class="iconfont icon-dianji"></span> <span class="badge">50</span>
+                </div>
+                <div data-toggle="tooltip" title="总浏览数">
+                  <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                </div>
+              </div>
+              <div class="user-op-list">
+                <span><a href=""><span class="glyphicon glyphicon-list-alt"></span> 文章箱</a></span>
+                <span><a href=""><span class="glyphicon glyphicon-inbox"></span> 草稿箱</a></span>
+                <span><a href=""><span class="glyphicon glyphicon-trash"></span> 垃圾箱</a></span>
+                <span><a href=""><span class="glyphicon glyphicon-user"></span> 用户信息</a></span>
+              </div>
+              <div class="oppanel-footer">
+                <a href="#loginModal" class="col-sm-4 col-sm-offset-8"><span class="glyphicon glyphicon-log-out"></span>
+                  退出</a>
+              </div>
+            </div>
+
+            <div class="user-oppanel hidden">
+              <div class="panel panel-default">
+                <div class="jumbotron">
+                  <span class="text-info text" style="font-size:23px;">
+                    欢迎登陆！！！
+                  </span>
+                </div>
+                <a href="login.html" target="_blank">
+                  <button class="btn btn-info btn-block">登陆</button>
+                </a>
+              </div>
+
+            </div>
+          </li>
+          <li><a data-toggle="modal" href="#about-author">关于作者</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">操作 <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#loginModal"><span class="glyphicon glyphicon-list-alt"></span> 文章箱</a></li>
+              <li><a href="#loginModal"><span class="glyphicon glyphicon-inbox"></span> 草稿箱</a></li>
+              <li><a href="#loginModal"><span class="glyphicon glyphicon-trash"></span> 垃圾箱</a></li>
+              <li><a href="#loginModal"><span class="glyphicon glyphicon-user"></span> 用户信息</a></li>
+              <li><a href="#loginModal"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
+
+
+  <div class="home container-fluid center-block">
+    <!-- 悬浮菜单图标 拖拽部件 -->
+    <span class="open-suspend-menu suspend-menu-icon drag-part visible-xs">文章分类</span>
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-10 col-md-10">
+
+        <div id="category-1" class="category-group">
+          <!-- 分类-标题 -->
+          <div class="category-title lead">
+            <a href="fore/category/${category.id}/search/article" class="text-muted" target="_blank"><span class="">${category.name}</span></a>
+            <span>
+              <a href="fore/category/${category.id}/search/article" class="btn btn-default btn-sm">更多<span class="glyphicon glyphicon-chevron-right"></span></a>
+            </span>
+          </div>
+          <!-- 分类-容器 -->
+          <div class="category-container">
+
+            <div class="category-head"></div>
+            <div class="category-body">
+              <!-- <div class="row"> -->
+              <!--  <div class="category-article">
+                <div class="article-heaer">
+                  <span class="createDate" data-toggle="tooltip" title="创建时间">年月日</span>
+                  <span class="updateDate" data-toggle="tooltip" title="更新时间">年月日</span>
+                </div>
+                <div class="article-body">
+                  <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.title}</span></a>
+                  <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.subTitle}</span></a>
+                  <a href="/fore/user/${author.id}" class="text-muted"><span class="glyphicon glyphicon-user"></span>${author.name}</a>
+                </div>
+                <div class="article-foot" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                  <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                  <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                  <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+
+                </div>
+              </div> -->
+              <div class="jumbotron">
+                <h3>该分类暂时还没有文章，不如。。。</h3>
+                <button class="btn btn-default btn-primary write-article-btn" articlestatu="article">贡献 分类文章</button>
+              </div>
+
+            </div>
+            <div class="category-foot"></div>
+
+          </div>
+        </div>
+        <div id="category-2" class="category-group">
+          <!-- 分类-标题 -->
+          <div class="category-title lead">
+            <a href="fore/category/${category.id}/search/article" class="text-muted" target="_blank"><span class="">${category.name}</span></a>
+            <span>
+              <a href="fore/category/${category.id}/search/article" class="btn btn-default btn-sm">更多<span class="glyphicon glyphicon-chevron-right"></span></a>
+            </span>
+          </div>
+          <!-- 分类-容器 -->
+          <div class="category-container">
+
+            <div class="category-head"></div>
+            <div class="category-body">
+              <!-- <div class="row"> -->
+              <!--  <div class="category-article">
+                  <div class="article-heaer">
+                    <span class="createDate" data-toggle="tooltip" title="创建时间">年月日</span>
+                    <span class="updateDate" data-toggle="tooltip" title="更新时间">年月日</span>
+                  </div>
+                  <div class="article-body">
+                    <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.title}</span></a>
+                    <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.subTitle}</span></a>
+                    <a href="/fore/user/${author.id}" class="text-muted"><span class="glyphicon glyphicon-user"></span>${author.name}</a>
+                  </div>
+                  <div class="article-foot" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                    <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                    <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                    <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+  
+                  </div>
+                </div> -->
+              <div class="jumbotron">
+                <h3>该分类暂时还没有文章，不如。。。</h3>
+                <button class="btn btn-default btn-primary write-article-btn" articlestatu="article">贡献 分类文章</button>
+              </div>
+
+            </div>
+            <div class="category-foot"></div>
+
+          </div>
+        </div>
+        <div id="category-3" class="category-group">
+          <!-- 分类-标题 -->
+          <div class="category-title lead">
+            <a href="fore/category/${category.id}/search/article" class="text-muted" target="_blank"><span class="">${category.name}</span></a>
+            <span>
+              <a href="fore/category/${category.id}/search/article" class="btn btn-default btn-sm">更多<span class="glyphicon glyphicon-chevron-right"></span></a>
+            </span>
+          </div>
+          <!-- 分类-容器 -->
+          <div class="category-container">
+
+            <div class="category-head"></div>
+            <div class="category-body">
+              <!-- <div class="row"> -->
+              <!--  <div class="category-article">
+                    <div class="article-heaer">
+                      <span class="createDate" data-toggle="tooltip" title="创建时间">年月日</span>
+                      <span class="updateDate" data-toggle="tooltip" title="更新时间">年月日</span>
+                    </div>
+                    <div class="article-body">
+                      <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.title}</span></a>
+                      <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.subTitle}</span></a>
+                      <a href="/fore/user/${author.id}" class="text-muted"><span class="glyphicon glyphicon-user"></span>${author.name}</a>
+                    </div>
+                    <div class="article-foot" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                      <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                      <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                      <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+    
+                    </div>
+                  </div> -->
+              <div class="jumbotron">
+                <h3>该分类暂时还没有文章，不如。。。</h3>
+                <button class="btn btn-default btn-primary write-article-btn" articlestatu="article">贡献 分类文章</button>
+              </div>
+
+            </div>
+            <div class="category-foot"></div>
+
+          </div>
+        </div>
+        <div id="category-4" class="category-group">
+          <!-- 分类-标题 -->
+          <div class="category-title lead">
+            <a href="fore/category/${category.id}/search/article" class="text-muted" target="_blank"><span class="">${category.name}</span></a>
+            <span>
+              <a href="fore/category/${category.id}/search/article" class="btn btn-default btn-sm">更多<span class="glyphicon glyphicon-chevron-right"></span></a>
+            </span>
+          </div>
+          <!-- 分类-容器 -->
+          <div class="category-container">
+
+            <div class="category-head"></div>
+            <div class="category-body">
+              <!-- <div class="row"> -->
+              <!--  <div class="category-article">
+                      <div class="article-heaer">
+                        <span class="createDate" data-toggle="tooltip" title="创建时间">年月日</span>
+                        <span class="updateDate" data-toggle="tooltip" title="更新时间">年月日</span>
+                      </div>
+                      <div class="article-body">
+                        <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.title}</span></a>
+                        <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.subTitle}</span></a>
+                        <a href="/fore/user/${author.id}" class="text-muted"><span class="glyphicon glyphicon-user"></span>${author.name}</a>
+                      </div>
+                      <div class="article-foot" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                        <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+      
+                      </div>
+                    </div> -->
+              <div class="jumbotron">
+                <h3>该分类暂时还没有文章，不如。。。</h3>
+                <button class="btn btn-default btn-primary write-article-btn" articlestatu="article">贡献 分类文章</button>
+              </div>
+
+            </div>
+            <div class="category-foot"></div>
+
+          </div>
+        </div>
+        <div id="category-5" class="category-group">
+          <!-- 分类-标题 -->
+          <div class="category-title lead">
+            <a href="fore/category/${category.id}/search/article" class="text-muted" target="_blank"><span class="">${category.name}</span></a>
+            <span>
+              <a href="fore/category/${category.id}/search/article" class="btn btn-default btn-sm">更多<span class="glyphicon glyphicon-chevron-right"></span></a>
+            </span>
+          </div>
+          <!-- 分类-容器 -->
+          <div class="category-container">
+
+            <div class="category-head"></div>
+            <div class="category-body">
+              <!-- <div class="row"> -->
+              <!--  <div class="category-article">
+                        <div class="article-heaer">
+                          <span class="createDate" data-toggle="tooltip" title="创建时间">年月日</span>
+                          <span class="updateDate" data-toggle="tooltip" title="更新时间">年月日</span>
+                        </div>
+                        <div class="article-body">
+                          <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.title}</span></a>
+                          <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.subTitle}</span></a>
+                          <a href="/fore/user/${author.id}" class="text-muted"><span class="glyphicon glyphicon-user"></span>${author.name}</a>
+                        </div>
+                        <div class="article-foot" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                          <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                          <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                          <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+        
+                        </div>
+                      </div> -->
+              <div class="jumbotron">
+                <h3>该分类暂时还没有文章，不如。。。</h3>
+                <button class="btn btn-default btn-primary write-article-btn" articlestatu="article">贡献 分类文章</button>
+              </div>
+
+            </div>
+            <div class="category-foot"></div>
+
+          </div>
+        </div>
+        <div id="category-6" class="category-group">
+          <!-- 分类-标题 -->
+          <div class="category-title lead">
+            <a href="fore/category/${category.id}/search/article" class="text-muted" target="_blank"><span class="">${category.name}</span></a>
+            <span>
+              <a href="fore/category/${category.id}/search/article" class="btn btn-default btn-sm">更多<span class="glyphicon glyphicon-chevron-right"></span></a>
+            </span>
+          </div>
+          <!-- 分类-容器 -->
+          <div class="category-container">
+
+            <div class="category-head"></div>
+            <div class="category-body">
+              <!-- <div class="row"> -->
+              <!--  <div class="category-article">
+                          <div class="article-heaer">
+                            <span class="createDate" data-toggle="tooltip" title="创建时间">年月日</span>
+                            <span class="updateDate" data-toggle="tooltip" title="更新时间">年月日</span>
+                          </div>
+                          <div class="article-body">
+                            <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.title}</span></a>
+                            <a href="/fore/showArticle?aid=${article.id}" class="text-muted"><span class="">${article.subTitle}</span></a>
+                            <a href="/fore/user/${author.id}" class="text-muted"><span class="glyphicon glyphicon-user"></span>${author.name}</a>
+                          </div>
+                          <div class="article-foot" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                            <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                            <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                            <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+          
+                          </div>
+                        </div> -->
+              <div class="jumbotron">
+                <h3>该分类暂时还没有文章，不如。。。</h3>
+                <button class="btn btn-default btn-primary write-article-btn" articlestatu="article">贡献 分类文章</button>
+              </div>
+
+            </div>
+            <div class="category-foot"></div>
+
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+
+
+      <div class="col-xs-12 col-sm-2 col-md-1 visible-xs">
+        <div class="suspend-menu">
+          <!-- 悬浮-菜单-按钮组 -->
+          <div class="suspend-menu-btn-group clearfix">
+            <span class="close-suspend-menu glyphicon glyphicon-remove pull-right visible-xs"></span>
+          </div>
+          <!-- 悬浮菜单导航 -->
+          <div class="suspend-menu-nav">
+            <!-- 悬浮菜单导航标题 -->
+            <div class="suspend-menu-nav-title visible-xs">
+              <span>文章分类</span>
+            </div>
+            <!-- 悬浮-菜单-导航-列表 -->
+            <div class="suspend-menu-nav-list">
+              <!-- 菜单导航 -->
+              <div class="menu-nav">
+                <!-- 菜单列表 -->
+                <div class="menu-list">
+                  <!-- 分类-导航 -->
+                  <div class="category-nav">
+                    <div class="category-nav-container">
+                      <div class="category-list">
+                        <div class="category-item category-item-active col-xs-12">
+                          <a href="#category-1" class="">服务端</a>
+                        </div>
+                        <div class="category-item category-item-active col-xs-12">
+                          <a href="#category-2" class="">移动端</a>
+                        </div>
+                        <div class="category-item category-item-active col-xs-12">
+                          <a href="#category-3" class="">html/css</a>
+                        </div>
+                        <div class="category-item category-item-active col-xs-12">
+                          <a href="#category-4" class="">html/css</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+  <div id="category-nav-bar" class="hidden-xs">
+    <div id="category-crollspy" class="category-nav-container">
+      <div class="category-list">
+        <div class="category-item category-item-active col-xs-12">
+          <a href="#category-1" class="">服务端</a>
+        </div>
+        <div class="category-item category-item-active col-xs-12">
+          <a href="#category-2" class="">移动端</a>
+        </div>
+        <div class="category-item category-item-active col-xs-12">
+          <a href="#category-3" class="">html/css</a>
+        </div>
+        <div class="category-item category-item-active col-xs-12">
+          <a href="#category-4" class="">html/css</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!-- 边栏 -->
+  <aside class="aside">
+    <a class="aaside open-side-menu" title="侧边菜单">
+      <span class="glyphicon glyphicon-align-justify"></span>
+    </a>
+    <a class="aaside write-article-btn" articlestatu="draft" title="写文章">
+      <span class="iconfont icon-tianchongxing-"></span>
+    </a>
+    <a class="aaside article-nav-btn" title="文章导航">
+      <span class="glyphicon glyphicon-list-alt"></span>
+      <div id="article-nav" class="">fddddddddddddfdfdfdfdfadadfadfadfa
+        adfadffadfafa
+        adfadffadfafaadfa
+        adfadffadfafaadfaaddfadffadf
+        fddddddddddddfdfdfdfdfadadfaf
+        fdfdddddddddddddddddddddddddd
+        ddddddddddddd
+        adfadffadfafa
+        adfadffadfafaadfa
+        adfadffadfafaadfaaddfadffadf
+        fddddddddddddfdfdfdfdfadadfadfadfafdfd
+        fdfdddddddddddddddddddddddddd
+        ddddddddddddd
+        afaf
+      </div>
+    </a>
+    <a class="aaside qrcode" title="二维码图片">
+      <span class="glyphicon glyphicon-qrcode"></span>
+      <img class="codeImg" src="images/1.4.1.jpg">
+    </a>
+    <a id="hand-up" class="aaside hand-up" title="返回顶部">
+      <span class="glyphicon glyphicon-hand-up"></span>
+    </a>
+  </aside>
+
+
+  <div class="modal fade" id="add-article-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">增加文章</h4>
+        </div>
+        <div class="modal-body">
+          <!-- 增加-文章-表单-模态窗口 -->
+          <form id="add-article-form-modal" action="foreaddArticleAsync" method="POST" role="form">
+            <!-- 表单-操作-错误信息 -->
+            <div class="form-op-errmsg">
+              <span class="errmsg">fdfdfdfdfdf</span> <span class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="form-group">
+              <label for="add-article-title">文章标题</label> <input type="text" class="form-control" id="add-article-title"
+                name="title" placeholder="请输入文章标题">
+            </div>
+            <div class="form-group">
+              <label for="add-article-subTitle">文章副标题</label> <input type="text" class="form-control" id="add-article-subTitle"
+                name="subTitle" placeholder="请输入文章副标题">
+            </div>
+            <div class="form-group hidden">
+              <label for="add-article-articleStatu">文章状态</label> <select name="articleStatu" id="add-article-articleStatu"
+                class="form-control">
+                <option value="">请输入文章状态</option>
+                <option value="0">草稿</option>
+                <option value="1">文章</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="add-article-cid">文章分类</label> <select name="cid" id="add-article-cid" class="form-control">
+                <option value="">-- Select One --</option>
+                <option value="1">HTML/CSS</option>
+                <option value="2">JavaScript</option>
+                <option value="3">服务端</option>
+                <option value="4">数据库</option>
+                <option value="5">移动端</option>
+                <option value="6">XML教程</option>
+              </select>
+            </div>
+            <div style="text-align: right;">
+              <button type="reset" class="reset-btn btn btn-warning">重置</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="submit-btn btn btn-primary">保存</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="mask close-suspend-menu close-side-menu">
+
+  </div>
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+  <script src="../scripts/js.js"></script>
+  <script>
+    $(function () {
+      $("[data-toggle='popover']").popover();
+    });
+    $(function () {
+      $("[data-toggle='tooltip']").tooltip();
+    });
+  </script>
+</body>
+
+</html>

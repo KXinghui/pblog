@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../styles/normalize/normalize.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../styles/admincss.css">
+  <link rel="stylesheet" href="../styles/forecss.css">
+  <link rel="stylesheet" href="../styles/iconfont.css">
+  <style>
+  </style>
+</head>
+
+<body>
+  <span class="iconfont icon-yonghuzu"></span>
+  <span class="iconfont icon-fensiliebiao"></span>
+  <span class="iconfont icon-fensishu"></span>
+  <span class="iconfont icon-fensi1"></span>
+  <span class="iconfont icon-huaban"></span>
+  <span class="iconfont icon-fensi"></span>
+  <span class="iconfont icon-duoren"></span>
+  <span class="iconfont icon-svgwrite"></span>
+  <span class="iconfont icon-ai-article"></span>
+  <span class="iconfont icon-tianchongxing-"></span>
+  <span class="iconfont icon-geren12"></span>
+   
+  <span class="iconfont icon-iconfontzhizuobiaozhun0252"></span>
+
+
+
+
+  <span class="iconfont icon-dianji"></span>
+  <span class="iconfont icon-youxiang"></span>
+  <span class="iconfont icon-xingbienv "></span>
+  <span class="iconfont icon-xingbienan"></span>
+  <span class="iconfont icon-xingbie"></span>
+
+  <div class="container-fluid hidden">
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 col-md-2">
+        <div class="icon-info" title="邮箱">
+          <span class="iconfont icon-youxiang"></span>
+          <span class="info">我的对方的fdfdf </span>
+        </div>
+
+        <div class="icon-info" title="副标题">
+          <span class="text">副标题</span>
+          <span class="info">我的对方的fdfdf </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="icon-info" title="分类">
+    <span class="glyphicon glyphicon-th-large"></span>
+    <span class="info">&nbsp;</span>
+  </div>
+  <div class="icon-info" title="标题">
+    <span class="glyphicon glyphicon-th-large"></span>
+    <span class="info">我的对方的fdfdf </span>
+  </div>
+
+
+
+  <a class="btn btn-primary" data-toggle="modal" href='#add-article-modal'>增加文章</a>
+  <div class="modal fade" id="add-article-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+
+
+          <form id="add-article-form-modal" action="foreaddArticle" method="POST" role="add-article-form-modal">
+
+            <legend>文章/草稿</legend>
+            <div class="form-group">
+              <label for="title">标题</label>
+              <input type="text" class="form-control" id="title" placeholder="请输入标题">
+            </div>
+            <div class="form-group">
+              <label for="subTitle">副标题</label>
+              <input type="text" class="form-control" id="subTitle" placeholder="请输入副标题">
+            </div>
+            <div class="form-group">
+              <label for="articleStatu">文章状态</label>
+              <select name="articleStatu" id="articleStatu" class="form-control">
+                <option value="">请输入文章状态</option>
+                <option value="0">文章(已发布)</option>
+                <option value="1">草稿(未发布)</option>
+              </select>
+              <input type="text" class="form-control" id="cid" name="cid" placeholder="请输入文章状态">
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="modal-body hidden">
+    <div class="cust-modal-title">
+      <span class="icon"></span>
+
+      <div class="cust-tab-op">
+        <button class="btn one-tab-btn" href="#add-group-tab" data-toggle="tab">新建分组</button>
+        <button class="btn other-tab-btn" href="#exist-group-tab" data-toggle="tab">取消新建分组</button>
+      </div>
+    </div>
+    <div class="group-tab-content tab-content">
+      <div class="tab-pane fade in active" id="exist-group-tab">
+        现有分组
+
+      </div>
+      <div class="tab-pane fade in" id="add-group-tab">
+        新建分组
+      </div>
+    </div>
+  </div>
+
+
+  <label class="show-hide-checked show-hide-checked-row hidden">
+    <div class="checked-btn"><input class="cust-input-checkbox" type="checkbox" name="isSave" id=""></div>
+    <div class="unchecked-area"><span class="text-danger"><span class="glyphicon glyphicon-exclamation-sign"></span>
+        直接删除分组的相关</span></div>
+    <div class="checked-area">将删除分组的相关保存到默认分组</div>
+  </label>
+
+  <nav id="user-nav hidden" class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Title</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+
+  <img src="../images/1.4.1.jpg">
+  <img src="../images/1.4.1.jpg">
+  <img src="../images/1.4.1.jpg">
+  <img src="../images/1.4.1.jpg">
+  <img src="../images/1.4.1.jpg">
+  <img src="../images/1.4.1.jpg">
+  <img src="../images/1.4.1.jpg">
+  <img src="../images/1.4.1.jpg">
+  <img src="../images/1.4.1.jpg">
+
+  <input type="checkbox">
+
+  <div class="cust-checkbox cust-checkbox-column">
+    <label class="cust-checkbox-label">
+      <input type="checkbox" value="1" name="gid" disabled>
+      <span class="text-muted">学习</span>
+    </label>
+    <label class="cust-checkbox-label">
+      <input type="checkbox" value="2" name="gid">
+      <span class="text-muted">默认</span>
+    </label>
+    <label class="cust-checkbox-label">
+      <input type="checkbox" value="3" name="gid" checked>
+      <span class="text-muted">音乐</span>
+    </label>
+  </div>
+
+  <hr>
+
+  <div class="cust-radio cust-radio-row">
+    <label class="cust-radio-label">
+      <input type="radio" name="gender" id="input" value="3" checked>
+      男
+    </label>
+    <label class="cust-radio-label">
+      <input type="radio" name="gender" id="input" value="3">
+      男
+    </label>
+  </div>
+
+  <img src="../images/1.4.1.jpg">
+  <div class="parent">
+    <!-- 异步 -->
+    <div class="async">
+      <!-- 异步-容器 -->
+      <div class="async-container">
+        <span class="btn">fdfdf</span>
+      </div>
+      <!-- 异步刷新 -->
+      <!-- <div class="async-loading">
+        <span class="glyphicon glyphicon-refresh"></span>
+        <span class="text-muted">刷新中。。。</span>
+      </div> -->
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a class="btn btn-primary" data-toggle="modal" href='#tip-modal'>提示模态窗口</a>
+  <div class="modal fade" id="tip-modal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title"><span class="text-danger">上传文件错误</span></h4>
+        </div>
+        <div class="modal-body">
+          <span class="text-danger">文件类型不符合</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 搜索栏 -->
+  <div class="search-bar hidden">
+    <span class="glyphicon glyphicon-search"></span>
+    <input class="" placeholder="用户文章搜索">
+  </div>
+
+  <br><br><br><br>
+
+
+
+
+
+
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+  <script src="../scripts/js.js"></script>
+  <script>
+    $(function () {
+      $("[data-toggle='popover']").popover();
+    });
+    $(function () {
+      $("[data-toggle='tooltip']").tooltip();
+    });
+  </script>
+</body>
+
+
+
+</html>

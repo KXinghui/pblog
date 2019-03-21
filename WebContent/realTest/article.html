@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文章区域</title>
+  <link rel="stylesheet" href="../styles/normalize/normalize.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../styles/forecss.css">
+</head>
+
+<body>
+  <!-- <span class="glyphicon glyphicon-user"></span>
+  <span class="glyphicon glyphicon-eye-open"></span>
+  <span class="glyphicon glyphicon-hand-up"></span> -->
+  <!-- 显示/隐藏 -->
+  <!-- <span class="glyphicon glyphicon-folder-open"></span>
+  <span class="glyphicon glyphicon-folder-close"></span> -->
+  <!-- 允许下载(内容、图片【userId+articleId+articleimagePath】) -->
+  <!-- <span class="glyphicon glyphicon-download-alt"></span>
+  <span class="glyphicon glyphicon-phone"></span> -->
+
+
+  <!-- 顶部导航 -->
+  <nav id="top-nav" class="navbar navbar-default navbar-fixed-top container-fluid" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-topnav-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
+    </div>
+
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-topnav-collapse">
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="搜索文章">
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+      </form>
+
+      <ul class="nav navbar-nav row">
+        <!-- 用户-头像-操作 -->
+        <li class="user-headimg-op dropdown hidden-xs">
+          <a href="#" class="dropdown-toggle head-img-wrapper" data-toggle="dropdown"><img id="user-headimg" src="images/1.4.1.jpg"
+              class="img-responsive img-circle" alt="头像"></a>
+          <!-- 用户-操作面板 -->
+          <div class="user-oppanel">
+            <div class="user-info">
+              <span>星辉kxh</span>
+              <table class="table table-condensed table-hover">
+                <tbody>
+                  <tr>
+                    <th>uid</th>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-user"></span>真实姓名</th>
+                    <td>邝星辉</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-"></span>性别</th>
+                    <td>男</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-phone"></span>手机</th>
+                    <td>13416668123</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-send"></span>邮箱</th>
+                    <td>949869433@qq.com</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-map-marker"></span>地址</th>
+                    <td>广东东莞</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-calendar"></span>生日</th>
+                    <td>1996/11/19</td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+            <div class="article-info">
+              <!-- 总文章数、总点击数、总浏览数 -->
+              <div data-toggle="tooltip" title="总文章数">
+                <span class="glyphicon glyphicon-list-alt"></span> <span class="badge">50</span>
+              </div>
+              <div data-toggle="tooltip" title="总点击数">
+                <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+              </div>
+              <div data-toggle="tooltip" title="总浏览数">
+                <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+              </div>
+            </div>
+            <div class="user-op-list">
+              <span><a href=""><span class="glyphicon glyphicon-list-alt"></span> 文章箱</a></span>
+              <span><a href=""><span class="glyphicon glyphicon-inbox"></span> 草稿箱</a></span>
+              <span><a href=""><span class="glyphicon glyphicon-trash"></span> 垃圾箱</a></span>
+              <span><a href=""><span class="glyphicon glyphicon-picture"></span> 图片设置</a></span>
+              <span><a href=""><span class="glyphicon glyphicon-user"></span> 用户设置</a></span>
+            </div>
+            <div class="oppanel-footer">
+              <a href="#loginModal" class="col-sm-4 col-sm-offset-8"><span class="glyphicon glyphicon-log-out"></span>
+                退出</a>
+            </div>
+          </div>
+
+          <div class="hidden">
+            <div class="panel panel-default">
+              <div class="jumbotron">
+                <span class="text-info text" style="font-size:23px;">
+                  欢迎登陆！！！
+                </span>
+              </div>
+              <a href="login.html">
+                <button class="btn btn-info btn-block">登陆</button>
+              </a>
+            </div>
+
+          </div>
+        </li>
+        <li><a data-toggle="modal" href="#about-author">关于作者</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">操作 <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-list-alt"></span> 文章箱</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-inbox"></span> 草稿箱</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-trash"></span> 垃圾箱</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-user"></span> 用户信息</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- 背景 -->
+  <div id="background">
+    <!-- 背景-图片 -->
+    <div id="background-img">
+      <img src="images/2.jpg" class="img-responsive img-rounded">
+    </div>
+    <!-- 背景-容器 -->
+    <div id="background-container">
+      <button class="btn btn-success">星辉kxh博客</button>
+      <div class="dictum">有志者，事竟成</div>
+    </div>
+  </div>
+
+
+
+  <div class="category-well well page-header" >
+    <h1>文章
+      <small>文章</small>
+    </h1>
+    <div class="search-bar lead">
+      <span class="glyphicon glyphicon-search"></span>
+      <form id="search-user-article-form" class="navbar-form navbar-left" action="" role="search-user-article">
+        <div class="search-form">
+          <input class="hidden" type="text" name="cid" placeholder="" value="${category.id}">
+          <input class="" type="text" name="title" placeholder="搜索${category.name}分类的文章">
+          <button type="submit" class="btn btn-default btn-sm">搜索</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="article-content container-fluid">
+    <div class="row">
+      <!-- 用户信息 -->
+      <div class="user-info col-xs-12 col-sm-5 col-md-3 col-md-offset-1 hidden">
+        <div class="user-panel-container">
+          <!-- 用户-头像 -->
+          <img id="user-panel-headimg" src="images/1.4.1.jpg" class="img-responsive img-circle" alt="头像">
+          <!-- 用户-操作-面板 自身用户-面板 -->
+          <div class="user-op-panel otheruser-panel">
+            <div class="user-title">
+              <span>万利wl</span>
+            </div>
+            <!-- 用户信息-容器 -->
+            <div class="userinfo-container">
+              <table class="table table-condensed table-hover">
+                <tbody>
+                  <tr>
+                    <th>uid</th>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-user"></span>真实姓名</th>
+                    <td>万利</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-"></span>性别</th>
+                    <td>男</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-phone"></span>手机</th>
+                    <td>13416661234</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-send"></span>邮箱</th>
+                    <td>949869433@qq.com</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-map-marker"></span>地址</th>
+                    <td>广东东莞</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-calendar"></span>生日</th>
+                    <td>1996/11/19</td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+            <!-- 用户文章信息-容器 -->
+            <div class="userarticle-container">
+            </div>
+            <!-- 用户操作列表-容器 -->
+            <div class="userop-list-container">
+              <!-- 文章状态 -->
+              <div class="article-status">
+                <a href="forearticle/${user.id}">文章<span class="badge">50</span></a>
+              </div>
+            </div>
+            <!-- 尾部信息-容器 -->
+            <div class="footer-container">
+              待定（关注、聊天）
+            </div>
+          </div>
+          <!-- 用户-面板 展开 -->
+          <span class="op-user-panel open glyphicon glyphicon-eject" title="点击展开"></span>
+        </div>
+      </div>
+
+      <!-- 文章-容器 -->
+      <div class="article-container col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+        <div class="article-list">
+
+          <div class="jumbotron">
+            <h2>${category.name}分类暂时还没有文章，不如。。。</h2>
+            <br>
+            <br>
+            <button class="btn btn-default btn-primary write-article-btn center-block">贡献${category.name}分类的文章</button>
+          </div>
+          <div class="article-item" data-aid=${aid}>
+            <div class="first">
+              <span field="cid">服务端</span>
+              <span>2019-08-12 12:45:20</span>
+            </div>
+            <div class="second">
+              <a href="#"><span field="title">Spring</span></a>
+              <span field="subTitle">Spring表单验证</span>
+            </div>
+            <div class="third">
+              <div class="article-foot" data-toggle="tooltip" data-placement="bottom" title="收藏量、点击量、浏览量">
+                <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">${article.collectNum}</span>
+                <span class="iconfont icon-dinaji"></span> <span class="badge">${article.clickNum}</span>
+                <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">${article.viewNum}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-item">
+            <div class="first">
+              <span field="cid">服务端</span>
+              <span>2019-08-12 12:45:20</span>
+            </div>
+            <div class="second">
+              <a href="#"><span field="title">Spring</span></a>
+              <span field="subTitle">Spring表单验证</span>
+            </div>
+            <div class="third">
+              <div class="about-article-info">
+                <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+              </div>
+              <div class="article-op">
+                <a href="" class="">编辑</a>
+                <a href="" class="">转到文章箱</a>
+                <a href="" class="">转到文章箱</a>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="article-item">
+            <div class="first">
+              <span field="cid">服务端</span>
+              <span>2019-08-12 12:45:20</span>
+            </div>
+            <div class="second">
+              <a href="#"><span field="title">Spring</span></a>
+              <span field="subTitle">Spring表单验证</span>
+            </div>
+            <div class="third">
+              <div class="about-article-info">
+                <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+              </div>
+              <div class="article-op">
+                <a href="" class="">编辑</a>
+                <a href="" class="">转到文章箱</a>
+                <a href="" class="">转到文章箱</a>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="article-item">
+            <div class="first">
+              <span field="cid">服务端</span>
+              <span>2019-08-12 12:45:20</span>
+            </div>
+            <div class="second">
+              <a href="#"><span field="title">Spring</span></a>
+              <span field="subTitle">Spring表单验证</span>
+            </div>
+            <div class="third">
+              <div class="about-article-info">
+                <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+              </div>
+              <div class="article-op">
+                <a href="" class="">编辑</a>
+                <a href="" class="">转到文章箱</a>
+                <a href="" class="">转到文章箱</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="paging center-block">
+          <div class="row">
+            <div class="col-xs-12 col-sm-9 col-md-8">
+              <!-- 分页信息 -->
+              <div class="page-info">
+                <span class="text-info text-muted">共有<span class="total text-danger lead"> 80 </span>条记录，<span class="total-page text-danger lead">
+                    10 </span>页，每页显示<span class="page-record text-danger lead"> 8 </span> 条记录，当前为<span class="current text-danger lead">
+                    10 </span>页
+                </span>
+              </div>
+              <ul class="pagination">
+                <li class="disabled"><a href="#">&laquo;</a></li>
+                <li class="disabled"><a href="#">上一页</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">7</a></li>
+                <li><a href="#">8</a></li>
+                <li><a href="#">9</a></li>
+                <li><a href="#">10</a></li>
+                <li><a href="#">下一页</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-2 col-md-offset-1">
+              <!-- 改变分页 -->
+              <div class="change-page">
+                <div class="input-group">
+                  <input type="number" name="pageRecord" class="form-control" data-toggle="tooltip" title="输入后点击按钮可更改每页显示记录数(不能超过总记录数)">
+                  <span class="input-group-btn">
+                    <button id="change-pagerecord-btn" class="btn btn-default" type="button" title="点击按钮可更改每页显示记录数">
+                      <span class="glyphicon glyphicon-list-alt"></span>
+                    </button>
+                  </span>
+                </div>
+                <div class="input-group">
+                  <input type="number" name="current" class="form-control" data-toggle="tooltip" title="输入后点击按钮可跳转到指定页">
+                  <span class="input-group-btn"><button id="change-current-btn" class="btn btn-default" type="button"
+                      title="点击按钮可跳转到指定页">
+                      <span class="glyphicon glyphicon-arrow-right"></span>
+                    </button> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  <!-- 边栏 -->
+  <aside class="aside">
+    <a id="article-nav" class="aaside article-nav" title="文章导航">
+      <span class="glyphicon glyphicon-list-alt"></span>
+    </a>
+    <a class="aaside qrcode" title="二维码图片">
+      <span class="glyphicon glyphicon-qrcode"></span>
+      <img class="codeImg" src="images/1.4.1.jpg">
+    </a>
+    <a id="hand-up" class="aaside hand-up" title="返回顶部">
+      <span class="glyphicon glyphicon-hand-up"></span>
+    </a>
+  </aside>
+
+
+
+
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="../scripts/js.js"></script>
+  <script>
+    $(function () {
+      $("[data-toggle='popover']").popover();
+    });
+    $(function () {
+      $("[data-toggle='tooltip']").tooltip();
+    });
+  </script>
+
+</body>
+
+</html>

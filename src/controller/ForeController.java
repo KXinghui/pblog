@@ -1,9 +1,7 @@
 package controller;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -11,16 +9,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,14 +30,17 @@ import exception.CustException;
 import pojo.Article;
 import pojo.ArticleContent;
 import pojo.ArticleFavority;
+import pojo.ArticleHistory;
 import pojo.Category;
 import pojo.Group;
 import pojo.LoginHistory;
 import pojo.User;
 import pojo.UserFollow;
 import pojo.UserInfo;
+import pojo.UserSetting;
 import service.ArticleContentService;
 import service.ArticleFavorityService;
+import service.ArticleHistoryService;
 import service.ArticleService;
 import service.CategoryService;
 import service.GroupService;
@@ -50,7 +48,7 @@ import service.LoginHistoryService;
 import service.UserFollowService;
 import service.UserInfoService;
 import service.UserService;
-import sun.print.resources.serviceui_es;
+import service.UserSettingService;
 import util.ForeUtil;
 import util.Page;
 import util.PageResult;
@@ -71,12 +69,16 @@ public class ForeController {
 
 	@Autowired
 	ArticleService articleService;
-
 	@Autowired
 	ArticleContentService articleContentService;
+	@Autowired
+	ArticleHistoryService articleHistoryService;
 
 	@Autowired
 	UserInfoService userInfoService;
+	@Autowired
+	UserSettingService userSettingService;
+
 	@Autowired
 	GroupService groupService;
 	@Autowired
@@ -188,34 +190,51 @@ public class ForeController {
 			model.addAttribute("msg", "登陆失败：用户账号 " + name + " 不存在");
 			return "fore/login";
 		}
+		Integer uid = isExist.getId();
+		UserSetting userSetting = userSettingService.getByUser(uid);
+
+		if (null == userSetting) {
+			userSetting = new UserSetting();
+			userSetting.setUid(uid);
+			userSettingService.dynamicInsert(userSetting);
+		}
+
 		User realUser = userService.getByNameAndPass(user);
 		LoginHistory loginHistory = new LoginHistory();
 		if (realUser == null) {
 			model.addAttribute("msg", "登陆失败：用户密码错误");
-			loginHistory.setIp(request.getRemoteAddr());
-			loginHistory.setIsLogin(0);
-			loginHistory.setUid(isExist.getId());
 
-			loginHistoryService.insert(loginHistory);
+			// 记录登陆失败历史
+			Integer isRecordLoginFailHistory = userSetting.getIsRecordLoginFailHistory();
+			if (null == isRecordLoginFailHistory || isRecordLoginFailHistory == 1) {
+				loginHistory.setIp(request.getRemoteAddr());
+				loginHistory.setIsLogin(0);
+				loginHistory.setUid(uid);
+				loginHistoryService.insert(loginHistory);
+			}
 
 			return "fore/login";
 		}
+		// 记录登陆成功历史
+		Integer isRecordLoginSuccessHistory = userSetting.getIsRecordLoginSuccessHistory();
+		if (null == isRecordLoginSuccessHistory || isRecordLoginSuccessHistory == 1) {
+			loginHistory.setIp(request.getRemoteAddr());
+			loginHistory.setIsLogin(1);
+			loginHistory.setUid(realUser.getId());
 
-		loginHistory.setIp(request.getRemoteAddr());
-		loginHistory.setIsLogin(1);
-		loginHistory.setUid(realUser.getId());
-
-		loginHistoryService.insert(loginHistory);
+			loginHistoryService.insert(loginHistory);
+		}
 
 		realUser.setPassword(null);
-		Integer uid = realUser.getId();
-		UserInfo ui = userInfoService.getByUser(uid);
+		Integer realUid = realUser.getId();
+		UserInfo ui = userInfoService.getByUser(realUid);
 
 		if (ui != null) {
 			realUser.setUserInfo(ui);
 		}
 		session.setAttribute("user", realUser);
-		return "redirect:fore/user/" + realUser.getId();
+		session.setAttribute("userSetting", userSetting);
+		return "redirect:fore/user/" + realUid;
 	}
 
 	/* 退出 */
@@ -547,6 +566,14 @@ public class ForeController {
 		} else {
 			groups = groupService.listByUserGroupTypeAndVisibility(uid, GroupType.ARTICLE_FAVORITY, Visibility.VISIBLE);
 		}
+		if (null == groups || groups.size() == 0) {
+			// 新增默认
+			groups = new ArrayList<>();
+			Group defaultGroup = new Group("默认", Visibility.VISIBLE, GroupType.ARTICLE_FAVORITY, uid);
+			groupService.dynamicInsert(defaultGroup);
+			groups.add(defaultGroup);
+		}
+
 		/* gid 没有默认为第一个 */
 		if (null == gid && groups.size() != 0) {
 			gid = groups.get(0).getId();
@@ -559,7 +586,9 @@ public class ForeController {
 		if (!groupIds.contains(gid)) {
 			throw new CustException("用户文章收藏页面失败(该用户没有该文章收藏分组或未公开)");
 		}
+		System.out.println(gid);
 		Group group = groupService.get(gid);
+		System.out.println(group);
 		Integer total = articleFavorityService.countByGroup(gid);
 		PageHelper.startPage(page.getPageFirst(), page.getPageRecord());
 		articleFavorities = articleFavorityService.listByGroupAndArticleStatu(gid, ArticleStatu.PUBLISH);
@@ -575,6 +604,40 @@ public class ForeController {
 		model.addAttribute("groups", groups);
 
 		return "fore/user/articleFavority";
+	}
+
+	/* 用户/文章历史页面 */
+	@RequestMapping(value = { "fore/user/{uid}/articleHistories" })
+	public String articleHistory(@PathVariable Integer uid, @PathVariable(required = false) Integer gid, Model model,
+			HttpSession session, Page page) {
+		preUser(uid, model, session);
+
+		User user = (User) session.getAttribute("user");
+
+		if (!ForeUtil.isLoginAndOwnUser(uid, user)) {
+			throw new CustException("你太可恶了，竟然想看别人的文章历史");
+		}
+		Integer total = articleHistoryService.countByUser(uid);
+		PageHelper.startPage(page.getPageFirst(), page.getPageRecord(), "id DESC");
+		List<ArticleHistory> articleHistories = articleHistoryService.listByUser(uid);
+		PageResult<ArticleHistory> pr = new PageResult<>(total, articleHistories, page);
+		model.addAttribute("pr", pr);
+
+		return "fore/user/articleHistory";
+	}
+
+	/* 用户/用户设置页面 */
+	@RequestMapping(value = { "fore/user/{uid}/userSettings" })
+	public String userSetting(@PathVariable Integer uid, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+
+		if (!ForeUtil.isLoginAndOwnUser(uid, user)) {
+			throw new CustException("不可以进入别人的用户设置页面");
+		}
+		UserSetting userSetting = userSettingService.getByUser(uid);
+
+		session.setAttribute("userSetting", userSetting);
+		return "fore/user/userSetting";
 	}
 
 	/* 分类下的文章 */
@@ -663,11 +726,13 @@ public class ForeController {
 	public String showArticle(@RequestParam Integer aid, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		Article article = articleService.get(aid);
+
 		if (!ForeUtil.isLogin(user)) {
 			if (article == null || !ArticleStatu.PUBLISH.equals(article.getArticleStatu())) {
 				throw new CustException("不能查看文章(不存在或不是发布状态)");
 			}
 		}
+
 		ArticleContent articleContent = articleContentService.getByArticle(aid);
 		article.setArticleContent(articleContent);
 
@@ -700,6 +765,16 @@ public class ForeController {
 			}
 			// TODO
 			// 增加观看历史（当天判断重复）
+			UserSetting userSetting = (UserSetting) session.getAttribute("userSetting");
+			if (null == userSetting || userSetting.getIsRecordShowArticleHistory() == 1) {
+				ArticleHistory articleHistory = new ArticleHistory(user.getId(), aid, LocalDateTime.now());
+				ArticleHistory originArticleHistory = articleHistoryService.getByArticleHistory(articleHistory);
+				if (null == originArticleHistory) {
+					articleHistoryService.dynamicInsert(articleHistory);
+				} else {
+					articleHistoryService.dynamicUpdate(originArticleHistory);
+				}
+			}
 			// 是否已观看 稍后再看（有记录且对应aid的就把是否观看字段改成已观看【未观看 0、已观看 1】）
 
 		}

@@ -46,6 +46,9 @@
 					</div>
 					<button type="submit" class="btn btn-default">搜索</button>
 				</form>
+				<li class="nav-slider"><a
+					href="<s:url value="/fore/user/${user.id}/userSettings" />"><span
+						class="glyphicon glyphicon-cog"></span>设置</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="nav-slider"><a

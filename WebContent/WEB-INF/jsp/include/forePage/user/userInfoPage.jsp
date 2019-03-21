@@ -79,6 +79,10 @@
 		<span class="text-warning">以下为您最近 ${fn:length(lhs)}
 			次登录记录，若存在异常情况，请在核实后尽快 <a href="editUserInfoPage?act=editUser">修改密码</a>
 		</span>
+		<a href="<s:url value="/fore/user/${user.id}/userSettings" />"
+			class="btn btn-default">设置是否记录登陆历史</a>
+		<button
+			class="btn btn-default btn-danger clear-loginhistory-btn pull-right">清空登陆历史</button>
 
 		<tr>
 			<th>IP</th>

@@ -19,7 +19,6 @@ import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
@@ -41,19 +39,23 @@ import exception.CustException;
 import pojo.Article;
 import pojo.ArticleContent;
 import pojo.ArticleFavority;
+import pojo.ArticleHistory;
 import pojo.Group;
 import pojo.LoginHistory;
 import pojo.User;
 import pojo.UserFollow;
 import pojo.UserInfo;
+import pojo.UserSetting;
 import service.ArticleContentService;
 import service.ArticleFavorityService;
+import service.ArticleHistoryService;
 import service.ArticleService;
 import service.GroupService;
 import service.LoginHistoryService;
 import service.UserFollowService;
 import service.UserInfoService;
 import service.UserService;
+import service.UserSettingService;
 import util.Page;
 import util.UpLoadFile;
 import validator.Get;
@@ -72,7 +74,11 @@ public class RestForeController {
 	@Autowired
 	ArticleContentService articleContentService;
 	@Autowired
+	ArticleHistoryService articleHistoryService;
+	@Autowired
 	UserInfoService userInfoService;
+	@Autowired
+	UserSettingService userSettingService;
 	@Autowired
 	GroupService groupService;
 	@Autowired
@@ -137,35 +143,52 @@ public class RestForeController {
 
 		String name = user.getName();
 		User isExist = userService.getByName(name);
+
 		if (isExist == null) {
 			return "登陆失败：用户账号 " + name + " 不存在";
 		}
+		Integer uid = isExist.getId();
+		UserSetting userSetting = userSettingService.getByUser(uid);
+
+		if (null == userSetting) {
+			userSetting = new UserSetting();
+			userSetting.setUid(uid);
+			userSettingService.dynamicInsert(userSetting);
+		}
+
 		User realUser = userService.getByNameAndPass(user);
 		LoginHistory loginHistory = new LoginHistory();
 		if (realUser == null) {
-
-			loginHistory.setIp(request.getRemoteAddr());
-			loginHistory.setIsLogin(0);
-			loginHistory.setUid(isExist.getId());
-
-			loginHistoryService.insert(loginHistory);
+			// 记录登陆失败历史
+			Integer isRecordLoginFailHistory = userSetting.getIsRecordLoginFailHistory();
+			if (null == isRecordLoginFailHistory || isRecordLoginFailHistory == 1) {
+				loginHistory.setIp(request.getRemoteAddr());
+				loginHistory.setIsLogin(0);
+				loginHistory.setUid(uid);
+				loginHistoryService.insert(loginHistory);
+			}
 
 			return "登陆失败：用户密码错误";
 		}
+		// 记录登陆成功历史
+		Integer isRecordLoginSuccessHistory = userSetting.getIsRecordLoginSuccessHistory();
+		if (null == isRecordLoginSuccessHistory || isRecordLoginSuccessHistory == 1) {
+			loginHistory.setIp(request.getRemoteAddr());
+			loginHistory.setIsLogin(1);
+			loginHistory.setUid(realUser.getId());
 
-		loginHistory.setIp(request.getRemoteAddr());
-		loginHistory.setIsLogin(1);
-		loginHistory.setUid(realUser.getId());
-
-		loginHistoryService.insert(loginHistory);
+			loginHistoryService.insert(loginHistory);
+		}
 
 		realUser.setPassword(null);
-		Integer uid = realUser.getId();
-		UserInfo ui = userInfoService.getByUser(uid);
+		Integer realUid = realUser.getId();
+		UserInfo ui = userInfoService.getByUser(realUid);
+
 		if (ui != null) {
-			user.setUserInfo(ui);
+			realUser.setUserInfo(ui);
 		}
 		session.setAttribute("user", realUser);
+		session.setAttribute("userSetting", userSetting);
 
 		return "fore/user/" + uid;
 	}
@@ -693,10 +716,11 @@ public class RestForeController {
 				}
 			}
 		}
-
-		articleFavorityService.batchDelete(invalidArticleIds);
-
-		return JSONObject.toJSONString(invalidArticleIds);
+		if (invalidArticleIds.size() != 0) {
+			articleFavorityService.batchDelete(invalidArticleIds);
+			return JSONObject.toJSONString(invalidArticleIds);
+		}
+		return "没有多余的失效让你清除";
 	}
 
 	/* 列出对应组 */
@@ -1076,4 +1100,84 @@ public class RestForeController {
 		return jsonObject.toJSONString();
 	}
 
+	@RequestMapping(value = "foresaveUserSettingOfHistoryAsync", produces = "text/plain;charset=UTF-8")
+	public String foresaveUserSettingOfHistoryAsync(@RequestParam(required = false) Integer isRecordLoginSuccessHistory,
+			@RequestParam(required = false) Integer isRecordLoginFailHistory,
+			@RequestParam(required = false) Integer isRecordShowArticleHistory, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+
+		UserSetting userSetting = (UserSetting) session.getAttribute("userSetting");
+
+		UserSetting newUserSetting = new UserSetting();
+		newUserSetting.setId(userSetting.getId());
+		newUserSetting.setUid(user.getId());
+		Integer[] isInteger = { 0, 1 };
+		List<Integer> is = Arrays.asList(isInteger);
+		String msg = "";
+
+		if (null != isRecordLoginSuccessHistory && is.contains(isRecordLoginSuccessHistory)) {
+			userSetting.setIsRecordLoginSuccessHistory(isRecordLoginSuccessHistory);
+			newUserSetting.setIsRecordLoginSuccessHistory(isRecordLoginSuccessHistory);
+			msg = (isRecordLoginSuccessHistory == 1) ? "设置记录登陆成功历史成功" : "设置不记录登陆成功历史成功";
+		} else if (null != isRecordLoginFailHistory && is.contains(isRecordLoginFailHistory)) {
+			userSetting.setIsRecordLoginFailHistory(isRecordLoginFailHistory);
+			newUserSetting.setIsRecordLoginFailHistory(isRecordLoginFailHistory);
+			msg = (isRecordLoginFailHistory == 1) ? "设置记录登陆失败历史成功" : "设置不记录登陆失败历史成功";
+		} else if (null != isRecordShowArticleHistory && is.contains(isRecordShowArticleHistory)) {
+			userSetting.setIsRecordShowArticleHistory(isRecordShowArticleHistory);
+			newUserSetting.setIsRecordShowArticleHistory(isRecordShowArticleHistory);
+			msg = (isRecordShowArticleHistory == 1) ? "设置记录展示文章历史成功" : "设置不记录展示文章历史成功";
+		}
+		if ("".equals(msg)) {
+			return "fail";
+		}
+		userSettingService.dynamicUpdate(newUserSetting);
+		session.setAttribute("userSetting", newUserSetting);
+		return msg;
+	}
+
+	/* 清空登陆历史 */
+	@RequestMapping(value = "foreclearLoginHistoryAsync", produces = "text/plain;charset=UTF-8")
+	public String foreclearLoginHistoryAsync(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+
+		List<LoginHistory> loginHistory = loginHistoryService.listByUser(user.getId());
+		List<Integer> deleteIds = new ArrayList<>();
+		for (LoginHistory lh : loginHistory) {
+			deleteIds.add(lh.getId());
+		}
+		if (deleteIds.size() != 0) {
+			loginHistoryService.batchDelete(deleteIds);
+			return "success";
+		}
+		return "没有多余的登陆历史让你清空";
+	}
+
+	/* 删除展示文章历史 */
+	@RequestMapping(value = "foredeleteArticleHistoryAsync", produces = "text/plain;charset=UTF-8")
+	public String foredeleteShowArticleHistoryAsync(@RequestParam Integer ahid, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+
+		ArticleHistory articleHistory = articleHistoryService.get(ahid);
+		if (null == articleHistory) {
+			return "没有此文章历史";
+		}
+		if (!articleHistory.getUid().equals(user.getId())) {
+			return "你太可恶了，竟然想删除别人的文章历史";
+		}
+		articleHistoryService.delete(ahid);
+		return "success";
+	}
+
+	/* 清空展示文章历史 */
+	@RequestMapping(value = "foreclearArticleHistoryAsync", produces = "text/plain;charset=UTF-8")
+	public String foreclearShowArticleHistoryAsync(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		List<Integer> deleteIds = articleHistoryService.listIdByUser(user.getId());
+		if (deleteIds.size() != 0) {
+			articleHistoryService.batchDelete(deleteIds);
+			return "success";
+		}
+		return "没有多余的文章历史让你清空";
+	}
 }

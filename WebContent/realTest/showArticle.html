@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>显示文章</title>
+  <link rel="stylesheet" href="../styles/normalize/normalize.css">
+  <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../styles/forecss.css">
+  <link rel="stylesheet" href="editormd/css/style.css">
+  <link rel="stylesheet" href="../editormd/css/editormd.css">
+  <link rel="stylesheet" href="../styles/iconfont.css">
+  <link rel="stylesheet" href="../editormd/css/editormd.preview.css">
+</head>
+
+<body>
+
+  <nav id="top-nav" class="navbar navbar-default navbar-fixed-top container-fluid" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-topnav-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span></a>
+    </div>
+
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-topnav-collapse">
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="搜索文章">
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+      </form>
+
+      <ul class="nav navbar-nav row">
+        <!-- 用户-头像-操作 -->
+        <li class="user-headimg-op dropdown hidden-xs">
+          <a href="#" class="dropdown-toggle head-img-wrapper" data-toggle="dropdown"><img id="user-headimg" src="images/1.4.1.jpg"
+              class="img-responsive img-circle" alt="头像"></a>
+          <!-- 用户-操作面板 -->
+          <div class="user-oppanel">
+            <div class="user-info">
+              <span>星辉kxh</span>
+              <table class="table table-condensed table-hover">
+                <tbody>
+                  <tr>
+                    <th>uid</th>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-user"></span>真实姓名</th>
+                    <td>邝星辉</td>
+                  </tr>
+                  <tr>
+                    <th><span class="iconfont icon-xingbienan"></span>性别</th>
+                    <td>男</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-phone"></span>手机</th>
+                    <td>13416668123</td>
+                  </tr>
+                  <tr>
+                    <th><span class="iconfont icon-youxiang"></span>邮箱</th>
+                    <td>949869433@qq.com</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-map-marker"></span>地址</th>
+                    <td>广东东莞</td>
+                  </tr>
+                  <tr>
+                    <th><span class="glyphicon glyphicon-calendar"></span>生日</th>
+                    <td>1996/11/19</td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+            <div class="user-info jumbotron hidden">
+              <h5>目前还未填写用户信息</h5>
+              <a href="editUserinfo.html" class="btn btn-primary">去填写</a>
+            </div>
+
+            <div class="article-info">
+              <!-- 总文章数、总点击数、总浏览数 -->
+              <div data-toggle="tooltip" title="总文章数">
+                <span class="glyphicon glyphicon-list-alt"></span> <span class="badge">50</span>
+              </div>
+              <div data-toggle="tooltip" title="总点击数">
+                <span class="iconfont icon-dianji"></span> <span class="badge">50</span>
+              </div>
+              <div data-toggle="tooltip" title="总浏览数">
+                <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+              </div>
+            </div>
+            <div class="user-op-list">
+              <span><a href=""><span class="glyphicon glyphicon-list-alt"></span> 文章箱</a></span>
+              <span><a href=""><span class="glyphicon glyphicon-inbox"></span> 草稿箱</a></span>
+              <span><a href=""><span class="glyphicon glyphicon-trash"></span> 垃圾箱</a></span>
+              <span><a href=""><span class="glyphicon glyphicon-user"></span> 用户信息</a></span>
+            </div>
+            <div class="oppanel-footer">
+              <a href="#loginModal" class="col-sm-4 col-sm-offset-8"><span class="glyphicon glyphicon-log-out"></span>
+                退出</a>
+            </div>
+          </div>
+
+          <div class="user-oppanel hidden">
+            <div class="panel panel-default">
+              <div class="jumbotron">
+                <span class="text-info text" style="font-size:23px;">
+                  欢迎登陆！！！
+                </span>
+              </div>
+              <a href="login.html" target="_blank">
+                <button class="btn btn-info btn-block">登陆</button>
+              </a>
+            </div>
+
+          </div>
+        </li>
+        <li><a data-toggle="modal" href="#about-author">关于作者</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">操作 <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-list-alt"></span> 文章箱</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-inbox"></span> 草稿箱</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-trash"></span> 垃圾箱</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-user"></span> 用户信息</a></li>
+            <li><a href="#loginModal"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+  <div class="user-panel container-fluid">
+    <!-- 悬浮菜单图标 拖拽部件 -->
+    <span class="open-suspend-menu suspend-menu-icon drag-part visible-xs">用户</span>
+    <div class="row">
+
+      <div class="col-xs-11 col-sm-4 col-md-3 ">
+        <!-- 悬浮-菜单 -->
+        <div class="suspend-menu">
+          <!-- 悬浮-菜单-按钮组 -->
+          <div class="suspend-menu-btn-group clearfix">
+            <span class="close-suspend-menu glyphicon glyphicon-remove pull-right visible-xs"></span>
+          </div>
+
+
+          <!-- 用户面板 -->
+          <div class="user-panel-container">
+            <!-- 用户-头像 -->
+            <img id="user-panel-headimg" src="images/1.4.1.jpg" class="img-responsive img-circle" alt="头像">
+            <!-- 用户-操作-面板 自身用户-面板 -->
+            <div class="user-op-panel ownser-panel">
+              <div class="user-title">
+                <span>星辉kxh</span>
+              </div>
+              <!-- 用户信息-容器 -->
+              <div class="userinfo-container">
+                <table class="table table-condensed table-hover">
+                  <tbody>
+                    <tr>
+                      <th>uid</th>
+                      <td>${otherUser.id}</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-user"></span>真实姓名</th>
+                      <td>${oui.realName}</td>
+                    </tr>
+                    <tr>
+                      <th><span class="iconfont icon-xingbienan"></span>性别</th>
+                      <td>
+                        <c:if test="${oui.gender=='MALE'}">男</c:if>
+                        <c:if test="${oui.gender=='FEMALE'}">女</c:if>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-phone"></span>手机</th>
+                      <td>${oui.mobile}</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-send"></span>邮箱</th>
+                      <td>${oui.email}</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-map-marker"></span>地址</th>
+                      <td>${oui.address}</td>
+                    </tr>
+                    <tr>
+                      <th><span class="glyphicon glyphicon-calendar"></span>生日</th>
+                      <td>${oui.birthday}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- 用户文章信息-容器 -->
+              <div class="userarticle-container">
+              </div>
+              <!-- 用户操作列表-容器 -->
+              <div class="userop-list-container">
+                <!-- 文章状态 -->
+                <div class="article-status">
+                  <a href="foredrafts">草稿箱<span class="badge">50</span></a>
+                  <a href="forearticle/${user.id}">文章<span class="badge">50</span></a>
+                  <a href="foredustbin">垃圾箱<span class="badge">50</span></a>
+                </div>
+              </div>
+              <!-- 尾部信息-容器 -->
+              <div class="footer-container">
+                待定
+              </div>
+            </div>
+            <!-- 用户-面板 展开 -->
+            <span class="op-user-panel open glyphicon glyphicon-eject" title="点击展开"></span>
+          </div>
+        
+        
+        
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-8 col-md-9 ">
+        <div class="show-article">
+          <!-- 展示文章信息 -->
+          <div class="show-article-info">
+            <div class="icon-info" title="分类">
+              <span class="glyphicon glyphicon-th-large"></span>
+              <span class="info">服务器</span>
+            </div>
+            <div class="icon-info" title="标题">
+              <span class="iconfont icon-biaoti"></span>
+              <span class="info">支撑起整个互联网时代的7款开源软件</span>
+            </div>
+            <div class="icon-info hidden-xs" title="创建时间">
+              <span class="text">创建时间</span>
+              <span class="info">服务器</span>
+            </div>
+            <div class="icon-info hidden-xs" title="更新时间">
+              <span class="text">更新时间</span>
+              <span class="info">我的对方的fdfdf </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="layout">
+          <div id="show-articlmarkdown">
+            <textarea style="display:none;"></textarea>
+          </div>
+          <div id="show-articlehtml">
+            <textarea style="display:none;" placeholder=""># 支撑起整个互联网时代的 7 款开源软件
+
+[TOCM]
+
+[TOC]
+
+开源软件现在成为整个互联网时代的支撑技术，你可能已经无法离开由开源软件构建起来的网络世界了。下面我们就来看看一些最重要的开源技术。
+
+### 为互联网而生的操作系统linux
+
+Linux是一款免费的操作系统，诞生于1991年，用户可以通过网络或其他途径免费获得，并可以任意修改其源代码。
+
+#### linux A
+
+它能运行主要的UNIX工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix以网络为核心的设计思想，是一个性能稳 定的多用户网络操作系统。这个系统是由全世界各地的成千上万的程序员设计和实现的。其目的是建立不受任何商品化软件的版权制约的、全世界都能自由使用的 Unix兼容产品。
+
+#### Test link heading [linux B](https://github.com/pandao/editor.md)  Test link heading
+
+#### Test link heading [linux B](https://github.com/pandao/editor.md)   Test link heading [linux B](https://github.com/pandao/editor.md)  Test link heading, Test link heading, [linux B](https://github.com/pandao/editor.md)  Test link heading
+
+##### linux B-1
+
+###### linux B-1-1
+
+###### linux B-1-2
+
+##### linux B-2
+
+###### linux B-2-1
+
+###### linux B-2-2
+
+#支撑起整个互联网时代的 7 款开源软件-2
+
+Linux可以说是已经无处不在，像Android手机就是以Linux为基础开发的，世界上大多的超级计算机也都采用的Linux系统，大多数的 数据中心使用Linux作为其支撑操作系统。谷歌、百度、淘宝等都通过Linuxt提供了我们每天用的互联网服务。Linux在航空控制系统中也扮演着重 要角色。
+
+###加密互联网的安全协议OpenSSL
+
+OpenSSL是套开放源代码的软件库包，实现了SSL与TLS协议。OpenSSL可以说是一个基于密码学的安全开发包，囊括了主要的密码算法、常用的密钥和证书封装管理功能以及SSL协议，并提供了丰富的应用程序供测试或其它目的使用。
+
+也可以说OpenSSL是网络通信提供安全及数据完整性的一种安全协议，SSL可以在Internet上提供秘密性传输，能使用户/服务器应用之间的通信不被攻击者窃听。OpenSSL被网银、在线支付、电商网站、门户网站、电子邮件等重要网站广泛使用。
+
+去年OpenSSL爆出安全漏洞，因为其应用如此之广，该漏洞爆出让整个互联网都为之震颤。
+
+### 互联网的记忆——MySQL
+
+MySQL是一个开源的小型的数据库管理系统，原开发者为瑞典的MySQL AB公司，该公司于2008年被Sun公司收购。2009年，甲骨文公司（Oracle）收购Sun公司，MySQL成为Oracle旗下产品。
+
+很多信息都是存在数据库里面的，很多工程师在开发一些的小型项目时都会采用这个MySQL数据库。MySQL为C、C++、JAVA、PHP等多重 编程语言提供了API接口。而且支持windows、Mac、Linux等多种系统。这种广泛的支持使其得到更多开发者的青睐，MySQL是开发者需要掌 握的数据库之一。
+
+Mysql最初为小型应用而开发，但现在的Mysql已经不是一个小型数据库了。基本上所有的互联网公司都会使用这个数据库系统，一些金融交易也会 采用Mysql作为数据库引擎。Mysql通过相应的调优既可以支撑大规模的访问，又可以保证数据安全性，已经成为威胁传统商业数据库系统的重要力量。
+
+### 万能开发工具Eclipse
+
+Eclipse 是一个开放源代码的、基于Java的可扩展开发平台。Eclipse最初由OTI和IBM两家公司的IDE产品开发组创建，起始于1999年4月。目前由 IBM牵头，围绕着Eclipse项目已经发展成为了一个庞大的Eclipse联盟，有150多家软件公司参与到Eclipse项目中，其中包括 Borland、Rational Software、Red Hat及Sybase等。
+
+就其本身而言，它只是一个框架和一组服务，用于通过插件组件构建开发环境。很多Java编程软件都是在Eclipse平台开发的，还有包括 Oracle在内的许多大公司也纷纷加入了该项目，并宣称Eclipse将来能成为可进行任何语言开发的IDE集大成者，使用者只需下载各种语言的插件即 可。
+
+Eclipse并不是一个直接服务于消费者的产品，它更像一个工匠手中万用工具，用Eclipse开发者可以打造出各种充满创造性的服务来满足最终用户的需求。
+
+### 互联网的门卫Apache
+
+Apache HTTP Server（简称Apache）是Apache软件基金会的一个开放源码的网页服务器，可以在大多数计算机操作系统中运行，由于其多平台和安全性被广泛 使用，也是最流行的Web服务器端软件之一，市场占有率达60%左右。它快速、可靠并且可通过简单的API扩展，它可以和各种解释器配合使用，包括 PHP/Perl/Python等。
+
+Apache就像一个负责的门卫，管理着服务器数据的进出。每当你在你的地址栏里输入 http://XXX.com 的时候，在遥远的远端，很有可能正是一台跑着Apache的服务器，将你需要的信息传输给浏览器。
+
+###大数据的心脏Hadoop
+
+Hadoop 是一个能够对大量数据进行分布式处理的软件框架，由Apache基金会开发。用户可以在不了解分布式底层细节的情况下，开发分布式程序。Hadoop 一 直帮助解决各种问题，包括超大型数据集的排序和大文件的搜索。它还是各种搜索引擎的核心，比如 Amazon 的 A9 和用于查找酒信息 的 Able Grape 垂直搜索引擎。阿里巴巴集团在商品推荐、用户行为分析、信用计算领域也都有hadoop的应用。
+
+在“大数据”已经成为潮流的当下，Hadoop已经成为最主要的一项技术。可以毫不夸张的说，没有Hadoop，就没有大多数的大数据应用。可以说对一个不知道Hadoop的程序员而言，你已经out了。
+
+
+#### Test link heading [linux B](https://github.com/pandao/editor.md)  Test link heading
+
+#### Test link heading [linux B](https://github.com/pandao/editor.md)   Test link heading [linux B](https://github.com/pandao/editor.md)  Test link heading, Test link heading, [linux B](https://github.com/pandao/editor.md)  Test link heading
+
+##### linux B-1
+
+###### linux B-1-1
+
+###### linux B-1-2
+
+##### linux B-2
+
+###### linux B-2-1
+
+###### linux B-2-2
+
+### 互联网的“排版引擎”WebKit
+
+说是浏览器内核，其实“排版引擎”更容易理解一些。通过服务器传输给浏览器的信息只是一串乱糟糟的文本。要看到我们平时看到精美的网友，需要浏览器内核对这些文本进行解析，将枯燥的描述“画”成美丽的浏览界面。
+
+WebKit 是一个开源的浏览器引擎，与之相应的引擎有 Gecko（Mozilla Firefox 等使用的排版引擎）和 Trident（也称为 MSHTML，IE 使用的排版引擎）。根据 StatCounter 的浏览器市场份额调查，于2012年11月，Webkit 市占超过了 40%，它已经成为拥有最大市场份额的 排版引擎，超越了 Internet Explorer 所使用的Trident 及 Firefox 所使用的 Gecko 引擎，并且 WebKit 份额正在逐年增加。
+
+目前几乎所有网站和网银已经逐渐支持 WebKit 。WebKit 内核在手机上的应用也十分广泛，例如苹果的 Safari 、谷歌的 Chrome 浏览器都是基于这个框架来开发的。
+
+### 小结
+
+很多人可能尚未意识到，我们使用的电脑中运行有开源软件，手机中运行有开源软件，家里的电视也运行有开源软件，甚至小小的数码产品中也运行有开源软件，尤其是互联网服务器端软件，几乎全部是开源软件。毫不夸张地说，开源软件已经渗透到了我们日常生活的方方面面。
+
+稿源：[钛媒体](http://www.tmtpost.com/194306.html)
+</textarea>
+          </div>
+
+          <div id="show-article2">
+
+          </div>
+        </div>
+        <div class="article-footer">
+          <div class="article-footer-op">
+            <button class="btn btn-default btn-sm list-group-btn" grouptype="articlefavority">收藏</button>
+          </div>
+          <div class="article-footer-info"></div>
+          <div class="icon-info" title="收藏量、点击量、浏览量">
+            <span class="text">
+              <span class="glyphicon glyphicon-star-empty"></span>
+              <span class="glyphicon glyphicon-hand-up"></span>
+              <span class="glyphicon glyphicon-eye-open"></span>
+            </span>
+            <span class="info"><span class="badge">50</span> <span class="badge">50</span> <span class="badge">50</span></span>
+
+          </div>
+        </div>
+        <div class="similar-article">
+          <div class="container-group">
+            <div class="group-title">
+              <div class="group-name">类似文章</div>
+            </div>
+            <div class="group-content">
+              <div class="group-body">
+                <ul class="group-ul">
+                  <!-- 文章收藏 -->
+                  <li class="group-item">
+                    <span class="hidden" field="id" onlyread="true">2</span>
+                    <div class="group-item-header">
+                      <span class="cid" field="cid">服务端</span>
+                      <span class="createDate hidden-xs">2018/1/12 08:45:20</span>
+                      <span class="updateDate">${article.updateDate}</span>
+                    </div>
+                    <div class="group-item-body">
+                      <a href="foreArticle?aid=${article.id}"><span class="title" field="title">Java反射</span></a>
+                      <span class="subTitle" field="subTitle">Java反射的发的发发的发的发博客</span>
+                      <a href="fore/user/${author.id}"><span class="glyphicon glyphicon-user"></span>${author.name}</a>
+                    </div>
+                    <div class="group-item-footer btn-sm">
+                      <div class="group-item-op btn-group-sm">
+                        <button data-href="foreeditArticle?aid=${article.id}" data-id="11" class="btn btn-default list-group-btn"
+                          grouptype="articlefavority">收藏</button>
+
+                      </div>
+                      <div class="group-item-info" data-toggle="tooltip" title="收藏量、点击量、浏览量">
+                        <span class="glyphicon glyphicon-star-empty"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-hand-up"></span> <span class="badge">50</span>
+                        <span class="glyphicon glyphicon-eye-open"></span> <span class="badge">50</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- 边栏 -->
+  <aside class="aside">
+    <a class="aaside write-article-btn" articlestatu="article" title="写文章">
+      <span class="iconfont icon-tianchongxing-"></span>
+    </a>
+    <a class="aaside article-nav-btn" title="文章导航">
+      <span class="glyphicon glyphicon-list-alt"></span>
+      <div id="article-nav">fddddddddddddfdfdfdfdfadadfadfadfa
+        adfadffadfafa
+        adfadffadfafaadfa
+        adfadffadfafaadfaaddfadffadf
+        fddddddddddddfdfdfdfdfadadfaf
+        fdfdddddddddddddddddddddddddd
+        ddddddddddddd
+        adfadffadfafa
+        adfadffadfafaadfa
+        adfadffadfafaadfaaddfadffadf
+        fddddddddddddfdfdfdfdfadadfadfadfafdfd
+        fdfdddddddddddddddddddddddddd
+        ddddddddddddd
+        afaf
+      </div>
+    </a>
+    <a class="aaside qrcode" title="二维码图片">
+      <span class="glyphicon glyphicon-qrcode"></span>
+      <img class="codeImg" src="images/1.4.1.jpg">
+    </a>
+    <a id="hand-up" class="aaside hand-up" title="返回顶部">
+      <span class="glyphicon glyphicon-hand-up"></span>
+    </a>
+  </aside>
+
+
+  <div class="mask close-suspend-menu">
+
+  </div>
+
+  <script src="../scripts/jquery-3.3.1.js"></script>
+  <script src="../bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+  <script src="../scripts/jquery-ui-drag.js"></script>
+  <script src="../scripts/js.js"></script>
+  <script src="../editormd/lib/marked.min.js"></script>
+  <script src="../editormd/lib/prettify.min.js"></script>
+  <script src="../editormd/lib/raphael.min.js"></script>
+  <script src="../editormd/lib/underscore.min.js"></script>
+  <script src="../editormd/lib/sequence-diagram.min.js"></script>
+  <script src="../editormd/lib/flowchart.min.js"></script>
+  <script src="../editormd/lib/jquery.flowchart.min.js"></script>
+
+  <script src="../editormd/editormd.js"></script>
+  <script type="text/javascript">
+    /*  $(function () {
+       testEditor = editormd("test-editormd", {
+         width: "100%",
+         height: 640,
+         syncScrolling: "single",
+         path: "editormd/lib/",
+         imageUpload: true,
+         imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp", "JPG", "JPEG", "GIF", "PNG", "BMP", "WEBP"],
+         imageUploadURL: "foreupLoadBlogImg",
+         saveHTMLToTextarea: true,
+       });
+
+     }); */
+    $(function () {
+      var showArticlMarkdown, showArticleHtml;
+      var md = $("#show-articlehtml textarea").val();
+
+      /* $.get("editormd/test.md", function (markdown) {
+
+         showArticle2 = editormd.markdownToHTML("show-article2", {
+           markdown: markdown, //+ "\r\n" + $("#append-test").text(),
+           //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+           htmlDecode: "style,script,iframe", // you can filter tags decode
+           //toc             : false,
+           //gfm             : false,
+           //tocDropdown     : true,
+           // markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+           emoji: true,
+           taskList: true,
+           tex: true, // 默认不解析
+           flowChart: true, // 默认不解析
+           sequenceDiagram: true, // 默认不解析
+         });
+
+         //console.log("返回一个 jQuery 实例 =>", testEditormdView);
+
+         // 获取Markdown源码
+         //console.log(testEditormdView.getMarkdown());
+
+         //alert(testEditormdView.getMarkdown());
+       }); */
+
+      // showArticleMarkdown = editormd("show-articlmarkdown", {
+      //   height: 740,
+      //   path: 'editormd/lib/',
+      //   theme: "dark",
+      //   previewTheme: "dark",
+      //   editorTheme: "pastel-on-dark",
+      //   markdown: md,
+      //   codeFold: true,
+      //   //syncScrolling : false,
+      //   saveHTMLToTextarea: true,
+      //   tocm: true,
+      //   imageUpload: true,
+      //   imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp", "JPG", "JPEG", "GIF", "PNG", "BMP", "WEBP"],
+      //   imageUploadURL: "foreupLoadBlogImg?uid=${user.id}&aid=${article.id}",
+      // });
+      // showArticleMarkdown.getMarkdown();
+      // showArticleMarkdown.getHTML();
+      // showArticleMarkdown.getPreviewedHTML();
+
+      /* TOC */
+      // showArticleHtml = editormd("show-articlehtml", {
+      //   width: "90%",
+      //   height: 720,
+      //   path: "../editormd/lib/",
+      //   //toc           : false,         // diable ToC
+      //   tocStartLevel: 2 // Parse beginning of H2, Default value 1
+      // });
+
+
+      showArticleHtml = editormd.markdownToHTML("show-articlehtml", {
+        htmlDecode: "style,script,iframe", // you can filter tags decode
+        emoji: true,
+        taskList: true,
+        tocContainer: "#article-nav",
+        tex: true, // 默认不解析
+        flowChart: true, // 默认不解析
+        sequenceDiagram: true, // 默认不解析
+      });
+      $(".article-nav-btn").mouseenter(function () {
+        console.log("fdfd")
+        $("#article-nav").text("").slideDown();
+        showArticleHtml.config({
+          tocContainer: "#article-nav",
+          tocDropdown: false
+        });
+      });
+      $("#article-nav").click(function (e) { 
+        $(this).slideUp();
+      });
+    });
+  </script>
+</body>
+
+</html>

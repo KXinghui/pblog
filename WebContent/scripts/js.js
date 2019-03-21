@@ -141,6 +141,10 @@ function showAsScreenScroll() {
     // if(top>)
     // }
   };
+  var bottomNav = $("#bottom-nav");
+  window.resize = function () {
+    bottomNav.width($(window).width);
+  }
 };
 
 
@@ -1956,8 +1960,36 @@ function userInfoForm() {
 
 
 
+/* 清空登陆历史 */
 
+jQuery(clearLoginHistory($));
 
+function clearLoginHistory() {
+  var btnSel = ".clear-loginhistory-btn";
+  var loginhistoryTable = $("#loginhistory-table");
+  var failLoginhistoryTable = $("#fail-loginhistory-table");
+  var tr = loginhistoryTable.find("tr").not("tr:first");
+  var tr2 = failLoginhistoryTable.find("tr").not("tr:first");
+  $("body").on("click", btnSel, function () {
+    var url = contextPath + "/foreclearLoginHistoryAsync";
+    $.get(url,
+      function (data, textStatus, jqXHR) {
+        if ("success" == data) {
+          tr.slideUp(function () {
+            tr.remove();
+          });
+          tr2.slideUp(function () {
+            tr2.remove();
+          });
+          showAndHideSuccessTipToast("清空登陆历史成功");
+        } else {
+          showAndHideNormalTipToast(data);
+        }
+      },
+      "text"
+    );
+  });
+}
 
 
 
@@ -2354,7 +2386,7 @@ function editArticleTableModal() {
 
 /* 仅编辑文章模态窗口 */
 function onlyEditArticleModalFunc(form, btn, table) {
-
+  var modal = form.parents(".modal");
   var aid = form.find("[name=id]").val();
 
   // 同步检查文章
@@ -2383,6 +2415,7 @@ function onlyEditArticleModalFunc(form, btn, table) {
     dataType: "text",
     success: function (response) {
       if ("success" == response) {
+        modal.modal("hide");
         showAndHideSuccessTipToast("仅编辑文章成功");
         loadDataAsFieldMapInTable(newFieldMap, btn, table);
       } else {
@@ -2593,12 +2626,14 @@ function ontAndOtherTab() {
 jQuery(showAndHideAsChecked($));
 
 function showAndHideAsChecked() {
-  var parents = $(".show-hide-checked");
-  var checkedArea = parents.find(".checked-area");
-  var uncheckedArea = parents.find(".unchecked-area");
+  var parentsSel = ".show-hide-checked";
   var btnSel = "input[type=checkbox]";
-  parents.on("change", btnSel, function () {
+  $(parentsSel).on("change", btnSel, function () {
     var btn = $(this);
+    var parents = btn.parents(parentsSel);
+    var checkedArea = parents.find(".checked-area");
+    var uncheckedArea = parents.find(".unchecked-area");
+
     if (btn.prop("checked")) {
       uncheckedArea.hide();
       checkedArea.fadeIn();
@@ -3377,8 +3412,7 @@ function clearInvalidArticleFavoritiesInAllGroupAsync() {
   var parentsSel = "body";
   var parentSel = ".group-item";
   var btnSel = ".clear-all-group-btn";
-  var url = contextPath + "/clearInvalidArticleFavoritiesInAllGroupsAsync";
-
+  var url = contextPath + "/clearInvalidAFInAllGroupsAsync";
   $(parentsSel).on("click", btnSel, function () {
     if (!checkIsLogin()) return;
     var btn = $(this);
@@ -4013,4 +4047,132 @@ function searchBar() {
     },
   };
   boostrapValidate(form, fieldsOption);
+}
+
+
+/* 用户设置页面 */
+
+/* 保存部分用户设置 */
+jQuery(savePartOfUserSetting($));
+
+function savePartOfUserSetting() {
+  var parentsSel = ".user-setting-panel";
+  var btnSel = ".save-part-usersetting-btn";
+  var inputSel = "input[type=checkbox]";
+  $(parentsSel).on("click", inputSel, function () {
+
+    var input = $(this);
+    var inputName = input.attr("name");
+    var parent = input.parents(parentsSel);
+    var panelFooter = parent.find(".panel-footer");
+    var btn = parent.find(btnSel);
+    var origin = parent.find("[field=" + inputName + "]");
+    var originVal = origin.text();
+    var inputVal = (input.prop("checked")) ? 1 : 0;
+    if (originVal == inputVal) {
+      btn.attr("disabled", true);
+      panelFooter.slideUp();
+      return;
+    } else {
+      btn.attr("disabled", false);
+      panelFooter.slideDown();
+    }
+    btn.unbind("click").bind("click", function () {
+      var formData = new FormData();
+      formData.append(inputName, inputVal);
+      var url = contextPath + "/foresaveUserSettingOfHistoryAsync";
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: formData,
+        dataType: "text",
+        cache: false,
+        contentType: false,
+        processData: false,
+        mimeType: "multipart/form-data",
+        success: function (response) {
+          if ("fail" == response) {
+            input.click();
+            showAndHideDangerTipToast("用户设置失败")
+          } else {
+            origin.text(inputVal);
+            showAndHideSuccessTipToast(response);
+            btn.attr("disabled", true);
+            panelFooter.slideUp();
+          }
+        }
+      });
+    })
+  });
+}
+
+/* 文章历史页面 */
+
+/* 删除文章历史 */
+jQuery(deleteArticleHistory($));
+
+function deleteArticleHistory() {
+  var btnSel = ".delete-ah-btn";
+  var parentSel = ".article-history-item";
+  var parentsSel = ".article-history-body";
+  var parents = $(parentsSel);
+  parents.on("click", btnSel, function () {
+    var btn = $(this);
+    var parent = btn.parents(parentSel);
+    var url = contextPath + "/foredeleteArticleHistoryAsync";
+    var data = {
+      ahid: btn.attr("data-id"),
+    };
+    $.post(url, data,
+      function (data, textStatus, jqXHR) {
+        if ("success" == data) {
+          parent.slideUp("fast", function () {
+            parent.remove();
+            showAndHideSuccessTipToast("删除文章历史成功");
+            showNoArticleHistoryHtml(parentsSel, parentSel);
+          });
+        } else {
+          showAndHideDangerTipToast(data);
+        }
+      },
+      "text"
+    );
+  });
+}
+
+/* 清空文章历史 */
+jQuery(clearArticleHistory($));
+
+function clearArticleHistory() {
+  var btnSel = ".clear-ah-btn";
+  var parentSel = ".article-history-item";
+  var parentsSel = ".article-history";
+  var parents = $(parentsSel);
+  var parent = parents.find(parentSel);
+  parents.on("click", btnSel, function () {
+    var url = contextPath + "/foreclearArticleHistoryAsync";
+    $.post(url, function (data, textStatus, jqXHR) {
+        if ("success" == data) {
+          parent.slideUp(function () {
+            parent.remove();
+            showAndHideSuccessTipToast("清空文章历史成功");
+            showNoArticleHistoryHtml(".article-history-body", parentSel);
+          });
+        } else {
+          showAndHideNormalTipToast(data);
+        }
+      },
+      "text"
+    );
+  });
+}
+/* 当没有父元素时往祖父元素添加html 展示没有文章历史Html */
+function showNoArticleHistoryHtml(parentsSel, parentSel) {
+  var parents = $(parentsSel);
+  var parent = parents.find(parentSel);
+  if (parent.length != 0) return;
+  var noArticleHistory = $(`<div class="jumbotron no-articlehistory"><h2>目前还未有 <span class="glyphicon glyphicon-time"></span>文章历史，请去<a href="${contextPath}/forehome">首页</a></h2></div>`);
+  if ($(".no-articlehistory").length == 0) {
+    parents.append(noArticleHistory);
+  }
 }

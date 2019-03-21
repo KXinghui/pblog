@@ -32,4 +32,7 @@ public interface ArticleHistoryMapper extends BaseMapper<ArticleHistory> {
 
 	Integer countByUser(Integer uid);
 
+	List<Integer> listIdByUser(Integer uid);
+
+	ArticleHistory getByArticleHistory(ArticleHistory articleHistory);
 }
