@@ -753,8 +753,9 @@ public class ForeController {
 			}
 			User similarAuthor = userService.get(a.getUid());
 			similarAuthor.setPassword(null);
-			article.setUser(similarAuthor);
+			a.setUser(similarAuthor);
 		}
+		System.out.println(similarArticles);
 		model.addAttribute("similarArticles", similarArticles);
 
 		if (ForeUtil.isLogin(user)) {
@@ -763,7 +764,6 @@ public class ForeController {
 			if (afs != null && afs.size() != 0) {
 				model.addAttribute("isCollect", true);
 			}
-			// TODO
 			// 增加观看历史（当天判断重复）
 			UserSetting userSetting = (UserSetting) session.getAttribute("userSetting");
 			if (null == userSetting || userSetting.getIsRecordShowArticleHistory() == 1) {
@@ -844,8 +844,8 @@ public class ForeController {
 
 	/* 按分类ID搜索文章[cid、title、articleStatu] */
 	@RequestMapping("fore/category/{cid}/search/article")
-	public String searchByCategory(@PathVariable Integer cid, @RequestParam(required = false) String title,
-			BindingResult bindingResult, Model model, HttpSession session, Page page) {
+	public String searchByCategory(@PathVariable Integer cid, @RequestParam(required = false) String title, Model model,
+			HttpSession session, Page page) {
 
 		Category category = categoryService.get(cid);
 		if (null == category) {

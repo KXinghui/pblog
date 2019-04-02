@@ -693,9 +693,9 @@ public class RestForeController {
 		}
 		if (invalidArticleIds.size() != 0) {
 			articleFavorityService.batchDelete(invalidArticleIds);
+			return "success-" + JSONObject.toJSONString(invalidArticleIds);
 		}
-
-		return JSONObject.toJSONString(invalidArticleIds);
+		return "失效已经完全清除";
 	}
 
 	/* 异步清除全部组的所有失效文章【文章为空或文章状态不为PUBLISH】 */
@@ -718,9 +718,9 @@ public class RestForeController {
 		}
 		if (invalidArticleIds.size() != 0) {
 			articleFavorityService.batchDelete(invalidArticleIds);
-			return JSONObject.toJSONString(invalidArticleIds);
+			return "success-" + JSONObject.toJSONString(invalidArticleIds);
 		}
-		return "没有多余的失效让你清除";
+		return "失效已经完全清除";
 	}
 
 	/* 列出对应组 */
@@ -763,7 +763,7 @@ public class RestForeController {
 	/* 异步关注用户 */
 	@RequestMapping(value = "forefollowUserAsync", produces = "text/plain;charset=UTF-8")
 	public String followUserAsync(@RequestParam(value = "id") Integer uid,
-			@RequestParam(value = "gid") List<Integer> gids, HttpSession session) {
+			@RequestParam(value = "gid", required = false) List<Integer> gids, HttpSession session) {
 		User follower = userService.get(uid);
 		if (follower == null) {
 			return "不能关注该用户(该用户不存在)";
@@ -908,6 +908,9 @@ public class RestForeController {
 		Integer uid = user.getId();
 		Integer gid = group.getId();
 		Group defaultGroup = groupService.get(gid);
+		if (null == defaultGroup) {
+			return "你是沙雕吗？根本就没有此分组";
+		}
 		if (!defaultGroup.getUid().equals(uid)) {
 			return "你太可恶了，竟然想编辑别人的分组";
 		}
@@ -917,13 +920,12 @@ public class RestForeController {
 
 		Group isExist = groupService.getByUserNameAndGroupType(uid, group.getName(), group.getGroupType());
 		// 若id不同，则重复
-		if (!isExist.getId().equals(gid) && null != isExist) {
+		if (null != isExist && !isExist.getId().equals(gid)) {
 			return "分组名重复";
 		}
-
 		group.setUid(uid);
 		groupService.dynamicUpdate(group);
-		return "success-" + JSONObject.toJSONString(group);
+		return "success";
 	}
 
 	/* 异步删除分组 */
@@ -937,6 +939,9 @@ public class RestForeController {
 		// 是：获取对应类型的默认分组下的相关id，要删除分组相关id 相同填到批量删除id 批量删除；剩下的将gid改成默认分组id，批量增加
 		// 否：先将分组下的相关批量删除，后删除分组
 		Group group = groupService.get(gid);
+		if (group == null) {
+			return "你是沙雕吗？没有此分组";
+		}
 		if (!group.getUid().equals(uid)) {
 			throw new CustException("你太可恶了！竟然想删别人分组");
 		}
@@ -944,12 +949,104 @@ public class RestForeController {
 			return "不能删除默认分组";
 		}
 		GroupType groupType = group.getGroupType();
-		Group defaultGroup = groupService.getByUserNameAndGroupType(uid, "默认", groupType);
 		// delete 删除有的，更新没的;deleteAll 删除全部
 		String msg = ("on".equals(isSave)) ? "delete" : "deleteAll";
 		System.out.println(msg);
-		// 删除全部
-		if (null == isSave || !"on".equals(isSave)) {
+
+		// 将要删除组的相关添加到默认组
+		if ("on".equals(isSave)) {
+			Group defaultGroup = groupService.getByUserNameAndGroupType(uid, "默认", groupType);
+			if (null == defaultGroup) {
+				defaultGroup = new Group("默认", Visibility.VISIBLE, groupType, user.getId());
+				groupService.dynamicInsert(defaultGroup);
+			}
+			Integer defaultGid = defaultGroup.getId();
+			System.out.println(defaultGid);
+			List<Integer> deleteIds = new ArrayList<>();
+
+			switch (groupType) {
+			case USER_FOLLOW:
+				List<UserFollow> originUFs = userFollowService.listByGroup(gid);
+				// 原组为0则直接删除
+				if (null == originUFs || originUFs.size() == 0) {
+					break;
+				}
+
+				List<Integer> defaultUFUid = new ArrayList<>();
+				List<UserFollow> defaultUFs = userFollowService.listByGroup(defaultGid);
+				Iterator<UserFollow> iterator = originUFs.iterator();
+				if (null == defaultUFs || defaultUFs.size() == 0) {
+					while (iterator.hasNext()) {
+						UserFollow uf = iterator.next();
+						uf.setGid(defaultGid);
+					}
+				} else {
+					for (UserFollow uf : defaultUFs) {
+						defaultUFUid.add(uf.getUid());
+					}
+					while (iterator.hasNext()) {
+						UserFollow uf = iterator.next();
+						if (defaultUFUid.contains(uf.getUid())) {
+							deleteIds.add(uf.getId());
+							iterator.remove();
+						} else {
+							uf.setGid(defaultGid);
+						}
+					}
+				}
+
+				if (originUFs.size() != 0) {
+					userFollowService.dynamicBatchUpdate(originUFs);
+				}
+				if (deleteIds.size() != 0) {
+					userFollowService.batchDelete(deleteIds);
+				}
+				break;
+			case ARTICLE_FAVORITY:
+				List<ArticleFavority> originAFs = articleFavorityService.listByGroup(gid);
+				// 原组为0则直接删除
+				if (null == originAFs || originAFs.size() == 0) {
+					break;
+				}
+
+				List<Integer> defaultAFAid = new ArrayList<>();
+				List<ArticleFavority> defaultAFs = articleFavorityService.listByGroup(defaultGid);
+				Iterator<ArticleFavority> iterator2 = originAFs.iterator();
+				// 若默认组为0，全部改为默认组ID
+				if (null == defaultAFs || defaultAFs.size() == 0) {
+
+					while (iterator2.hasNext()) {
+						ArticleFavority af = iterator2.next();
+						af.setGid(defaultGid);
+					}
+				} else {
+					// 若默认组不为0，默认包含原组相关ID，原组移除，加入删除IDs。否则改为默认组ID
+					for (ArticleFavority af : defaultAFs) {
+						defaultAFAid.add(af.getAid());
+					}
+					while (iterator2.hasNext()) {
+						ArticleFavority af = iterator2.next();
+						if (defaultAFAid.contains(af.getAid())) {
+							deleteIds.add(af.getId());
+							iterator2.remove();
+						} else {
+							af.setGid(defaultGid);
+						}
+					}
+
+				}
+
+				if (originAFs.size() != 0) {
+					articleFavorityService.dynamicBatchUpdate(originAFs);
+				}
+
+				if (deleteIds.size() != 0) {
+					articleFavorityService.batchDelete(deleteIds);
+				}
+				break;
+			}
+		} else {
+			// 删除全部
 			List<Integer> deleteAllIds = new ArrayList<>();
 			switch (groupType) {
 			case USER_FOLLOW:
@@ -972,65 +1069,6 @@ public class RestForeController {
 					if (deleteAllIds.size() != 0) {
 						articleFavorityService.batchDelete(deleteAllIds);
 					}
-				}
-				break;
-			}
-		}
-		if ("on".equals(isSave)) {
-			if (null == defaultGroup) {
-				defaultGroup = new Group("默认", Visibility.VISIBLE, groupType, user.getId());
-				groupService.dynamicInsert(defaultGroup);
-			}
-			Integer defaultGid = defaultGroup.getId();
-			List<Integer> deleteIds = new ArrayList<>();
-
-			switch (groupType) {
-			case USER_FOLLOW:
-				List<Integer> defaultUFUid = new ArrayList<>();
-				List<UserFollow> defaultUFs = userFollowService.listByGroup(defaultGid);
-				for (UserFollow uf : defaultUFs) {
-					defaultUFUid.add(uf.getUid());
-				}
-				List<UserFollow> originUFs = userFollowService.listByGroup(gid);
-				Iterator<UserFollow> iterator = originUFs.iterator();
-				while (iterator.hasNext()) {
-					UserFollow uf = iterator.next();
-					if (defaultUFUid.contains(uf.getUid())) {
-						deleteIds.add(uf.getId());
-						iterator.remove();
-					} else {
-						uf.setGid(defaultGid);
-					}
-				}
-				if (originUFs.size() != 0) {
-					userFollowService.dynamicBatchUpdate(originUFs);
-				}
-				if (deleteIds.size() != 0) {
-					userFollowService.batchDelete(deleteIds);
-				}
-				break;
-			case ARTICLE_FAVORITY:
-				List<Integer> defaultAFAid = new ArrayList<>();
-				List<ArticleFavority> originAFs = articleFavorityService.listByGroup(gid);
-				List<ArticleFavority> defaultAFs = articleFavorityService.listByGroup(defaultGid);
-				for (ArticleFavority af : defaultAFs) {
-					defaultAFAid.add(af.getAid());
-				}
-				Iterator<ArticleFavority> iterator2 = originAFs.iterator();
-				while (iterator2.hasNext()) {
-					ArticleFavority af = iterator2.next();
-					if (defaultAFAid.contains(af.getAid())) {
-						deleteIds.add(af.getId());
-						iterator2.remove();
-					} else {
-						af.setGid(defaultGid);
-					}
-				}
-				if (originAFs.size() != 0) {
-					articleFavorityService.dynamicBatchUpdate(originAFs);
-				}
-				if (deleteIds.size() != 0) {
-					articleFavorityService.batchDelete(deleteIds);
 				}
 				break;
 			}

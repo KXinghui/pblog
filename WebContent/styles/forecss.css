@@ -1534,12 +1534,17 @@ main {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	text-indent: .8rem;
+	text-indent: .2rem;
 	padding: 0 .4rem;
 }
 
 .container-group .group-title .group-name {
-	font-size: 2rem;
+	width: 50%;
+
+	/* 强制不换行，省略号 */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .container-group .group-title .group-name a {
@@ -2686,7 +2691,7 @@ div.show-articlmarkdown {
 }
 
 .search-bar .glyphicon {
-	color: black;
+	color: white;
 }
 
 .search-bar .glyphicon {

@@ -39,11 +39,11 @@
 	</delete>
 
 	<delete id="delete2" parameterType="userFollow">
-		DELETE FROM userfollow
-		WHERE
-		id
-		=
-		#{id}
+	DELETE FROM userfollow
+	WHERE
+	id
+	=
+	#{id}
 	</delete>
 
 	<!-- 获取 -->
@@ -152,7 +152,7 @@
 	<!-- 动态批量更新 -->
 	<update id="dynamicBatchUpdate" parameterType="list">
 		<foreach collection="list" item="item" separator=";">
-			UPDATE personal_blog.userFollow
+			UPDATE personal_blog.userfollow
 			<set>
 				<if test="item.uid != null">
 					uid = #{item.uid},

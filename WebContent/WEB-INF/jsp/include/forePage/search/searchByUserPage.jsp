@@ -94,7 +94,7 @@
 			<div class="content-body">
 				<div class="container-group">
 					<div class="group-title">
-						<div class="group-name" data-id="1">
+						<div class="" data-id="1">
 							<div class="search-bar lead">
 								<span class="glyphicon glyphicon-search"></span>
 

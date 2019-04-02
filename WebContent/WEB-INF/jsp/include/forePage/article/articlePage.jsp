@@ -85,11 +85,6 @@
 
 
 
-
-
-
-
-
 		<div class="col-xs-12 col-sm-8 col-md-9">
 			<!-- 内容-主体 -->
 			<div class="content-body">
@@ -101,7 +96,7 @@
 
 						<c:if test="${!empty pr}">
 							<div class="group-title">
-								<div class="group-name">${title}</div>
+								<div class="group-name lead">${title}</div>
 							</div>
 
 							<div class="group-content">
@@ -111,7 +106,7 @@
 											<div class="jumbotron" style="margin-left: -4rem;">
 												<img src="<s:url value="/images/1.2.jpg" />"
 													style="width: 100%;">
-												<h3>你的文章箱啥都没有!不如。。。</h3>
+												<h3>你的 ${title} 啥都没有!不如。。。</h3>
 												<button
 													class="btn btn-primary write-article-btn center-block"
 													articlestatu="article">编写文章</button>

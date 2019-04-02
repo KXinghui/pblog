@@ -36,7 +36,7 @@
 			<div class="article-list">
 				<c:if test="${empty pr.list || fn:length(pr.list)==0}">
 					<div class="jumbotron">
-						<h2>${category.name}分类暂时还没有文章，不如。。。</h2>
+						<h2>${category.name}分类暂时还没有关键词为 ${title} 的文章，不如。。。</h2>
 						<br> <br>
 						<button
 							class="btn btn-default btn-primary write-article-btn center-block">贡献${category.name}分类的文章</button>

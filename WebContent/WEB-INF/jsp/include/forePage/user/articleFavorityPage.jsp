@@ -121,10 +121,10 @@
 						<!-- 指定组的文章收藏 -->
 						<div class="group-title">
 							<div class="group-name" data-id="${group.id}">
-								<a href="" class="text-info" field="name">${group.name}</a>·<span
-									field="visibility"><c:if
+								<a href="" class="text-info lead" field="name">${group.name}</a>·<span
+									class="lead" field="visibility"><c:if
 										test="${group.visibility=='VISIBLE'}">显示</c:if> <c:if
-										test="$group.visibility=='HIDDEN'}">隐藏</c:if></span> <span
+										test="${group.visibility=='HIDDEN'}">隐藏</c:if></span> <span
 									class="hidden" field="id">${group.id}</span> <span
 									class="hidden" field="groupType">文章收藏</span>
 							</div>

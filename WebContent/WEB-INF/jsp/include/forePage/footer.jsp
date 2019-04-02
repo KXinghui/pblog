@@ -5,7 +5,11 @@
 <div class="mask close-suspend-menu close-side-menu"></div>
 <div class="tip-dialog col-xs-12 col-sm-3 col-md-2"></div>
 
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script> -->
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+
+<script src="<s:url value="/scripts/jquery-3.3.1.js" />"
+	type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8">
 	var contextPath = "${contextPath}";
 	console.log(contextPath);
@@ -53,8 +57,8 @@
 	});
 </script>
 <script
-	src="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script
-	src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
-
+	src="<s:url value="/bootstrap-3.3.7-dist/js/bootstrap.min.js" />"
+	type="text/javascript"></script>
+<script src="<s:url value="/scripts/bootstrapValidator.min.js"/>"
+	charset="utf-8"></script>
 <script src="<s:url value="/scripts/js.min.js"/>" charset="utf-8"></script>

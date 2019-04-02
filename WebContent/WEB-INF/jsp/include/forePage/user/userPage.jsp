@@ -321,7 +321,7 @@
 
 				<!-- 文章收藏 -->
 				<div class="container-panel">
-					<div class="container-title">
+					<div class="container-title lead">
 						<a
 							href="<s:url value="/fore/user/${user.id}/articleFavorities" />"
 							class="text-muted"><span class="lead">文章收藏</span></a>&nbsp;
@@ -339,14 +339,14 @@
 								<div class="group-name">
 									<a
 										href="<s:url value="/fore/user/${user.id}/articleFavorities/${ag.id}" />"
-										class="text-info" field="name" target="_blank">${ag.name}</a>·
+										class="text-info lead" field="name" target="_blank">${ag.name}</a>·
 									<c:if test="${ag.visibility=='VISIBLE'}">
 										<span class="glyphicon glyphicon-eye-open"></span>
-										<span field="visibility">显示</span>
+										<span field="visibility" class="lead">显示</span>
 									</c:if>
 									<c:if test="${ag.visibility=='HIDDEN'}">
 										<span class="glyphicon glyphicon-eye-close"></span>
-										<span field="visibility">隐藏</span>
+										<span field="visibility" class="lead">隐藏</span>
 									</c:if>
 									<span class="hidden" field="id">${ag.id}</span> <span
 										class="hidden" field="groupType">文章收藏</span>
@@ -354,7 +354,8 @@
 								<div class="group-title-op">
 									<button data-id="${ag.id}"
 										class="btn btn-danger btn-sm clear-dgst-group-btn">清除组内失效</button>
-									<a href="<s:url value="/fore/user/${user.id}/articles/" />"
+									<a
+										href="<s:url value="/fore/user/${user.id}/articleFavorities/${ag.id}" />"
 										class="text-muted" target="_blank"><button
 											class="btn btn-default btn-sm">
 											更多<span class="glyphicon glyphicon-chevron-right"></span>
@@ -365,62 +366,63 @@
 								<div class="group-body">
 									<ul class="article-ul">
 										<c:if
-											test="${empty vg.articleFavorities || fn:length(vg.articleFavorities)==0}">
+											test="${empty ag.articleFavorities || fn:length(ag.articleFavorities)==0}">
 											<div class="jumbotron" style="margin-left: -4rem;">
 												<img src="<s:url value="/images/1.2.jpg" />"
 													style="width: 100%;">
-												<h3>这个用户啥都没有收藏!不如。。。</h3>
+												<h3>你啥都没有收藏!不如。。。</h3>
 											</div>
 										</c:if>
 
-										<c:if test="${!empty vg.articleFavorities}">
-											<c:forEach items="${vg.articleFavorities}" var="vaf">
+										<c:if
+											test="${!empty ag.articleFavorities || fn:length(ag.articleFavorities)!=0}">
+											<c:forEach items="${ag.articleFavorities}" var="gaf">
 												<!-- 失效文章 -->
-												<c:if test="${empty vaf.article}">
+												<c:if test="${empty gaf.article}">
 													<li class="article-item"><span class="hidden"
-														field="id" onlyread="true">${vaf.id}</span>
+														field="id" onlyread="true">${gaf.id}</span>
 														<div class="article-item-body">对不起！该收藏文章失效</div>
 														<div class="article-item-footer">
 															<div class="article-item-op btn-group-sm">
-																<button data-id="${vaf.id}"
+																<button data-id="${gaf.id}"
 																	class="btn btn-default clear-af-btn"
 																	grouptype="articlefavority">清除</button>
 															</div>
 														</div></li>
 												</c:if>
 												<!-- 生效文章【收藏】 -->
-												<c:if test="${!empty vaf.article}">
+												<c:if test="${!empty gaf.article}">
 													<li class="article-item"><span class="hidden"
-														field="id" onlyread="true">${vaf.article.id}</span>
+														field="id" onlyread="true">${gaf.article.id}</span>
 														<div class="article-item-header">
-															<span class="cid" field="cid">${vaf.article.category.name}</span>
-															<span class="createDate">${vaf.article.createDate}</span>
-															<span class="updateDate">${vaf.article.updateDate}</span>
+															<span class="cid" field="cid">${gaf.article.category.name}</span>
+															<span class="createDate">${gaf.article.createDate}</span>
+															<span class="updateDate">${gaf.article.updateDate}</span>
 														</div>
 														<div class="article-item-body">
 															<a
-																href="<s:url value="/foreshowArticle?aid=${vaf.article.id}" />"><span
-																class="title" field="title" target="_blank">${vaf.article.title}</span></a>
-															<span class="subTitle" field="subTitle">${vaf.article.subTitle}</span>
-															<a href="<s:url value="/fore/user/${vaf.author.id}" />"
+																href="<s:url value="/foreshowArticle?aid=${gaf.article.id}" />"><span
+																class="title" field="title" target="_blank">${gaf.article.title}</span></a>
+															<span class="subTitle" field="subTitle">${gaf.article.subTitle}</span>
+															<a href="<s:url value="/fore/user/${gaf.author.id}" />"
 																target="_blank"><span
-																class="glyphicon glyphicon-user"></span>${vaf.author.name}</a>
+																class="glyphicon glyphicon-user"></span>${gaf.author.name}</a>
 														</div>
 														<div class="article-item-footer">
 															<div class="article-item-op btn-group-sm">
-																<button data-id="${vaf.article.id}"
-																	class="btn btn-default list-group-btn <c:if test="${fn:contains(collectedIds,vaf.article.id)}">btn-success</c:if>"
+																<button data-id="${gaf.article.id}"
+																	class="btn btn-default list-group-btn <c:if test="${fn:contains(collectedIds,gaf.article.id)}">btn-success</c:if>"
 																	grouptype="articlefavority">收藏</button>
 															</div>
 
 															<div class="group-item-info" data-toggle="tooltip"
 																title="收藏量、点击量、浏览量">
 																<span class="glyphicon glyphicon-star-empty"></span> <span
-																	class="badge">${article.collectNum}</span> <span
+																	class="badge">${gaf.article.collectNum}</span> <span
 																	class="iconfont icon-dianji"></span> <span
-																	class="badge">${article.clickNum}</span> <span
+																	class="badge">${gaf.article.clickNum}</span> <span
 																	class="glyphicon glyphicon-eye-open"></span> <span
-																	class="badge">${article.viewNum}</span>
+																	class="badge">${gaf.article.viewNum}</span>
 															</div>
 														</div></li>
 
@@ -629,7 +631,7 @@
 
 				<!-- 文章收藏 -->
 				<div class="container-panel">
-					<div class="container-title">
+					<div class="container-title lead">
 						<a href="<s:url value="/fore/user/${otherUser.id}/articles" />"
 							class="text-muted"><span class="lead">文章收藏</span></a>
 					</div>
@@ -638,15 +640,15 @@
 						<!-- 容器-组 -->
 						<div class="container-group">
 							<div class="group-title">
-								<div class="group-name">
+								<div class="group-name lead">
 									<a
 										href="<s:url value="/fore/user/${otherUser.id}/articleFavorities/${vg.id}" />"
-										class="text-info" field="name">${vg.name}</a>·
+										class="text-info lead" field="name">${vg.name}</a>·
 									<c:if test="${vg.visibility=='VISIBLE'}">
-										<span field="visibility">显示</span>
+										<span field="visibility" class="lead">显示</span>
 									</c:if>
 									<c:if test="${vg.visibility=='HIDDEN'}">
-										<span field="visibility">隐藏</span>
+										<span field="visibility" class="lead">隐藏</span>
 									</c:if>
 									<span class="hidden" field="id">${vg.id}</span> <span
 										class="hidden" field="groupType">文章收藏</span>
@@ -679,14 +681,7 @@
 												<c:if test="${empty vaf.article}">
 													<li class="article-item"><span class="hidden"
 														field="id" onlyread="true">${vaf.article.id}</span>
-														<div class="article-item-body">对不起！该收藏文章失效</div>
-														<div class="article-item-footer">
-															<div class="article-item-op btn-group-sm">
-																<button data-id="${vaf.id}"
-																	class="btn btn-default clear-af-btn"
-																	grouptype="articlefavority">清除</button>
-															</div>
-														</div></li>
+														<div class="article-item-body">对不起！该收藏文章失效</div></li>
 												</c:if>
 
 												<!-- 生效文章【收藏】 -->

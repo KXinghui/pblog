@@ -58,12 +58,12 @@
 												<div class="group-name">
 													<a
 														href='<s:url value="/fore/user/${user.id}/userfollow/follows/${g.id}" />'
-														class="text-info" field="name">${g.name}</a>·
+														class="text-info lead" field="name">${g.name}</a>·
 													<c:if test="${g.visibility=='VISIBLE'}">
-														<span field="visibility">显示</span>
+														<span class="lead" field="visibility">显示</span>
 													</c:if>
 													<c:if test="${g.visibility=='HIDDEN'}">
-														<span field="visibility">隐藏</span>
+														<span class="lead" field="visibility">隐藏</span>
 													</c:if>
 													<span class="hidden" field="id">${g.id}</span> <span
 														class="hidden" field="groupType">用户关注</span>
@@ -92,11 +92,11 @@
 												<div class="group-name">
 													<a
 														href='<s:url value="/fore/user/${otherUser.id}/userfollow/fans" />'
-														class="text-info" field="name">${g.name}</a>·<span
+														class="text-info lead" field="name">${g.name}</a>·<span
 														class="glyphicon glyphicon-eye-open"></span><span
-														field="visibility">显示</span> <span class="hidden"
-														field="id">${g.id}</span> <span class="hidden"
-														field="groupType">文章收藏</span>
+														class="lead" field="visibility">显示</span> <span
+														class="hidden" field="id">${g.id}</span> <span
+														class="hidden" field="groupType">文章收藏</span>
 												</div>
 											</div>
 										</c:forEach>
@@ -179,11 +179,10 @@
 				<div class="container-group">
 					<!-- 用户关注面板 -->
 
-
 					<!-- 全部的用户关注 -->
 					<c:if test="${!empty allFollowsPr}">
 						<div class="group-title">
-							<div class="group-name">全部的关注</div>
+							<div class="group-name lead">全部的关注</div>
 						</div>
 						<div class="group-content">
 							<div class="group-body">
@@ -423,7 +422,7 @@
 					<c:if test="${!empty fansPr}">
 						<!-- 全部的粉丝 -->
 						<div class="group-title">
-							<div class="group-name">全部的粉丝</div>
+							<div class="group-name lead">全部的粉丝</div>
 						</div>
 
 						<div class="group-content">

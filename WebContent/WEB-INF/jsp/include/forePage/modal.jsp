@@ -477,7 +477,7 @@
 						<span class="errmsg">fdfdfdfdfdf</span> <span
 							class="close-msg-btn close-opmsg-btn glyphicon glyphicon-remove"></span>
 					</div>
-					<div class="form-group">
+					<div class="form-group hidden">
 						<label for="id">组ID</label> <input type="text"
 							class="form-control" id="id" name="id" placeholder="请输入组ID">
 					</div>

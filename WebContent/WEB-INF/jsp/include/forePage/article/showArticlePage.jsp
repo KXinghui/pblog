@@ -230,19 +230,21 @@
 			<div class="similar-article">
 				<div class="container-group">
 					<div class="group-title">
-						<div class="group-name">类似文章</div>
+						<div class="group-name lead">类似文章</div>
 					</div>
 					<div class="group-content">
 						<div class="group-body">
 							<ul class="group-ul">
-								<c:if test="${empty similarArticles}">
+								<c:if
+									test="${empty similarArticles || fn:length(similarArticles)==0}">
 									<div class="jumbotron" style="margin-left: -4rem;">
 										<img src="<s:url value="/images/1.2.jpg" />"
 											style="width: 100%;">
 										<h3>暂时没有类似文章</h3>
 									</div>
 								</c:if>
-								<c:if test="${!empty similarArticles}">
+								<c:if
+									test="${!empty similarArticles || fn:length(similarArticles)!=0}">
 									<c:forEach items="${similarArticles}" var="sArticle">
 										<!-- 文章收藏 -->
 										<li class="group-item"><span class="hidden" field="id"

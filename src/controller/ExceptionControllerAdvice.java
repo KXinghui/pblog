@@ -19,16 +19,18 @@ import util.PageResult;
 @ControllerAdvice
 public class ExceptionControllerAdvice {
 
-	@ExceptionHandler(Exception.class)
-	public String custHandle(HttpServletRequest request, Exception exception, Model model) {
-		CustException custException = new CustException(request.getRemoteHost(), exception.getMessage(),
-				request.getRequestURL().toString());
-		custException.setErrMsg("未知原因");
-		custException.initCause(exception);
-
-		model.addAttribute("custException", custException);
-		return "fore/err";
-	}
+	// @ExceptionHandler(Exception.class)
+	// public String custHandle(HttpServletRequest request, Exception exception,
+	// Model model) {
+	// CustException custException = new CustException(request.getRemoteHost(),
+	// exception.getMessage(),
+	// request.getRequestURL().toString());
+	// custException.setErrMsg("未知原因");
+	// custException.initCause(exception);
+	//
+	// model.addAttribute("custException", custException);
+	// return "fore/err";
+	// }
 
 	@ResponseBody
 	@ExceptionHandler(value = { (IOException.class) })

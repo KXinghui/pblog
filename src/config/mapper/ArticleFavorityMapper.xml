@@ -129,22 +129,37 @@
 	<!-- <update id="batchUpdate"> </update> -->
 	<!-- 动态批量操作 -->
 	<!-- 动态批量添加 -->
-	<!-- <insert id="dynamicBatchInsert" keyColumn="id" keyProperty="id" useGeneratedKeys="true" 
-		parameterType="list"> INSERT INTO articlefavority<trim prefix="(" suffix=")" 
-		suffixOverrides=","> <if test="name != null"> name, </if> <if test="password 
-		!= null"> password, </if> </trim> VALUES <foreach collection="list" item="item" 
-		separator=","> <trim prefix="(" suffix=")" suffixOverrides=","> <if test="name 
-		!= null"> #{name}, </if> <if test="password != null"> #{password}, </if> 
-		</trim> </foreach> </insert> -->
+	<insert id="dynamicBatchInsert" keyColumn="id" keyProperty="id"
+		useGeneratedKeys="true" parameterType="list">
+		<foreach collection="list" item="item" separator=";">
+			INSERT INTO articlefavority
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="item.aid != null">
+					aid,
+				</if>
+				<if test="item.gid != null">
+					gid,
+				</if>
+			</trim>
+			<trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+				<if test="item.aid != null">
+					#{item.aid},
+				</if>
+				<if test="item.gid != null">
+					#{item.gid},
+				</if>
+			</trim>
+		</foreach>
+	</insert>
 	<!-- 动态批量更新 -->
 	<update id="dynamicBatchUpdate" parameterType="list">
 		<foreach collection="list" item="item" separator=";">
-			UPDATE articleFavority
+			UPDATE articlefavority
 			<set>
-				<if test="aid != null">
+				<if test="item.aid != null">
 					aid = #{item.aid},
 				</if>
-				<if test="aid != null">
+				<if test="item.gid != null">
 					gid = #{item.gid},
 				</if>
 			</set>

@@ -35,22 +35,22 @@
 						<div class="category-body">
 							<c:if
 								test="${!empty category.articles|| fn:length(category.articles)!=0}">
-								<c:forEach items="${category.articles}" var="article">
-									<c:set value="${article.user}" var="author"></c:set>
+								<c:forEach items="${category.articles}" var="carticle">
+									<c:set value="${carticle.user}" var="author"></c:set>
 									<div class="category-article">
 										<div class="article-heaer">
 
-											<span class="createDate" data-toggle="tooltip" title="创建时间">${article.createDate}</span>
-											<span class="updateDate" data-toggle="tooltip" title="更新时间">${article.updateDate}</span>
+											<span class="createDate" data-toggle="tooltip" title="创建时间">${carticle.createDate}</span>
+											<span class="updateDate" data-toggle="tooltip" title="更新时间">${carticle.updateDate}</span>
 										</div>
 										<div class="article-body">
 
 											<a
-												href="<s:url value="/foreshowArticle?aid=${article.id}" />"
-												class="text-muted"><span class="">${article.title}</span></a>
+												href="<s:url value="/foreshowArticle?aid=${carticle.id}" />"
+												class="text-muted"><span class="">${carticle.title}</span></a>
 											<a
-												href="<s:url value="/foreshowArticle?aid=${article.id}" />"
-												class="text-muted"><span class="">${article.subTitle}</span></a>
+												href="<s:url value="/foreshowArticle?aid=${carticle.id}" />"
+												class="text-muted"><span class="">${carticle.subTitle}</span></a>
 											<a href="<s:url value="/fore/user/${author.id}" />"
 												class="text-muted"><span
 												class="glyphicon glyphicon-user"></span>${author.name}</a>
@@ -58,10 +58,10 @@
 										<div class="article-foot" data-toggle="tooltip"
 											data-placement="bottom" title="收藏量、点击量、浏览量">
 											<span class="glyphicon glyphicon-star-empty"></span> <span
-												class="badge">${article.collectNum}</span> <span
-												class="iconfont icon-dinaji"></span> <span class="badge">${article.clickNum}</span>
+												class="badge">${carticle.collectNum}</span> <span
+												class="iconfont icon-dinaji"></span> <span class="badge">${carticle.clickNum}</span>
 											<span class="glyphicon glyphicon-eye-open"></span> <span
-												class="badge">${article.viewNum}</span>
+												class="badge">${carticle.viewNum}</span>
 										</div>
 									</div>
 								</c:forEach>

@@ -141,10 +141,6 @@ function showAsScreenScroll() {
     // if(top>)
     // }
   };
-  var bottomNav = $("#bottom-nav");
-  window.resize = function () {
-    bottomNav.width($(window).width);
-  }
 };
 
 
@@ -530,6 +526,7 @@ function loginForm() {
 jQuery(registerForm($));
 
 function registerForm() {
+
   var registerForm = $("#register-form");
   initFormValidErrMsg(registerForm);
   var fieldsOption = {
@@ -2585,6 +2582,7 @@ function deleteArticleFunc(modal, parentsSel, btnSel, parentSel) {
 }
 
 function boostrapValidate(form, fieldsOption) {
+  if (form.length == 0) return;
   form.bootstrapValidator({
     message: 'This value is not valid',
     feedbackIcons: {
@@ -2845,13 +2843,9 @@ function editGroup() {
   $("body").on("click", ".edit-group-btn", function () {
     var btn = $(this);
     var parent = btn.parents(".group-title");
-
     var groupType = btn.attr("grouptype");
     var fieldTextMap = getFieldAttrTextReturnFieldMapFromBtnParentsSel(btn, ".group-title");
     var fieldMap = getFieldAttrTextReturnFieldMapFromBtnParentsSel(btn, ".group-title");
-    // console.log(fieldMap);
-    var menuItem = $(".menu-item[data-id=" + fieldMap.get("id") + "]");
-    var groupName = $(".group-name[data-id=" + fieldMap.get("id") + "]");
     var groupTypeMap = new Map();
     groupTypeMap.set("groupType", fieldMap.get("groupType"));
 
@@ -2863,42 +2857,39 @@ function editGroup() {
     loadDataToFormAsFieldMap(form, fieldMap);
     modal.modal("show");
     boostrapValidate(form, fieldsOption);
-    form.on('success.form.bv', function (e) {
+    form.unbind("success.form.bv").bind("success.form.bv", function (e) {
       e.preventDefault();
       if (checkFormRepeatAsFieldMap(form, fieldMap)) {
         errMsg.text("改都没改还想提交");
         opErrMsg.css("visibility", "visible");
       } else {
-
         if (!checkOwnGroup(fieldMap.get("id"))) {
           showDangerTipModal(modalTitle.text(), "失败：你不配编辑此分组");
           return;
         }
         var formData = new FormData(form.get(0));
-        var data = {
-          id: formData.get("id"),
-          name: formData.get("name"),
-          visibility: formData.get("visibility"),
-          groupType: formData.get("groupType"),
-        };
         var url = contextPath + "/" + form.attr("action");
         $.ajax({
           type: "POST",
           url: url,
-          data: data,
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false,
           dataType: "text",
           success: function (response) {
-            var isSuccess = response.substr(0, response.indexOf("-"));
-            var group = response.substr(response.indexOf("-") + 1);
-            if ("success" == isSuccess) {
+            if ("success" == response) {
+              var gid = formData.get("id");
+              var fieldAry = ["name", "visibility"];
+              var newFieldMap = extractAsFieldAryToAndReturnNewFieldMap(form, fieldAry);
               modal.modal("hide");
               showSuccessTipModal(modalTitle.text(), "成功");
               hideTipModal();
-
-              var fieldAry = ["name", "visibility"];
-              var newFieldMap = extractAsFieldAryToAndReturnNewFieldMap(form, fieldAry);
+              var menuItem = $(".menu-item[data-id=" + gid + "]");
+              var groupName = $(".group-name[data-id=" + gid + "]");
               loadDataAsFieldMapInEle(newFieldMap, groupName);
               loadDataAsFieldMapInEle(newFieldMap, menuItem);
+              // window.location.reload();
             } else {
               errMsg.text(response);
               opErrMsg.css("visibility", "visible");
@@ -3040,7 +3031,6 @@ function extractAsFieldAryToAndReturnNewFieldMap(form, fieldAry) {
     } else if ("TEXTAREA" == tag) {
       newFieldMap.set(value, formEle.val());
     }
-
   });
   return newFieldMap;
 }
@@ -3224,7 +3214,6 @@ function newGroup(modal, fieldsOption) {
         dataType: "text",
         success: function (response) {
           var data = response.split("-");
-          // console.log(data);
           var statu = data[0];
           var group = JSON.parse(data[1]);
           if ("success" == statu) {
@@ -3297,18 +3286,20 @@ function listGroupForm(modal, btn, form, groupIdAry) {
     } else {
       href = url.concat("?id=" + btn.attr("data-id") + "&" + form.serialize());
     }
-    $.post(href,
-      function (data, textStatus, jqXHR) {
+    $.ajax({
+      type: "POST",
+      url: href,
+      dataType: "text",
+      success: function (response) {
         modal.modal("hide");
-        if ("yes" == data || "no" == data) {
-          var isOp = ("yes" == data) ? true : false;
+        if ("yes" == response || "no" == response) {
+          var isOp = ("yes" == response) ? true : false;
           opAfterlistGroup(btn, isOp);
           return;
         }
-        showAndHideDangerTipToast(data);
-      },
-      "text"
-    );
+        showAndHideDangerTipToast(response);
+      }
+    });
   });
 
 }
@@ -3353,6 +3344,8 @@ function clearOneArticleFavorityInGroup() {
       function (data, textStatus, jqXHR) {
         if (id == data) {
           parent.remove();
+        } else {
+          showDangerTipModal("清除组内指定失效", data);
         }
       },
       "text"
@@ -3394,10 +3387,15 @@ function clearInvalidArticleFavoritiesInDsgtGroupAsync() {
     };
     $.post(url, data,
       function (data, textStatus, jqXHR) {
-        if ("success" == textStatus) {
-          removeInvalidArticleFavority(data, parentSel, parentsSel);
-          showSuccessTipModal("清除所有组内失效文章", "成功清除！！！");
+        var response = data.split("-");
+        var isSuccess = response[0];
+        if ("success" == isSuccess) {
+          var ids = response[1];
+          removeInvalidArticleFavority(ids, parentSel, parentsSel);
+          showSuccessTipModal("清除指定组内失效文章", "成功清除！！！");
           hideTipModal();
+        } else {
+          showDangerTipModal("清除指定组内失效文章", data);
         }
       },
       "text"
@@ -3418,10 +3416,15 @@ function clearInvalidArticleFavoritiesInAllGroupAsync() {
     var btn = $(this);
     $.post(url,
       function (data, textStatus, jqXHR) {
-        if ("success" == textStatus) {
-          removeInvalidArticleFavority(data, parentSel, parentsSel);
+        var response = data.split("-");
+        var isSuccess = response[0];
+        if ("success" == isSuccess) {
+          var ids = response[1];
+          removeInvalidArticleFavority(ids, parentSel, parentsSel);
           showSuccessTipModal("清除所有组内失效文章", "成功清除！！！");
           hideTipModal();
+        } else {
+          showDangerTipModal("清除所有组内失效文章", data);
         }
       },
       "text"
@@ -3623,7 +3626,6 @@ function loginModal() {
   form.on('success.form.bv', function (e) {
     e.preventDefault();
     var url = contextPath + "/foreloginAsync";
-    var formData = new FormData(form.get(0));
     var data = form.serialize();
     $.ajax({
       type: "POST",
