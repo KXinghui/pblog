@@ -1,14 +1,15 @@
-ÒÇ±íÅÌ£ºÓÃ»§¡¢·¢²¼ÎÄÕÂ¡¢
+ï»¿ä»ªè¡¨ç›˜ï¼šç”¨æˆ·ã€å‘å¸ƒæ–‡ç« ã€
 
-ÅÅÐò£¨·ÛË¿Êý¡¢µã»÷Êý¡¢ä¯ÀÀÊý£©
+æŽ’åºï¼ˆç²‰ä¸æ•°ã€ç‚¹å‡»æ•°ã€æµè§ˆæ•°ï¼‰
 
 
-ÓÃ»§£¨²é¿´£©
-ÎÄÕÂ£¨²é¿´£©
+ç”¨æˆ·ï¼ˆæŸ¥çœ‹ï¼‰
+æ–‡ç« ï¼ˆæŸ¥çœ‹ï¼‰
 
-´ýÐÂÔöENUMS£¨ÎÄÕÂÀàÐÍ ArticleType¡¾×ªÔØ REPRINT¡¢Ô­´´ ORIGINAL¡¿£©
-´ýÐÂÔöPOJO£¨±êÇ© Tag¡¾id¡¢name¡¿ÎÄÕÂ±êÇ© ArticleTag¡¾id¡¢aid¡¢tid¡¿£©
-´ýÍêÉÆPOJO£¨ÎÄÕÂÍ¼Æ¬ ArticleImage¡¢×Ô¶¨Òå·ÖÀà CustCategory¡¾id¡¢name¡¢desc_¡¢uid¡¢createDate¡¿¡¢×Ô¶¨Òå·ÖÀàÎÄÕÂ CustCatArticle¡¾id¡¢ccid¡¢aid¡¢Ë³Ðò¡¿£©
+å¾…æ–°å¢žENUMSï¼ˆæ–‡ç« ç±»åž‹ ArticleTypeã€è½¬è½½ REPRINTã€åŽŸåˆ› ORIGINALã€‘ï¼‰
+å¾…æ–°å¢žPOJOï¼ˆæ ‡ç­¾ Tagã€idã€nameã€‘æ–‡ç« æ ‡ç­¾ ArticleTagã€idã€aidã€tidã€‘ï¼‰
+å¾…å®Œå–„POJOï¼ˆæ–‡ç« å›¾ç‰‡ ArticleImageã€è‡ªå®šä¹‰åˆ†ç±» CustCategoryã€idã€nameã€desc_ã€uidã€createDateã€‘ã€è‡ªå®šä¹‰åˆ†ç±»æ–‡ç«  CustCatArticleã€idã€ccidã€aidã€é¡ºåºã€‘ï¼‰
+æ›´æ”¹
 
 
 
