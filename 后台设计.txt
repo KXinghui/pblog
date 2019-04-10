@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿仪表盘：用户、发布文章、
 
 排序（粉丝数、点击数、浏览数）
@@ -10,6 +11,18 @@
 待新增POJO（标签 Tag【id、name】文章标签 ArticleTag【id、aid、tid】）
 待完善POJO（文章图片 ArticleImage、自定义分类 CustCategory【id、name、desc_、uid、createDate】、自定义分类文章 CustCatArticle【id、ccid、aid、顺序】）
 更改
+=======
+仪表盘（数量）：用户、发布文章、
+
+排序（粉丝数、点击数、浏览数 前10）
+
+
+用户（查看）
+文章（查看、审核通过、下架）
+
+待新增功能：忘记密码、注册验证（rabbitmq+email）
+待新增框架：shiro
+>>>>>>> 9c6564f0c95b12fed422c3c37aa02240ef9d6192
 
 
 
