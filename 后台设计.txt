@@ -6,5 +6,10 @@
 用户（查看）
 文章（查看）
 
+待新增ENUMS（文章类型 ArticleType【转载 REPRINT、原创 ORIGINAL】）
+待新增POJO（标签 Tag【id、name】文章标签 ArticleTag【id、aid、tid】）
+待完善POJO（文章图片 ArticleImage、自定义分类 CustCategory【id、name、desc_、uid、createDate】、自定义分类文章 CustCatArticle【id、ccid、aid、顺序】）
+
+
 
 

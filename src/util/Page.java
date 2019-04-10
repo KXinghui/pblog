@@ -224,7 +224,7 @@ public class Page {
 	// TODO
 	public int getPageFirst() {
 		// LIMIT (offset , count)的 offset 由当前页和每页记录数决定
-		return pageRecord * (current);
+		return current * pageRecord - pageRecord;
 	}
 
 	public static void main(String[] args) {

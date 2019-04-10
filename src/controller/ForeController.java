@@ -326,11 +326,14 @@ public class ForeController {
 		List<Article> articles = articleService.listByUserAndArticleStatu(uid, ArticleStatu.PUBLISH);
 		/* 文章-文章箱 */
 		model.addAttribute("articles", articles);
+
 		if (ForeUtil.isLogin(user)) {
+			Integer ouid = user.getId();
 			// 已收藏文章的ID
-			List<Integer> collectedIds = articleFavorityService.listIdByUserAndVisibility(uid, null);
+			List<Integer> collectedIds = articleFavorityService.listIdByUserAndVisibility(ouid, null);
 			model.addAttribute("collectedIds", collectedIds);
 		}
+
 		if (ForeUtil.isLoginAndOwnUser(uid, user)) {
 			/* 文章-草稿箱 */
 			PageHelper.startPage(0, 4);
@@ -386,10 +389,10 @@ public class ForeController {
 			throw new CustException("不是当前用户，不可查看用户的" + title);
 		}
 		PageResult<Article> pr = null;
-
 		if (ForeUtil.isLogin(user)) {
+			Integer ouid = user.getId();
 			// 已收藏文章的ID
-			List<Integer> collectedIds = articleFavorityService.listIdByUserAndVisibility(uid, null);
+			List<Integer> collectedIds = articleFavorityService.listIdByUserAndVisibility(ouid, null);
 			model.addAttribute("collectedIds", collectedIds);
 		}
 
@@ -421,24 +424,29 @@ public class ForeController {
 
 		User user = (User) session.getAttribute("user");
 
+		// 登陆了
+		if (ForeUtil.isLogin(user)) {
+			Integer ouid = user.getId();
+			// 已关注的用户的用户ID
+			List<User> followedUsers = userFollowService.listFollowUserByUser(ouid);
+			List<Integer> followedIds = new ArrayList<>();
+			for (User followedUser : followedUsers) {
+				followedIds.add(followedUser.getId());
+			}
+			model.addAttribute("followedIds", followedIds);
+		}
+
 		boolean isLoginAndOwnUser = ForeUtil.isLoginAndOwnUser(uid, user);
 		List<Group> groups = null;
 		if (isLoginAndOwnUser) {
 			groups = groupService.listByUserAndGroupType(uid, GroupType.USER_FOLLOW);
 		} else {
-			if (ForeUtil.isLogin(user)) {
-				// 已关注的用户 的 用户ID
-				List<User> followedUsers = userFollowService.listFollowUserByUser(uid);
-				List<Integer> followedIds = new ArrayList<>();
-				for (User followedUser : followedUsers) {
-					followedIds.add(followedUser.getId());
-				}
-				model.addAttribute("followedIds", followedIds);
-			}
 			groups = groupService.listByUserGroupTypeAndVisibility(uid, GroupType.USER_FOLLOW, Visibility.VISIBLE);
 		}
 		model.addAttribute("groups", groups);
-
+		// 判断字符串是否为空
+		// 1 followsfans == null || followsfans.equals("") 直观，效率低
+		// 2 "".equals(followsfans) 效率高 最后的方法
 		if (followsfans == null || followsfans.equals("")) {
 			followsfans = "follows";
 		}
@@ -478,8 +486,9 @@ public class ForeController {
 
 		// 登陆了
 		if (ForeUtil.isLogin(user)) {
-			// 已关注的用户 的 用户ID
-			List<User> followedUsers = userFollowService.listFollowUserByUser(uid);
+			Integer ouid = user.getId();
+			// 已关注的用户的用户ID
+			List<User> followedUsers = userFollowService.listFollowUserByUser(ouid);
 			List<Integer> followedIds = new ArrayList<>();
 			for (User followedUser : followedUsers) {
 				followedIds.add(followedUser.getId());
@@ -586,17 +595,18 @@ public class ForeController {
 		if (!groupIds.contains(gid)) {
 			throw new CustException("用户文章收藏页面失败(该用户没有该文章收藏分组或未公开)");
 		}
-		System.out.println(gid);
+
 		Group group = groupService.get(gid);
-		System.out.println(group);
+
 		Integer total = articleFavorityService.countByGroup(gid);
 		PageHelper.startPage(page.getPageFirst(), page.getPageRecord());
 		articleFavorities = articleFavorityService.listByGroupAndArticleStatu(gid, ArticleStatu.PUBLISH);
 		PageResult<ArticleFavority> groupPr = new PageResult<>(total, articleFavorities, page);
 
 		if (ForeUtil.isLogin(user)) {
+			Integer ouid = user.getId();
 			// 已收藏文章的ID
-			List<Integer> collectedIds = articleFavorityService.listIdByUserAndVisibility(uid, null);
+			List<Integer> collectedIds = articleFavorityService.listIdByUserAndVisibility(ouid, null);
 			model.addAttribute("collectedIds", collectedIds);
 		}
 		model.addAttribute("group", group);
@@ -723,23 +733,22 @@ public class ForeController {
 
 	/* 跳转到展示文章 */
 	@RequestMapping("foreshowArticle")
-	public String showArticle(@RequestParam Integer aid, Model model, HttpSession session) {
+	public String showArticle(@RequestParam Integer aid, Model model, HttpServletRequest request, HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		Article article = articleService.get(aid);
+		Article article = (Article) request.getAttribute("showArticle");
 
-		if (!ForeUtil.isLogin(user)) {
-			if (article == null || !ArticleStatu.PUBLISH.equals(article.getArticleStatu())) {
-				throw new CustException("不能查看文章(不存在或不是发布状态)");
-			}
+		if (null == article) {
+			throw new CustException("不能查看该文章(不存在)");
+		}
+		Integer uid = article.getUid();
+		if (!ForeUtil.isLoginAndOwnUser(uid, user) && !ArticleStatu.PUBLISH.equals(article.getArticleStatu())) {
+			throw new CustException("不能查看该文章(不是发布状态)");
 		}
 
 		ArticleContent articleContent = articleContentService.getByArticle(aid);
 		article.setArticleContent(articleContent);
 
-		User author = userService.get(article.getUid());
-		Integer authorId = author.getId();
-
-		preUser(authorId, model, session);
+		preUser(uid, model, session);
 		// 类似文章
 		PageHelper.startPage(0, 5);
 		List<Article> similarArticles = articleService.listFuzzyByTitle(article.getTitle());
@@ -747,7 +756,7 @@ public class ForeController {
 		Iterator<Article> iterator = similarArticles.iterator();
 		while (iterator.hasNext()) {
 			Article a = iterator.next();
-			if (a.getId().equals(article.getId())) {
+			if (a.getId().equals(aid)) {
 				iterator.remove();
 				continue;
 			}
@@ -759,7 +768,7 @@ public class ForeController {
 		model.addAttribute("similarArticles", similarArticles);
 
 		if (ForeUtil.isLogin(user)) {
-			List<ArticleFavority> afs = articleFavorityService.listByUserAndArticle(authorId, aid);
+			List<ArticleFavority> afs = articleFavorityService.listByUserAndArticle(user.getId(), aid);
 			// 是否收藏
 			if (afs != null && afs.size() != 0) {
 				model.addAttribute("isCollect", true);
@@ -811,8 +820,9 @@ public class ForeController {
 		}
 
 		if (ForeUtil.isLogin(user)) {
+			Integer ouid = user.getId();
 			// 已收藏文章的ID
-			List<Integer> collectedIds = articleFavorityService.listIdByUserAndVisibility(uid, null);
+			List<Integer> collectedIds = articleFavorityService.listIdByUserAndVisibility(ouid, null);
 			model.addAttribute("collectedIds", collectedIds);
 		}
 

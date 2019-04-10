@@ -699,7 +699,7 @@ public class RestForeController {
 	}
 
 	/* 异步清除全部组的所有失效文章【文章为空或文章状态不为PUBLISH】 */
-	@RequestMapping(value = "clearInvalidAFInAllGroupsAsync", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "foreclearInvalidAFInAllGroupsAsync", produces = "text/plain;charset=UTF-8")
 	public String clearInvalidArticleFavoritiesInAllGroupsAsync(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 

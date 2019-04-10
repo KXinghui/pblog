@@ -58,12 +58,12 @@
 												<div class="group-name">
 													<a
 														href='<s:url value="/fore/user/${user.id}/userfollow/follows/${g.id}" />'
-														class="text-info lead" field="name">${g.name}</a>·
+														class="text-info" field="name">${g.name}</a>·
 													<c:if test="${g.visibility=='VISIBLE'}">
-														<span class="lead" field="visibility">显示</span>
+														<span field="visibility">显示</span>
 													</c:if>
 													<c:if test="${g.visibility=='HIDDEN'}">
-														<span class="lead" field="visibility">隐藏</span>
+														<span field="visibility">隐藏</span>
 													</c:if>
 													<span class="hidden" field="id">${g.id}</span> <span
 														class="hidden" field="groupType">用户关注</span>
@@ -92,11 +92,11 @@
 												<div class="group-name">
 													<a
 														href='<s:url value="/fore/user/${otherUser.id}/userfollow/fans" />'
-														class="text-info lead" field="name">${g.name}</a>·<span
+														class="text-info" field="name">${g.name}</a>·<span
 														class="glyphicon glyphicon-eye-open"></span><span
-														class="lead" field="visibility">显示</span> <span
-														class="hidden" field="id">${g.id}</span> <span
-														class="hidden" field="groupType">文章收藏</span>
+														field="visibility">显示</span> <span class="hidden"
+														field="id">${g.id}</span> <span class="hidden"
+														field="groupType">文章收藏</span>
 												</div>
 											</div>
 										</c:forEach>
@@ -198,26 +198,26 @@
 											</div>
 										</c:if>
 										<c:if test="${!empty allFollowsPr.list}">
-											<c:forEach items="${allFollowsPr.list}" var="allFollow">
-												<c:set value="${allFollow.userNum}" var="afun"></c:set>
+											<c:forEach items="${allFollowsPr.list}" var="uallFollow">
+												<c:set value="${uallFollow.userNum}" var="afun"></c:set>
 												<li class="group-item"><span class="hidden" field="id"
-													onlyread="true">${allFollow.id}</span>
+													onlyread="true">${uallFollow.id}</span>
 
 													<div class="group-item-header">
 														<div class="">
-															<a href="<s:url value="/fore/user/${allFollow.id}" />"><img
+															<a href="<s:url value="/fore/user/${uallFollow.id}" />"><img
 																class="img-circle img-thumbnail"
-																src="<c:if test="${empty allFollow.headImg}">
+																src="<c:if test="${empty uallFollow.headImg}">
                       <s:url value="/images/1.4.1.jpg" />
-                    </c:if><c:if test="${!empty allFollow.headImg}">
-                      <s:url value="/${allFollow.headImg}" />
+                    </c:if><c:if test="${!empty uallFollow.headImg}">
+                      <s:url value="/${uallFollow.headImg}" />
                     </c:if>">
-																<span class="name" field="name">${allFollow.name}</span></a>
+																<span class="name" field="name">${uallFollow.name}</span></a>
 														</div>
 													</div>
 													<div class="group-item-footer btn-sm">
 														<div class="group-item-op btn-group-sm">
-															<button data-id="${allFollow.id}"
+															<button data-id="${uallFollow.id}"
 																class="btn btn-default list-group-btn btn-success"
 																grouptype="userfollow">关注</button>
 														</div>
@@ -245,35 +245,28 @@
 											</div>
 										</c:if>
 										<c:if test="${!empty allFollowsPr.list}">
-											<c:forEach items="${allFollowsPr.list}" var="allFollow">
-												<c:set value="${allFollow.userNum}" var="afun"></c:set>
+											<c:forEach items="${allFollowsPr.list}" var="oallFollow">
+												<c:set value="${oallFollow.userNum}" var="afun"></c:set>
 												<li class="group-item"><span class="hidden" field="id"
-													onlyread="true">${allFollow.id}</span>
+													onlyread="true">${oallFollow.id}</span>
 													<div class="group-item-header">
 														<div class="">
-															<a href="<s:url value="/fore/user/${allFollow.id}" />"><img
+															<a href="<s:url value="/fore/user/${oallFollow.id}" />"><img
 																class="img-circle img-thumbnail"
-																src="<c:if test="${empty allFollow.headImg}">
+																src="<c:if test="${empty oallFollow.headImg}">
                       <s:url value="/images/1.4.1.jpg" />
                     </c:if>
-                    <c:if test="${!empty allFollow.headImg}">
-                      <s:url value="/${allFollow.headImg}" />
+                    <c:if test="${!empty oallFollow.headImg}">
+                      <s:url value="/${oallFollow.headImg}" />
                     </c:if>">
-																<span class="name" field="name">${allFollow.name}</span></a>
+																<span class="name" field="name">${oallFollow.name}</span></a>
 														</div>
 													</div>
 													<div class="group-item-footer btn-sm">
 														<div class="group-item-op btn-group-sm">
-															<c:if test="${!empty user}">
-																<button data-id="${allFollow.id}"
-																	class="btn btn-default list-group-btn <c:if test="${fn:contains(followedIds,fans.id)}">btn-success</c:if>"
-																	grouptype="userfollow"></button>
-															</c:if>
-															<c:if test="${empty user}">
-																<button data-id="${allFollow.id}"
-																	class="btn btn-default list-group-btn"
-																	grouptype="userfollow">关注</button>
-															</c:if>
+															<button data-id="${oallFollow.id}"
+																class="btn btn-default list-group-btn <c:if test="${fn:contains(followedIds,oallFollow.id)}">btn-success</c:if>"
+																grouptype="userfollow">关注</button>
 														</div>
 														<div class="group-item-info" data-toggle="tooltip"
 															title="粉丝数、点击量、浏览量">
@@ -298,8 +291,8 @@
 						<!-- 指定组的用户关注 -->
 						<div class="group-title">
 							<div class="group-name" data-id="${followGroup.id}">
-								<a href="" class="text-info" field="name">${followGroup.name}</a>·<span
-									field="visibility"><c:if
+								<a href="" class="text-info lead" field="name">${followGroup.name}</a>·<span
+									class="lead" field="visibility"><c:if
 										test="${followGroup.visibility=='VISIBLE'}">显示</c:if> <c:if
 										test="${followGroup.visibility=='HIDDEN'}">隐藏</c:if></span> <span
 									class="hidden" field="id">${followGroup.id}</span> <span
@@ -492,11 +485,6 @@
 
 				</div>
 			</div>
-
-
-
-
-
 			<!-- 全部关注的用户 -->
 			<c:if test="${!empty allFollowsPr}">
 				<c:set value="${allFollowsPr}" var="pr"></c:set>
@@ -510,6 +498,7 @@
 				<c:set value="${fansPr}" var="pr"></c:set>
 			</c:if>
 
+			${empty followedIds}
 
 			<%@include file="../paging.jsp"%>
 		</div>

@@ -45,11 +45,12 @@ public class ForeInteceptor extends HandlerInterceptorAdapter {
 			uri = StringUtils.remove(uri, contextPath);
 			String method = uri.split("/fore")[1];
 			if ("showArticle".equals(method)) {
-				Integer aid = Integer.valueOf(request.getParameter("aid"));
-				Article article = articleService.get(aid);
-				if (article != null && article.getArticleStatu().equals(ArticleStatu.PUBLISH)) {
+				// Integer aid = Integer.valueOf(request.getParameter("aid"));
+				// Article article = articleService.get(aid);
+				Article article = (Article) request.getAttribute("showArticle");
+				if (null != article && ArticleStatu.PUBLISH.equals(article.getArticleStatu())) {
 					Article newArtice = new Article();
-					newArtice.setId(aid);
+					newArtice.setId(article.getId());
 					Integer viewNum = article.getViewNum();
 					if (viewNum == null) {
 						viewNum = 0;
@@ -93,15 +94,18 @@ public class ForeInteceptor extends HandlerInterceptorAdapter {
 			if ("showArticle".equals(method)) {
 				Integer aid = Integer.valueOf(request.getParameter("aid"));
 				Article article = articleService.get(aid);
-				if (null != article && article.getArticleStatu().equals(ArticleStatu.PUBLISH)) {
-					Article newArtice = new Article();
-					newArtice.setId(aid);
-					Integer clickNum = article.getClickNum();
-					if (clickNum == null) {
-						clickNum = 0;
+				if (null != article) {
+					request.setAttribute("showArticle", article);
+					if (ArticleStatu.PUBLISH.equals(article.getArticleStatu())) {
+						Article newArtice = new Article();
+						newArtice.setId(aid);
+						Integer clickNum = article.getClickNum();
+						if (clickNum == null) {
+							clickNum = 0;
+						}
+						newArtice.setClickNum(clickNum + 1);
+						articleService.dynamicUpdate(newArtice);
 					}
-					newArtice.setClickNum(+1);
-					articleService.dynamicUpdate(newArtice);
 				}
 			}
 		} else {

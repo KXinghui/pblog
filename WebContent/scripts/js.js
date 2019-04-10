@@ -32,16 +32,16 @@ function ScollPostion() {
   if (document.documentElement && document.documentElement.scrollTop) {
     t = document.documentElement.scrollTop;
     /*
-     * l = document.documentElement.scrollLeft; w =
-     * document.documentElement.scrollWidth; h =
-     * document.documentElement.scrollHeight;
-     */
+	 * l = document.documentElement.scrollLeft; w =
+	 * document.documentElement.scrollWidth; h =
+	 * document.documentElement.scrollHeight;
+	 */
   } else if (document.body) {
     t = document.body.scrollTop;
     /*
-     * l = document.body.scrollLeft; w = document.body.scrollWidth; h =
-     * document.body.scrollHeight;
-     */
+	 * l = document.body.scrollLeft; w = document.body.scrollWidth; h =
+	 * document.body.scrollHeight;
+	 */
   }
   return t;
 };
@@ -477,12 +477,12 @@ function showHeadImgWhenInputUserName() {
   var userName = loginForm.find("input[name=name]");
   var headImg = loginForm.find("#user-headimg");
   /*
-   * 
-   * 
-   * 截流ajax请求
-   * 
-   * 
-   */
+	 * 
+	 * 
+	 * 截流ajax请求
+	 * 
+	 * 
+	 */
   var timeout, delay = 1800;
 
   userName.keyup(function (e) {
@@ -506,12 +506,12 @@ function showHeadImgWhenInputUserName() {
   });
 
   /*
-   * 
-   * 
-   * 截流ajax请求
-   * 
-   * 
-   */
+	 * 
+	 * 
+	 * 截流ajax请求
+	 * 
+	 * 
+	 */
 
 };
 
@@ -1326,13 +1326,13 @@ function loadFieldMapDataFromTableToFormInModalOnClickBtnSelAndParentSel(modal, 
     });
 
     /*
-     * var field = { fieldName: { message: "字段名无效", validators: { notEmpty: {
-     * message: "字段名不能为空" }, stringLength: { min: 0, max: 0, message: "字段名长度必须在
-     * min - max 之间" }, identical: { field: otherFieldName, message:
-     * "字段名必须与其他字段名相同", }, phone: { country: CN, message: "手机号码格式必须合法", },
-     * integer: { message: "必须为整数", }, data: { format: "YYYY-MM-DD", message:
-     * "日期格式必须为 'YYYY-MM-DD'", }, emailAddress: { message: "邮箱格式必须合法" }, } } }
-     */
+	 * var field = { fieldName: { message: "字段名无效", validators: { notEmpty: {
+	 * message: "字段名不能为空" }, stringLength: { min: 0, max: 0, message: "字段名长度必须在
+	 * min - max 之间" }, identical: { field: otherFieldName, message:
+	 * "字段名必须与其他字段名相同", }, phone: { country: CN, message: "手机号码格式必须合法", },
+	 * integer: { message: "必须为整数", }, data: { format: "YYYY-MM-DD", message:
+	 * "日期格式必须为 'YYYY-MM-DD'", }, emailAddress: { message: "邮箱格式必须合法" }, } } }
+	 */
 
     // 模态框关闭后重置表单
     modal.on('hide.bs.modal', function () {
@@ -1684,14 +1684,14 @@ function changeAndShowRealImg() {
 
 
       /*
-       * if (!isSupportFileExten(getFileNameExten(file.name))) {
-       * showDangerTipModal("上传用户自定义图片", "失败：不支持该文件类型"); // 重置
-       * realImg.val(""); showImg.attr("src",
-       * "").removeClass("img-thumbnail"); return; } if
-       * (!isSupportFileSize(file.size)) { showDangerTipModal("上传用户自定义图片",
-       * "失败：该文件超出大小范围"); // 重置 realImg.val(""); showImg.attr("src",
-       * "").removeClass("img-thumbnail"); return; }
-       */
+		 * if (!isSupportFileExten(getFileNameExten(file.name))) {
+		 * showDangerTipModal("上传用户自定义图片", "失败：不支持该文件类型"); // 重置
+		 * realImg.val(""); showImg.attr("src",
+		 * "").removeClass("img-thumbnail"); return; } if
+		 * (!isSupportFileSize(file.size)) { showDangerTipModal("上传用户自定义图片",
+		 * "失败：该文件超出大小范围"); // 重置 realImg.val(""); showImg.attr("src",
+		 * "").removeClass("img-thumbnail"); return; }
+		 */
 
 
       img = new Image();
@@ -1721,15 +1721,15 @@ function changeAndShowRealImg() {
         // console.log("img.width 真实宽度 " + img.width);
         // console.log("img.height 真实高度 " + img.height);
         /*
-         * 检查图片大小、宽高是否符合(符合继续，不符合清空，显示错误信息alreadyOp)
-         */
+		 * 检查图片大小、宽高是否符合(符合继续，不符合清空，显示错误信息alreadyOp)
+		 */
 
         /*
-         * if (isSupportFileExten(getFileNameExten(file.name))) { if
-         * (isSupportFileSize(file.size)) { if (isSupportWH(img.width,
-         * img.height)) { } else { fadeTipAfterOp("该文件宽高比超出大小范围"); } } else {
-         * fadeTipAfterOp("该文件超出大小范围"); } } else { fadeTipAfterOp("不支持该文件类型"); }
-         */
+		 * if (isSupportFileExten(getFileNameExten(file.name))) { if
+		 * (isSupportFileSize(file.size)) { if (isSupportWH(img.width,
+		 * img.height)) { } else { fadeTipAfterOp("该文件宽高比超出大小范围"); } } else {
+		 * fadeTipAfterOp("该文件超出大小范围"); } } else { fadeTipAfterOp("不支持该文件类型"); }
+		 */
 
         // 目标图片调用Jcrop()
         // showImg.Jcrop({
@@ -3331,10 +3331,12 @@ function opAfterlistGroup(btn, isOp) {
 jQuery(clearOneArticleFavorityInGroup($));
 
 function clearOneArticleFavorityInGroup() {
-  $(".container-panel").on("click", ".clear-af-btn", function () {
+  $(".container-group").on("click", ".clear-af-btn", function () {
     if (!checkIsLogin()) return;
     var btn = $(this);
-    var parent = btn.parents(".group-item");
+    var articleItem = btn.parents(".article-item");
+    var groupItem = btn.parents(".group-item");
+    var parent = (articleItem.length != 0) ? articleItem : groupItem;
     var id = btn.attr("data-id");
     var url = contextPath + "/foreclearDsgtInvalidArticleFavorityInGroupAsync";
     var data = {
@@ -3343,7 +3345,10 @@ function clearOneArticleFavorityInGroup() {
     $.post(url, data,
       function (data, textStatus, jqXHR) {
         if (id == data) {
-          parent.remove();
+          parent.slideUp(function () {
+            parent.remove();
+          });
+          showAndHideSuccessTipToast("清除组内指定失效成功");
         } else {
           showDangerTipModal("清除组内指定失效", data);
         }
@@ -3410,10 +3415,9 @@ function clearInvalidArticleFavoritiesInAllGroupAsync() {
   var parentsSel = "body";
   var parentSel = ".group-item";
   var btnSel = ".clear-all-group-btn";
-  var url = contextPath + "/clearInvalidAFInAllGroupsAsync";
+  var url = contextPath + "/foreclearInvalidAFInAllGroupsAsync";
   $(parentsSel).on("click", btnSel, function () {
     if (!checkIsLogin()) return;
-    var btn = $(this);
     $.post(url,
       function (data, textStatus, jqXHR) {
         var response = data.split("-");
@@ -3772,12 +3776,12 @@ function editUserForm() {
   };
   boostrapValidate(editUserForm, fieldsOption);
   /*
-   * editUserForm.on('success.form.bv', function (e) { e.preventDefault(); var
-   * data = editUserForm.serialize(); var url = editUserForm.attr("action");
-   * $.post(url, data, function (data, textStatus, jqXHR) { if ("success" ==
-   * data) { showAndHideSuccessTipToast("修改密码成功"); } else { errMsg.text(data);
-   * errOpMsg.css("visibility", "visible"); } }, "dataType" ); });
-   */
+	 * editUserForm.on('success.form.bv', function (e) { e.preventDefault(); var
+	 * data = editUserForm.serialize(); var url = editUserForm.attr("action");
+	 * $.post(url, data, function (data, textStatus, jqXHR) { if ("success" ==
+	 * data) { showAndHideSuccessTipToast("修改密码成功"); } else { errMsg.text(data);
+	 * errOpMsg.css("visibility", "visible"); } }, "dataType" ); });
+	 */
 }
 
 

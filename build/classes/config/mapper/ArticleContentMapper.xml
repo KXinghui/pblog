@@ -49,7 +49,8 @@
 
 	<!-- 删除 -->
 	<delete id="deleteByArticle" parameterType="integer">
-		DELETE FROM articlecontent
+		DELETE FROM
+		articlecontent
 		WHERE
 		aid
 		=
@@ -84,7 +85,7 @@
 	<!-- 动态添加 -->
 	<insert id="dynamicInsert" keyColumn="id" keyProperty="id"
 		useGeneratedKeys="true" parameterType="articleContent">
-		INSERT INTO articleContent
+		INSERT INTO articlecontent
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="mdContent != null">
 				mdContent,
@@ -111,7 +112,7 @@
 
 	<!-- 动态更新 -->
 	<update id="dynamicUpdate" parameterType="articleContent">
-		UPDATE articleContent
+		UPDATE articlecontent
 		<set>
 			<if test="mdContent != null">
 				mdContent = #{mdContent},
@@ -129,7 +130,7 @@
 	<!-- 动态更新 -->
 	<update id="dynamicUpdateByArticle"
 		parameterType="articleContent">
-		UPDATE articleContent
+		UPDATE articlecontent
 		<set>
 			<if test="mdContent != null">
 				mdContent = #{mdContent},
@@ -147,7 +148,7 @@
 	<!-- 批量添加 -->
 	<insert id="batchInsert" keyColumn="id" keyProperty="id"
 		useGeneratedKeys="true" parameterType="list">
-		INSERT INTO articlecontent(name,password) VALUES
+		INSERT INTO articlecontent(mdContent,htmlContent,aid) VALUES
 		<foreach collection="list" item="item" separator=",">
 			(#{item.mdContent},#{item.htmlContent},#{item.aid})
 		</foreach>
@@ -161,15 +162,15 @@
 			#{item}
 		</foreach>
 	</delete>
-	
+
 	<!-- 批量删除 -->
-  <delete id="batchDeleteByArtice" parameterType="list">
-    DELETE FROM articlecontent WHERE aid IN
-    <foreach collection="list" item="item" open="(" close=")"
-      separator=",">
-      #{item}
-    </foreach>
-  </delete>
+	<delete id="batchDeleteByArtice" parameterType="list">
+		DELETE FROM articlecontent WHERE aid IN
+		<foreach collection="list" item="item" open="(" close=")"
+			separator=",">
+			#{item}
+		</foreach>
+	</delete>
 
 
 
